@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<!--if IE 8<html class="lt-ie9">
+-->
+<!-- [if gt IE 8] <!-->
+<html lang="en">
+  <!-- <![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <title>Grunt vs. Gulp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  </head>
+  <body>
+    <header>
+      <link rel="stylesheet" href="css/main.css"/>
+    </header>
+    <div class="logo"></div>
+    <div class="timer"></div>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Grunt vs Gulp</h1>
+          <h3>системы сборок и скаффолдинга - кто сильнее</h3>
+          <!-- NOTE:План-->
+        </section>
+        <section>
+          <h2>Кто я такой?</h2>
+          <ul>
+            <li>Дмитрий Кунин</li>
+            <li>ведущий Front end разработчик AT-Consulting</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Пара вопросов</h2>
+          <ul>
+            <li class="fragment">Кто пользуются системами сборок?</li>
+            <li class="fragment">Кто ползуются Grunt?</li>
+            <li class="fragment">Кто ползуются Gulp?</li>
+            <li class="fragment">Bruch, make,  etc...?</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Для чего используются системы автоматизации?</h2>
+          <ul>
+            <li>cкаффолдинг</li>
+            <li>concat</li>
+            <li>lint</li>
+            <li>минификация</li>
+            <li>unit tests</li>
+            <li>server</li>
+            <li>генератор компонентов</li>
+            <li>генерация документации</li>
+            <li>watch</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Grunt краткая вводная</h2>
+          <ul>
+            <li>Plugins count: 2,818 (gruntjs.com) </li>
+            <li>Configuration over code</li>
+            <li>Огромное коммюнити</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Gulp краткая вводная</h2>
+          <ul>
+            <li>Plugins count: 690 (gulpjs.com ~30 plugins a week) </li>
+            <li>Code over configuration</li>
+            <li>Stream Based</li>
+            <li>Работает с vynil объектом</li>
+            <li>Очень простой API     </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Читаемость/удобство</h3>
+          <pre class="language-javascript"><code class="javascript language-javascript">module.exports = function(grunt) {
+  grunt.loadNpmTasks('grunt-contrib-stylus');
+  grunt.initConfig({
+    stylus: {
+      src: ["styles.styl"],
+      dest: "styles.css"
+    }
+  })
+  grunt.registerTask('default', ['stylus']);  
+});</code></pre>
+          <pre class="language-javascript"><code class="javascript language-javascript">var gulp = require('gulp'),
+    stylus = require('gulp-stylus');
+    
+gulp.task('styles', function() {
+  return gulp.src('src/styles/styles.styl')
+    .pipe(stylus())
+    .pipe(gulp.dest('public/styles'));
+});
+gulp.task('default', ['stylus']);</code></pre>
+        </section>
+        <section>
+          <h2>Скорость</h2>
+          <div class="fragment">Пример</div>
+        </section>
+        <section>
+          <h2>Оптимизация</h2>
+        </section>
+        <section>
+          <h2>Снова вопрос</h2>
+          <div class="fragment">Кто пользуется Grunt.js?</div>
+          <div class="fragment">Готовы ли Вы/хотите ли Вы переключиться?</div>
+        </section>
+        <section>
+          <h2>Стоит ли переключаться?</h2>
+          <div class="fragment">На мой взгдяд нет - потому что:</div>
+          <ul>
+            <li class="fragment">Неохота переписывать существующие проекты          </li>
+            <li class="fragment">Следующие релизы = работа с потоками          </li>
+            <li class="fragment">Огромное коммьюнити          </li>
+          </ul>
+          <div class="fragment">На мой взгдяд да - потому что:</div>
+          <ul>
+            <li class="fragment">Потрясающая скорость доступная уже сейчас</li>
+            <li class="fragment">Личная привлекательность code over config          </li>
+            <li class="fragment">Возможность использовать любые node.js модули          </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Спасибо!</h2>
+          <h3>Вопросы?</h3>
+          <hr>
+          <h4>Дмитрий Кунин</h4>
+          <h4>dkun.in</h4>
+          <h4>bit.ly/gruntvsgulp</h4>
+        </section>
+      </div>
+    </div>
+    <script src="js/app-bc840568.js"></script>
+  </body>
+</html>

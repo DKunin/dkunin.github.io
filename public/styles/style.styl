@@ -4,7 +4,7 @@
 @import _color
 
 body
-  font-family: Helvetica, PT Sans
+  font-family: PT Sans, Helvetica, PT Sans
   background-color: clouds
   
 #container
@@ -15,8 +15,10 @@ body
   margin-top: -30px
   +below(400px)
     width: 95%
-  h2, h4
+  h2, h3, h4
     margin: 0
+  h3   
+    font-weight: normal
   h4
     font-weight: normal
     width: 450px
@@ -26,6 +28,7 @@ body
       width: 100%
   a
     color: darken(clouds, 70)
+    text-decoration: none
     +below(400px)
       text-align: center
       stack()

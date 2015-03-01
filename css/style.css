@@ -31,7 +31,7 @@
   border-right-color: transparent;
 }
 body {
-  font-family: Helvetica, PT Sans;
+  font-family: PT Sans, Helvetica, PT Sans;
   background-color: #ecf0f1;
 }
 #container {
@@ -53,8 +53,12 @@ body {
   }
 }
 #container h2,
+#container h3,
 #container h4 {
   margin: 0;
+}
+#container h3 {
+  font-weight: normal;
 }
 #container h4 {
   font-weight: normal;
@@ -77,6 +81,7 @@ body {
 }
 #container a {
   color: #334145;
+  text-decoration: none;
 }
 @media only screen and (max-width: 400px) {
   #container a {

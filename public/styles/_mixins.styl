@@ -1,0 +1,179 @@
+vendor(prop, args)
+  -webkit-{prop} args
+  -moz-{prop} args
+  -o-{prop} args
+  {prop} args
+ 
+animation()
+  vendor('animation', arguments)
+ 
+border-radius()
+  vendor('border-radius', arguments)
+ 
+border-top-radius() 
+  vendor('border-top-left-radius', arguments)
+  vendor('border-top-right-radius', arguments)
+ 
+border-top-radius() 
+  vendor('border-bottom-left-radius', arguments)
+  vendor('border-bottom-right-radius', arguments)
+ 
+linear-gradient(start_color, end_color, start = left top, end = left bottom)
+  mozstart = top if start = left top
+  background start_color
+  background -moz-linear-gradient(mozstart, start_color 0%, end_color 100%)
+  background -webkit-gradient(linear, start, end, color-stop(0%, start_color), color-stop(100%, end_color))
+  -webkit-background-origin padding-box
+ 
+background-clip()
+  vendor('background-clip', arguments)
+ 
+box-shadow() 
+  -moz-box-shadow arguments
+  -webkit-box-shadow arguments
+  box-shadow arguments
+ 
+box(orient, pack, align) 
+  display -webkit-box
+  display -moz-box
+  display box
+  vendor('box-orient', orient)
+  vendor('box-pack', pack)
+  vendor('box-align', align)
+  vendor('box-lines', multiple)
+ 
+box_flex()
+  vendor('box-flex', arguments)
+ 
+text-fill-color()
+  vendor('text-fill-color', arguments)
+ 
+transition()
+  vendor('transition', arguments)
+ 
+transform()
+  vendor('transform', arguments)
+
+.hidden
+  display: none
+
+.on-mobile
+  display: none !important
+
+.pull-left
+  float: left
+.pull-right
+  float: right
+
+.expanded
+  .has-dropdown
+    &:before
+      top: 3px
+      border: 5px solid blue_panel_arrow
+      border-top-color: transparent
+      border-left-color: transparent
+      border-right-color: transparent
+.has-dropdown
+  position: relative
+  &:before
+    position: absolute
+    content: ''
+    top: 7px
+    left: 10px
+    border: 5px solid blue_panel_arrow
+    border-bottom-color: transparent
+    border-left-color: transparent
+    border-right-color: transparent
+buttonshadow()
+  box-shadow: 0 2px 0 0px darken(login_inpput_bg,5)
+
+panel(blue = false)
+  background-color: panel_bg
+  border-radius: 5px
+  margin-bottom: 30px
+  padding: 0
+  cf()
+  border: 1px solid panel_border
+  h2
+    line-height: auto
+  .panel-title
+    margin: 0
+    font-size: 18px
+    font-weight: bold
+    color: panel_heading_color
+    cursor: pointer
+    display: inline-block
+    text-transform: uppercase
+    position: relative
+    padding: 20px 15px
+  .blue-panel
+    background: transparent    
+  if blue
+    color: white
+    
+    & > h2.panel-title
+      linear-gradient(dashboard_headers_gradient_1, dashboard_headers_gradient_2) !important
+    
+    .panel-title, .panel-title > h2
+      color: white !important
+
+androidinputborder()
+  color: android_separator_gray
+  border-bottom: 1px solid
+  padding-bottom: 3px
+  position: relative
+  top: 5px
+  left: -10px
+  right: 20px
+  width: 107%
+  bottom: 0
+  & > span
+    border: 8px solid
+    position: absolute
+    border-left-color: transparent
+    border-top-color: transparent
+    right: 0
+    top: -12px
+  &::before, &::after
+    content: ''
+    display: block
+    position: absolute
+    left: 0
+    top: -4px
+    border-left: 1px solid
+    height: 8px
+  &::after
+    left: auto
+    right: 0
+    
+panelandroid(blue = false)
+  background-color: panel_bg  
+  margin-bottom: 30px
+  padding: 0
+  border: 1px solid panel_border
+  box-shadow: 0 2px 0 0 rgba(0,0,0,.1)
+  cf()
+  h2
+    line-height: auto
+  .panel-title    
+    border-radius: 3px
+    font-size: 18px
+    font-weight: bold
+    color: panel_heading_color
+    cursor: pointer
+    display: inline-block
+    text-transform: uppercase
+    position: relative
+  .panel-part.panel-info
+    border: none
+    background-color: transparent
+  .mobile-panels
+    margin-top: 15px
+    background-color: transparent
+  .accidents-list .accident-card
+    background-color: graph_bg !important
+  .blue-panel
+    background: transparent !important
+  if blue    
+    .panel-title, .panel-title > h2
+      color: white !important

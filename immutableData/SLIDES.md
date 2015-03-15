@@ -26,6 +26,7 @@
 * immutato
 * pim
 * seti
+* texo
 
 --
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>Untitled</title>
+  <title>Immutable Data</title>
   <style type="text/css">
     body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -477,9 +477,9 @@ pre .chunk {
 <li><p>Необходмио проверить только root node</p>
 <pre><code>  var map1 = I.Map({a:1, b:2, c:3});
   var map2 = map1.set(&#39;b&#39;, 2);
-  console.log(map1 === map2); // no change
+  console.log(I.is(map1, map2)); // нет изменений, данные одинаквы
   var map3 = map1.set(&#39;b&#39;, 50);
-  console.log(map1 !== map3); // change</code></pre>
+  console.log(I.is(map1, map3)); // есть изменения</code></pre>
 </li>
 </ul>
 </section>
@@ -502,7 +502,7 @@ pre .chunk {
 </section>
   </div>
   <div class="slide hidden" id="slide-13">
-    <section class="slide-content"><h3 id="-undo-redo">Практически бесплатный undo/redo</h3>
+    <section class="slide-content"><h1 id="-undo-redo">Практически бесплатный undo/redo</h1>
 </section>
   </div>
   <div class="slide hidden" id="slide-14">
@@ -518,40 +518,80 @@ pre .chunk {
 </section>
   </div>
   <div class="slide hidden" id="slide-17">
-    <section class="slide-content"><h2 id="-">Массивы</h2>
+    <section class="slide-content"><h3 id="-">Массивы</h3>
+<pre><code>    var list1 = Immutable.List.of(1, 2);
+    var list2 = list1.push(3, 4, 5);
+    var list3 = list2.unshift(0);
+    var list4 = list1.concat(list2, list3);
+    assert(list1.size === 2);
+    assert(list2.size === 5);
+    assert(list3.size === 6);
+    assert(list4.size === 13);
+    assert(list4.get(0) === 1);</code></pre>
 </section>
   </div>
   <div class="slide hidden" id="slide-18">
-    <section class="slide-content"><h2 id="-">Объекты</h2>
+    <section class="slide-content"><h3 id="-">Объекты</h3>
+<pre><code>    var map1 = Immutable.Map({a:1, b:2, c:3});
+    var map2 = map1.set(&#39;b&#39;, 50);
+    map1.get(&#39;b&#39;); // 2
+    map2.get(&#39;b&#39;); // 50</code></pre>
 </section>
   </div>
   <div class="slide hidden" id="slide-19">
-    <section class="slide-content"><h2 id="-">Многое другое</h2>
+    <section class="slide-content"><h3 id="-">Многое другое</h3>
+<ul>
+<li>Stack</li>
+<li>OrderedMap</li>
+<li>Set</li>
+<li>OrderedSet</li>
+<li>Record</li>
+</ul>
 </section>
   </div>
   <div class="slide hidden" id="slide-20">
-    <section class="slide-content"><h2 id="-">Ленивые операции</h2>
+    <section class="slide-content"><h3 id="-js-">Принимает и возвращает обычные JS объекты</h3>
+<pre><code>    var map1 = Immutable.Map({a:1, b:2, c:3, d:4});
+    var map2 = Immutable.Map({c:10, a:20, t:30});
+    var obj = {d:100, o:200, g:300};
+    var map3 = map1.merge(map2, obj);
+
+    console.log(map3.toJS()) // { a: 20, b: 2, c: 10, d: 100, g: 300, o: 200, t: 30 }</code></pre>
 </section>
   </div>
   <div class="slide hidden" id="slide-21">
-    <section class="slide-content"><h2 id="-">Групповые операции</h2>
+    <section class="slide-content"><h3 id="-">Ленивые последовательности</h3>
+<pre><code>    var oddSquares = Immutable.Seq.of(1,2,3,4,5,6,7,8)
+      .filter(x =&gt; x % 2).map(x =&gt; x * x);
+
+    console.log(oddSquares.get(1)); // 9</code></pre>
 </section>
   </div>
   <div class="slide hidden" id="slide-22">
-    <section class="slide-content"><h1 id="-">Стоит ли бросаться переделывать существующие проекты?</h1>
+    <section class="slide-content"><h3 id="-">Групповые операции</h3>
+<pre><code>    var list1 = Immutable.List.of(1,2,3);
+    var list2 = list1.withMutations(function (list) {
+      list.push(4).push(5).push(6);
+    });
+    assert(list1.size === 3);
+    assert(list2.size === 6);</code></pre>
 </section>
   </div>
   <div class="slide hidden" id="slide-23">
-    <section class="slide-content"><h1 id="-">Стоит пощупать в следующем?</h1>
+    <section class="slide-content"><h2 id="-">Стоит ли бросаться переделывать существующие проекты?</h2>
 </section>
   </div>
   <div class="slide hidden" id="slide-24">
-    <section class="slide-content"><h1 id="-">Вопросы?</h1>
-<p>Дмитрий Кунин, AT-Consulting, senior front end developer
-<a href="http://dkun.in/">http://dkun.in/</a></p>
+    <section class="slide-content"><h2 id="-">Стоит пощупать в следующем?</h2>
 </section>
   </div>
   <div class="slide hidden" id="slide-25">
+    <section class="slide-content"><h1 id="-">Вопросы?</h1>
+<p>Дмитрий Кунин</p>
+<p><a href="http://dkun.in/">http://dkun.in/</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-26">
     <section class="slide-content"></section>
   </div>
 

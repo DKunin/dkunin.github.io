@@ -402,7 +402,7 @@ pre .chunk {
 
   <div class="slide" id="slide-1">
     <section class="slide-content"><h1 id="immutable-data">Immutable Data</h1>
-<h2 id="-">Неизменяемые данные в приложении: что, как и зачем</h2>
+<h2 id="-">Неизменяемые данные в приложении: что, зачем и как</h2>
 <p>Дмитрий Кунин, AT-Consulting, senior front end developer</p>
 </section>
   </div>
@@ -410,36 +410,24 @@ pre .chunk {
     <section class="slide-content"><h3 id="-">План</h3>
 <ul>
 <li>Что</li>
-<li>Как</li>
 <li>Зачем</li>
+<li>Как</li>
 </ul>
 </section>
   </div>
   <div class="slide hidden" id="slide-3">
-    <section class="slide-content"><h3 id="-">Что такое неизменямые данные</h3>
+    <section class="slide-content"><h3 id="-">Что</h3>
 <ul>
 <li>Данные которые не меняются</li>
-<li>Persistance Data, Immutable Data
-[<a href="http://www.diyphotography.net/files/images/6/ben-trails-05.jpg">http://www.diyphotography.net/files/images/6/ben-trails-05.jpg</a>]</li>
+<li>Persistance Data, Immutable Data</li>
 </ul>
+<p><img src="http://www.diyphotography.net/files/images/6/ben-trails-05.jpg" alt=""></p>
 </section>
   </div>
   <div class="slide hidden" id="slide-4">
-    <section class="slide-content"><h3 id="-">Готовые библиотеки</h3>
-<ul>
-<li>immutable.js</li>
-<li>seamless-immutable</li>
-<li>immutato</li>
-<li>pim</li>
-<li>seti</li>
-<li>texo</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-5">
     <section class="slide-content"><h3 id="-">Принцип работы</h3>
 <ul>
-<li><p>Вместо мутирования сужещствующего значения - каждый раз создается новый объект</p>
+<li><p>Вместо мутирования существующего значения - каждый раз создается новый объект</p>
 <pre><code>  var list = I.List.of(1,2,3);
   var list2 = list.push(4);
 
@@ -449,38 +437,121 @@ pre .chunk {
 </ul>
 </section>
   </div>
+  <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h3 id="-">Готовые библиотеки</h3>
+<ul>
+<li>immutable.js</li>
+<li>mori</li>
+<li>seamless-immutable</li>
+<li>immutato</li>
+<li>pim</li>
+<li>seti</li>
+<li>texo</li>
+<li>ancient-oak</li>
+</ul>
+</section>
+  </div>
   <div class="slide hidden" id="slide-6">
-    <section class="slide-content"><h3 id="-">Отличия значений и идентификатора</h3>
+    <section class="slide-content"><h3 id="-">Высокая скорость работы за счет дерева бинарных ключей</h3>
 </section>
   </div>
   <div class="slide hidden" id="slide-7">
-    <section class="slide-content"><h3 id="-">В чем преимущества</h3>
+    <section class="slide-content"><h3 id="-">Отличия значений и идентификатора</h3>
 </section>
   </div>
   <div class="slide hidden" id="slide-8">
+    <section class="slide-content"><h1 id="-">Зачем</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-9">
+    <section class="slide-content"><h3 id="-">Сложность сохранения состояния</h3>
+<ul>
+<li>Слушатели событий</li>
+<li>&quot;Грязное&quot; состояние</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-10">
+    <section class="slide-content"><h3 id="-">Сравнение объектов / списков</h3>
+<ul>
+<li><p>Необходмио проверить только root node</p>
+<pre><code>  var map1 = I.Map({a:1, b:2, c:3});
+  var map2 = map1.set(&#39;b&#39;, 2);
+  console.log(map1 === map2); // no change
+  var map3 = map1.set(&#39;b&#39;, 50);
+  console.log(map1 !== map3); // change</code></pre>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="-">Отсутсвие побочных эфектов</h3>
+<ul>
+<li>Защита от изменений наших данных<ul>
+<li>от внешних модулей</li>
+<li>от функций</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
     <section class="slide-content"><h3 id="-">Простое клонирование объекта</h3>
 <pre><code>    var map1 = Immutable.Map({a:1, b:2, c:3});
     var clone = map1;</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-9">
-    <section class="slide-content"><h3 id="-">Сравнение объектов / списков</h3>
-<pre><code>    var map1 = I.Map({a:1, b:2, c:3});
-    var map2 = map1.set(&#39;b&#39;, 2);
-    console.log(map1 === map2); // no change
-    var map3 = map1.set(&#39;b&#39;, 50);
-    console.log(map1 !== map3); // change</code></pre>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-10">
+  <div class="slide hidden" id="slide-13">
     <section class="slide-content"><h3 id="-undo-redo">Практически бесплатный undo/redo</h3>
 </section>
   </div>
-  <div class="slide hidden" id="slide-11">
+  <div class="slide hidden" id="slide-14">
+    <section class="slide-content"><h3 id="-">Добавление простой логики мемоизации</h3>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-15">
     <section class="slide-content"><h3 id="-">Нет необходимости защитного копирования</h3>
 </section>
   </div>
-  <div class="slide hidden" id="slide-12">
+  <div class="slide hidden" id="slide-16">
+    <section class="slide-content"><h1 id="-">Как</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-17">
+    <section class="slide-content"><h2 id="-">Массивы</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-18">
+    <section class="slide-content"><h2 id="-">Объекты</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-19">
+    <section class="slide-content"><h2 id="-">Многое другое</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-20">
+    <section class="slide-content"><h2 id="-">Ленивые операции</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-21">
+    <section class="slide-content"><h2 id="-">Групповые операции</h2>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-22">
+    <section class="slide-content"><h1 id="-">Стоит ли бросаться переделывать существующие проекты?</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-23">
+    <section class="slide-content"><h1 id="-">Стоит пощупать в следующем?</h1>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-24">
+    <section class="slide-content"><h1 id="-">Вопросы?</h1>
+<p>Дмитрий Кунин, AT-Consulting, senior front end developer
+<a href="http://dkun.in/">http://dkun.in/</a></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-25">
     <section class="slide-content"></section>
   </div>
 

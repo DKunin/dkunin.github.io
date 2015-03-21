@@ -17,15 +17,14 @@
 ### Что
 
 * Данные которые не меняются
-* Persistance Data, Immutable Data
-
-![](http://www.diyphotography.net/files/images/6/ben-trails-05.jpg)
+* Persistant Immutable Data
 
 --
 
 ### Принцип работы
 
 * Вместо мутирования существующего значения - каждый раз создается новый объект
+* Создается глубокая копия объекта - клон меняется и возвращается
 
         var list = I.List.of(1,2,3);
         var list2 = list.push(4);
@@ -33,8 +32,17 @@
         console.log(list.toJS()) // 1,2,3
         console.log(list === list2) // false
 
---
 
+--
+### Направленный ациклический граф
+![](dag.png)
+
+--
+### Скорость за счет обмена общими данными
+
+![](mutation.png)
+
+--
 ### Готовые библиотеки
 
 * immutable.js
@@ -48,26 +56,46 @@
 
 --
 
-### Высокая скорость работы за счет дерева бинарных ключей
-
-
-
---
-### Отличия значений и идентификатора
-
-
-
---
-
 # Зачем
 
 --
+# Решать проблемы!
 
-### Сложность сохранения состояния
+--
+
+# Идентификатор и значение
+
+* Мутирующие объекты могут мутировать :)))
+
+        var identity = 'Someone';
+            identity = 'Someone else';
+            identity = 'Third person';
+
+--
+
+### Сложность слежения за состоянием
 
 * Слушатели событий
-* "Грязное" состояние
+        Object.observe();
 
+* "Грязное" состояние
+        var data = {
+            dirty: false,
+            _raw: {key:"value"},
+            get: function(key){
+                return this._raw[key] 
+            },
+            set: function(key, newValue){
+                this._raw[key] = newValue;
+                this.dirty = true;
+            }
+        }
+
+        funtion renderUI(data) {
+            if(!data.dirty) return;
+            data.dirty = false;
+            ...
+        }
 --
 
 ### Сравнение объектов / списков
@@ -75,10 +103,11 @@
 * Необходмио проверить только root node
 
         var map1 = I.Map({a:1, b:2, c:3});
-        var map2 = map1.set('b', 2);
-        console.log(I.is(map1, map2)); // нет изменений, данные одинаквы
-        var map3 = map1.set('b', 50);
-        console.log(I.is(map1, map3)); // есть изменения
+        var map2 = map1.set('b', 50);
+        console.log(I.is(map1, map2)); // есть изменения
+        var map3 = map2.set('b', 2);
+        console.log(I.is(map1, map3)); // нет изменений
+
 
 --
 ### Отсутсвие побочных эфектов
@@ -86,6 +115,7 @@
 * Защита от изменений наших данных
     - от внешних модулей
     - от функций
+* Не нужно защитное копирование
 
 --
 
@@ -98,15 +128,6 @@
 
 # Практически бесплатный undo/redo
 
-
---
-### Добавление простой логики мемоизации
-
-
---
-### Нет необходимости защитного копирования
-
-
 --
 
 # Как
@@ -117,7 +138,7 @@
         var list1 = Immutable.List.of(1, 2);
         var list2 = list1.push(3, 4, 5);
         var list3 = list2.unshift(0);
-        var list4 = list1.concat(list2, list3);
+        var list4 = list1.concat(list2, list3); 
         assert(list1.size === 2);
         assert(list2.size === 5);
         assert(list3.size === 6);

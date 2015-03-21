@@ -3,13 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>Immutable Data</title>
+  <title>Untitled</title>
   <style type="text/css">
     body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #222;
   background-color: #f7f7f7;
   font-size: 100%;
+   overflow: hidden;
 }
 
 .slide {
@@ -19,8 +20,8 @@
 }
 
 .slide-content {
-  width: 800px;
-  height: 600px;
+  width: 1280px;
+  height: 960px;
   overflow: hidden;
   margin: 80px auto 0 auto;
   padding: 30px;
@@ -419,15 +420,15 @@ pre .chunk {
     <section class="slide-content"><h3 id="-">Что</h3>
 <ul>
 <li>Данные которые не меняются</li>
-<li>Persistance Data, Immutable Data</li>
+<li>Persistant Immutable Data</li>
 </ul>
-<p><img src="http://www.diyphotography.net/files/images/6/ben-trails-05.jpg" alt=""></p>
 </section>
   </div>
   <div class="slide hidden" id="slide-4">
     <section class="slide-content"><h3 id="-">Принцип работы</h3>
 <ul>
-<li><p>Вместо мутирования существующего значения - каждый раз создается новый объект</p>
+<li>Вместо мутирования существующего значения - каждый раз создается новый объект</li>
+<li><p>Создается глубокая копия объекта - клон меняется и возвращается</p>
 <pre><code>  var list = I.List.of(1,2,3);
   var list2 = list.push(4);
 
@@ -438,6 +439,16 @@ pre .chunk {
 </section>
   </div>
   <div class="slide hidden" id="slide-5">
+    <section class="slide-content"><h3 id="-">Направленный ациклический граф</h3>
+<p><img src="dag.png" alt=""></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-6">
+    <section class="slide-content"><h3 id="-">Скорость за счет обмена общими данными</h3>
+<p><img src="mutation.png" alt=""></p>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-7">
     <section class="slide-content"><h3 id="-">Готовые библиотеки</h3>
 <ul>
 <li>immutable.js</li>
@@ -451,40 +462,67 @@ pre .chunk {
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-6">
-    <section class="slide-content"><h3 id="-">Высокая скорость работы за счет дерева бинарных ключей</h3>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-7">
-    <section class="slide-content"><h3 id="-">Отличия значений и идентификатора</h3>
-</section>
-  </div>
   <div class="slide hidden" id="slide-8">
     <section class="slide-content"><h1 id="-">Зачем</h1>
 </section>
   </div>
   <div class="slide hidden" id="slide-9">
-    <section class="slide-content"><h3 id="-">Сложность сохранения состояния</h3>
-<ul>
-<li>Слушатели событий</li>
-<li>&quot;Грязное&quot; состояние</li>
-</ul>
+    <section class="slide-content"><h1 id="-">Решать проблемы!</h1>
 </section>
   </div>
   <div class="slide hidden" id="slide-10">
-    <section class="slide-content"><h3 id="-">Сравнение объектов / списков</h3>
+    <section class="slide-content"><h1 id="-">Идентификатор и значение</h1>
 <ul>
-<li><p>Необходмио проверить только root node</p>
-<pre><code>  var map1 = I.Map({a:1, b:2, c:3});
-  var map2 = map1.set(&#39;b&#39;, 2);
-  console.log(I.is(map1, map2)); // нет изменений, данные одинаквы
-  var map3 = map1.set(&#39;b&#39;, 50);
-  console.log(I.is(map1, map3)); // есть изменения</code></pre>
+<li><p>Мутирующие объекты могут мутировать :)))</p>
+<pre><code>  var identity = &#39;Someone&#39;;
+      identity = &#39;Someone else&#39;;
+      identity = &#39;Third person&#39;;</code></pre>
 </li>
 </ul>
 </section>
   </div>
   <div class="slide hidden" id="slide-11">
+    <section class="slide-content"><h3 id="-">Сложность слежения за состоянием</h3>
+<ul>
+<li><p>Слушатели событий</p>
+<pre><code>  Object.observe();</code></pre>
+</li>
+<li><p>&quot;Грязное&quot; состояние</p>
+<pre><code>  var data = {
+      dirty: false,
+      _raw: {key:&quot;value&quot;},
+      get: function(key){
+          return this._raw[key] 
+      },
+      set: function(key, newValue){
+          this._raw[key] = newValue;
+          this.dirty = true;
+      }
+  }
+
+  funtion renderUI(data) {
+      if(!data.dirty) return;
+      data.dirty = false;
+      ...
+  }</code></pre>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-12">
+    <section class="slide-content"><h3 id="-">Сравнение объектов / списков</h3>
+<ul>
+<li><p>Необходмио проверить только root node</p>
+<pre><code>  var map1 = I.Map({a:1, b:2, c:3});
+  var map2 = map1.set(&#39;b&#39;, 50);
+  console.log(I.is(map1, map2)); // есть изменения
+  var map3 = map2.set(&#39;b&#39;, 2);
+  console.log(I.is(map1, map3)); // нет изменений</code></pre>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden" id="slide-13">
     <section class="slide-content"><h3 id="-">Отсутсвие побочных эфектов</h3>
 <ul>
 <li>Защита от изменений наших данных<ul>
@@ -492,25 +530,18 @@ pre .chunk {
 <li>от функций</li>
 </ul>
 </li>
+<li>Не нужно защитное копирование</li>
 </ul>
 </section>
   </div>
-  <div class="slide hidden" id="slide-12">
+  <div class="slide hidden" id="slide-14">
     <section class="slide-content"><h3 id="-">Простое клонирование объекта</h3>
 <pre><code>    var map1 = Immutable.Map({a:1, b:2, c:3});
     var clone = map1;</code></pre>
 </section>
   </div>
-  <div class="slide hidden" id="slide-13">
-    <section class="slide-content"><h1 id="-undo-redo">Практически бесплатный undo/redo</h1>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-14">
-    <section class="slide-content"><h3 id="-">Добавление простой логики мемоизации</h3>
-</section>
-  </div>
   <div class="slide hidden" id="slide-15">
-    <section class="slide-content"><h3 id="-">Нет необходимости защитного копирования</h3>
+    <section class="slide-content"><h1 id="-undo-redo">Практически бесплатный undo/redo</h1>
 </section>
   </div>
   <div class="slide hidden" id="slide-16">
@@ -522,7 +553,7 @@ pre .chunk {
 <pre><code>    var list1 = Immutable.List.of(1, 2);
     var list2 = list1.push(3, 4, 5);
     var list3 = list2.unshift(0);
-    var list4 = list1.concat(list2, list3);
+    var list4 = list1.concat(list2, list3); 
     assert(list1.size === 2);
     assert(list2.size === 5);
     assert(list3.size === 6);

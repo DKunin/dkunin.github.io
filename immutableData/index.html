@@ -1,556 +1,309 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>Untitled</title>
-  <style type="text/css">
-    body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #222;
-  background-color: #f7f7f7;
-  font-size: 100%;
-   overflow: hidden;
-}
-
-.slide {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-}
-
-.slide-content {
-  width: 1280px;
-  height: 960px;
-  overflow: hidden;
-  margin: 80px auto 0 auto;
-  padding: 30px;
-
-  font-weight: 200;
-  font-size: 200%;
-  line-height: 1.375;
-}
-
-.controls {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-}
-
-.arrow {
-  width: 0; height: 0;
-  border: 30px solid #333;
-  float: left;
-  margin-right: 30px;
-
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.prev {
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: transparent;
-
-  border-left-width: 0;
-  border-right-width: 50px;
-}
-
-.next {
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
-
-  border-left-width: 50px;
-  border-right-width: 0;
-}
-
-.prev:hover {
-  border-right-color: #888;
-  cursor: pointer;
-}
-
-.next:hover {
-  border-left-color: #888;
-  cursor: pointer;
-}
-
-h1 {
-  font-size: 300%;
-  line-height: 1.2;
-  text-align: center;
-  margin: 170px 0 0;
-}
-
-h2 {
-  font-size: 100%;
-  line-height: 1.2;
-  margin: 5px 0;
-  text-align: center;
-  font-weight: 200;
-}
-
-h3 {
-  font-size: 140%;
-  line-height: 1.2;
-  border-bottom: 1px solid #aaa;
-  margin: 0;
-  padding-bottom: 15px;
-}
-
-ul {
-  padding: 20px 0 0 60px;
-  font-weight: 200;
-  line-height: 1.375;
-}
-
-.author h1 {
-  font-size: 170%;
-  font-weight: 200;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.author h3 {
-  font-weight: 100;
-  text-align: center;
-  font-size: 95%;
-  border: none;
-}
-
-a {
-  text-decoration: none;
-  color: #44a4dd;
-}
-
-a:hover {
-  color: #66b5ff;
-}
-
-pre {
-  font-size: 60%;
-  line-height: 1.3;
-}
-
-.progress {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-}
-
-.progress-bar {
-  width: 0%;
-  height: 3px;
-  background-color: #b4b4b4;
-
-  -webkit-transition: width 0.05s ease-out;
-  -moz-transition: width 0.05s ease-out;
-  -o-transition: width 0.05s ease-out;
-  transition: width 0.05s ease-out;
-}
-
-.hidden {
-  display: none;
-}
-
-@media (max-width: 850px) {
-
-  body {
-    font-size: 70%;
-  }
-
-  .slide-content {
-    width: auto;
-  }
-
-  img {
-    width: 100%;
-  }
-
-  h1 {
-    margin-top: 120px;
-  }
-
-  .prev, .prev:hover {
-    border-right-color: rgba(135, 135, 135, 0.5);
-  }
-
-  .next, .next:hover {
-    border-left-color: rgba(135, 135, 135, 0.5);
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 50%;
-    overflow: hidden;
-  }
-
-  .slide-content {
-    padding: 10px;
-    margin-top: 10px;
-    height: 340px;
-  }
-
-  h1 {
-    margin-top: 50px;
-  }
-
-  ul {
-    padding-left: 25px;
-  }
-}
-
-@media print {
-  * {
-    -webkit-print-color-adjust: exact;
-  }
-
-  @page {
-    size: letter;
-  }
-
-  .hidden {
-    display: inline;
-  }
-
-  html {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
-
-  body {
-    margin: 0 auto !important;
-    border: 0;
-    padding: 0;
-    float: none !important;
-    overflow: visible;
-    background: none !important;
-    font-size: 52%;
-  }
-
-  .progress, .controls {
-    display: none;
-  }
-
-  .slide {
-    position: static;
-  }
-
-  .slide-content {
-    border: 1px solid #222;
-    margin-top: 0;
-    margin-bottom: 40px;
-    height: 3.5in;
-    overflow: visible;
-  }
-
-  .slide:nth-child(even) {
-    /* 2 slides per page */
-    page-break-before: always;
-  }
-}
-
-/*
-github.com style (c) Vasily Polovnyov <vast@whiteants.net>
-*/
-
-code, pre {
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  overflow: auto;
-  padding: 6px 10px;
-}
-
-code {
-  padding: 0 5px;
-}
-
-pre>code {
-  margin: 0; padding: 0;
-  border: none;
-  background: transparent;
-}
-
-pre .comment,
-pre .template_comment,
-pre .diff .header,
-pre .javadoc {
-  color: #998;
-  font-style: italic
-}
-
-pre .keyword,
-pre .css .rule .keyword,
-pre .winutils,
-pre .javascript .title,
-pre .nginx .title,
-pre .subst,
-pre .request,
-pre .status {
-  color: #333;
-  font-weight: bold
-}
-
-pre .number,
-pre .hexcolor,
-pre .ruby .constant {
-  color: #099;
-}
-
-pre .string,
-pre .tag .value,
-pre .phpdoc,
-pre .tex .formula {
-  color: #d14
-}
-
-pre .title,
-pre .id {
-  color: #900;
-  font-weight: bold
-}
-
-pre .javascript .title,
-pre .lisp .title,
-pre .clojure .title,
-pre .subst {
-  font-weight: normal
-}
-
-pre .class .title,
-pre .haskell .type,
-pre .vhdl .literal,
-pre .tex .command {
-  color: #458;
-  font-weight: bold
-}
-
-pre .tag,
-pre .tag .title,
-pre .rules .property,
-pre .django .tag .keyword {
-  color: #000080;
-  font-weight: normal
-}
-
-pre .attribute,
-pre .variable,
-pre .lisp .body {
-  color: #008080
-}
-
-pre .regexp {
-  color: #009926
-}
-
-pre .class {
-  color: #458;
-  font-weight: bold
-}
-
-pre .symbol,
-pre .ruby .symbol .string,
-pre .lisp .keyword,
-pre .tex .special,
-pre .prompt {
-  color: #990073
-}
-
-pre .built_in,
-pre .lisp .title,
-pre .clojure .built_in {
-  color: #0086b3
-}
-
-pre .preprocessor,
-pre .pi,
-pre .doctype,
-pre .shebang,
-pre .cdata {
-  color: #999;
-  font-weight: bold
-}
-
-pre .deletion {
-  background: #fdd
-}
-
-pre .addition {
-  background: #dfd
-}
-
-pre .diff .change {
-  background: #0086b3
-}
-
-pre .chunk {
-  color: #aaa
-}
-
-
-  </style>
-</head>
-<body>
-    <div class="progress">
-    <div class="progress-bar"></div>
-  </div>
-
-  <div class="slide" id="slide-1">
-    <section class="slide-content"><h1 id="immutable-data">Immutable Data</h1>
-<h2 id="-">Неизменяемые данные в приложении: что, зачем и как</h2>
-<p>Дмитрий Кунин, AT-Consulting, senior front end developer</p>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-2">
-    <section class="slide-content"><h3 id="-">План</h3>
-<ul>
-<li>Что</li>
-<li>Зачем</li>
-<li>Как</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-3">
-    <section class="slide-content"><h3 id="-">Что</h3>
-<ul>
-<li>Данные которые не меняются</li>
-<li>Persistant Immutable Data</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-4">
-    <section class="slide-content"><h3 id="-">Принцип работы</h3>
-<ul>
-<li>Вместо мутирования существующего значения - каждый раз создается новый объект</li>
-<li><p>Создается глубокая копия объекта - клон меняется и возвращается</p>
-<pre><code>  var list = I.List.of(1,2,3);
-  var list2 = list.push(4);
-
-  console.log(list.toJS()) // 1,2,3
-  console.log(list === list2) // false</code></pre>
-</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-5">
-    <section class="slide-content"><h3 id="-">Направленный ациклический граф</h3>
-<p><img src="dag.png" alt=""></p>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-6">
-    <section class="slide-content"><h3 id="-">Скорость за счет обмена общими данными</h3>
-<p><img src="mutation.png" alt=""></p>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-7">
-    <section class="slide-content"><h3 id="-">Готовые библиотеки</h3>
-<ul>
-<li>immutable.js</li>
-<li>mori</li>
-<li>seamless-immutable</li>
-<li>immutato</li>
-<li>pim</li>
-<li>seti</li>
-<li>texo</li>
-<li>ancient-oak</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-8">
-    <section class="slide-content"><h1 id="-">Зачем</h1>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-9">
-    <section class="slide-content"><h1 id="-">Решать проблемы!</h1>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-10">
-    <section class="slide-content"><h1 id="-">Идентификатор и значение</h1>
-<ul>
-<li><p>Мутирующие объекты могут мутировать :)))</p>
-<pre><code>  var identity = &#39;Someone&#39;;
-      identity = &#39;Someone else&#39;;
-      identity = &#39;Third person&#39;;</code></pre>
-</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-11">
-    <section class="slide-content"><h3 id="-">Сложность слежения за состоянием</h3>
-<ul>
-<li><p>Слушатели событий</p>
-<pre><code>  Object.observe();</code></pre>
-</li>
-<li><p>&quot;Грязное&quot; состояние</p>
-<pre><code>  var data = {
-      dirty: false,
-      _raw: {key:&quot;value&quot;},
-      get: function(key){
-          return this._raw[key] 
-      },
-      set: function(key, newValue){
-          this._raw[key] = newValue;
-          this.dirty = true;
+  <head>
+    <title>Immutable data</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style type="text/css">
+
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { 
+        font-family: 'PT Sans'; 
+        font-size: 26px;
       }
-  }
+      h1, h2, h3 {
 
-  funtion renderUI(data) {
-      if(!data.dirty) return;
-      data.dirty = false;
-      ...
-  }</code></pre>
-</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-12">
-    <section class="slide-content"><h3 id="-">Сравнение объектов / списков</h3>
-<ul>
-<li><p>Необходмио проверить только root node</p>
-<pre><code>  var map1 = I.Map({a:1, b:2, c:3});
-  var map2 = map1.set(&#39;b&#39;, 50);
-  console.log(I.is(map1, map2)); // есть изменения
-  var map3 = map2.set(&#39;b&#39;, 2);
-  console.log(I.is(map1, map3)); // нет изменений</code></pre>
-</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-13">
-    <section class="slide-content"><h3 id="-">Отсутсвие побочных эфектов</h3>
-<ul>
-<li>Защита от изменений наших данных<ul>
-<li>от внешних модулей</li>
-<li>от функций</li>
-</ul>
-</li>
-<li>Не нужно защитное копирование</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-14">
-    <section class="slide-content"><h3 id="-">Простое клонирование объекта</h3>
-<pre><code>    var map1 = Immutable.Map({a:1, b:2, c:3});
-    var clone = map1;</code></pre>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-15">
-    <section class="slide-content"><h1 id="-undo-redo">Практически бесплатный undo/redo</h1>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-16">
-    <section class="slide-content"><h1 id="-">Как</h1>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-17">
-    <section class="slide-content"><h3 id="-">Массивы</h3>
-<pre><code>    var list1 = Immutable.List.of(1, 2);
+        font-weight: bold;
+      }
+      .remark-code, .remark-inline-code { 
+        font-family: 'Ubuntu Mono', Monospace; 
+      }
+      .red {
+        color: red;
+      }
+      .remark-slide-content {
+        font-size: 32px
+      }
+      .remark-code {
+        font-size: 28px
+      }
+      .no-bullets ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;        
+      }
+      .no-bullets ul a{
+        text-decoration: none;
+        color: black;     
+      }      
+      .side {
+        width: 48%;
+        float: left;
+        margin-right: 2%;
+        font-size: 20px;
+        display: inline-block;
+      }
+      .side .remark-code {
+        font-size: 19px;
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Immutable Data
+.subtitle[Неизменяемые данные в приложении: .red[что, зачем и как]]
+
+.author[Дмитрий Кунин, AT-Consulting]
+
+---
+
+### План
+
+* Что это такое
+* Зачем это использовать
+* Как это использовать
+
+---
+
+### .red[Что] это такое?
+
+## Persistant 
+## Immutable
+
+.small[Данные которые не меняются]
+
+---
+
+### Принцип работы
+
+Вместо мутирования существующего значения - каждый раз создается новый объект
+
+    var list = I.List.of(1,2,3);
+    var list2 = list.push(4);
+
+    console.log(list.toJS()) // 1,2,3
+    console.log(list === list2) // false
+
+
+---
+
+### Принцип работы
+
+Создается глубокая копия объекта - клон меняется и возвращается
+
+
+---
+
+### Направленный ациклический граф
+![](dag.png)
+
+---
+### Скорость за счет обмена общими данными
+
+---
+
+class: center, middle
+
+### Скорость работы
+
+
+.side[
+
+vanilla
+
+    var list = [];
+    for(var i=0;i < 1000000;i++) {
+      list.push(i);
+    }
+
+# 83 ms
+]
+.side[
+
+mori
+
+    var list = mori.vector();
+    for (var i=0; i < 1000000; i++) {
+      mori.conj(list, i);
+    }
+
+# 288 ms
+]
+---
+
+### Готовые библиотеки
+
+* immutable.js
+* mori
+* seamless-immutable
+* immutato
+* pim
+* seti
+* texo
+* ancient-oak
+
+---
+
+class: center, middle
+name: why
+
+# Зачем использовать?
+
+---
+
+template: why
+
+# Решать проблемы!
+
+---
+
+# Мутирующие объекты могут мутировать :)))
+
+    var identity = 'Someone';
+        identity = 'Someone else';
+        identity = 'Third person';
+
+---
+
+class: center, middle
+
+# Интерфейс .red[должен] следить за изменениями
+
+---
+
+### Слушатели событий
+    
+    var data = {a: 1,b:2,c:3};
+
+    Object.observe(data, function(changes){
+      rerenderUI();
+    });
+
+    data.a = 10;
+    data.b = 20;
+    data.c = 30;
+
+---
+
+class: middle
+
+# 
+
+    var data = { ... };
+    Object.observe(data, ... );
+    data.foo.bar.a = 10; // Изменения не замечены
+
+---
+
+### Грязное состояние
+
+    var data = {
+        dirty: false,
+        _raw: {key:"value"},
+        get: function(key){
+            return this._raw[key] 
+        },
+        set: function(key, newValue){
+            this._raw[key] = newValue;
+            this.dirty = true;
+        }
+    }
+
+    funtion renderUI(data) {
+        if(!data.dirty) return;
+        data.dirty = false;
+        ...
+    }
+
+---
+# 
+
+    funtion renderContactWidget(data) {
+        if(!data.dirty) return;
+        data.dirty = false;
+        ...
+    }
+
+    funtion renderTimelineWidget(data) {
+        if(!data.dirty) return;
+        data.dirty = false;
+        ...
+    }    
+
+    data.set('key', 'foo');
+
+    renderContactWidget(data); // Есть обновление
+    renderTimelineWidget(data); // Оппачки
+
+---
+class: middle, center
+
+# Плюшки
+
+---
+### Отсутсвие побочных эфектов
+
+    module.exports = function updateAndPrintOut(updateFunc) {
+      var data = {key: 'value'};
+      updateFunc(data);
+      console.log(data); // ?
+    }    
+
+---
+
+### Сравнение объектов / списков
+
+    var map1 = I.Map({a:1, b:2, c:3});
+
+--
+    
+    var map2 = map1.set('b', 50);
+    console.log(I.is(map1, map2)); // false    
+
+--
+    
+    var map3 = map2.set('b', 2);
+    console.log(I.is(map1, map3)); // true
+
+
+
+---
+
+### Простое клонирование объекта
+
+    var map1 = Immutable.Map({a:1, b:2, c:3});
+    var clone = map1;
+
+---
+
+# Практически бесплатный undo/redo
+  
+    var history = [];
+
+    var updateModel = function(changes){
+            
+
+    }
+
+
+    var renderUI = function(model) {
+        //magic happens
+        ...
+    }
+
+---
+class: center, middle
+
+# .red[Как] пользоваться?
+
+---
+### Массивы
+
+    var list1 = Immutable.List.of(1, 2);
     var list2 = list1.push(3, 4, 5);
     var list3 = list2.unshift(0);
     var list4 = list1.concat(list2, list3); 
@@ -558,228 +311,87 @@ pre .chunk {
     assert(list2.size === 5);
     assert(list3.size === 6);
     assert(list4.size === 13);
-    assert(list4.get(0) === 1);</code></pre>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-18">
-    <section class="slide-content"><h3 id="-">Объекты</h3>
-<pre><code>    var map1 = Immutable.Map({a:1, b:2, c:3});
-    var map2 = map1.set(&#39;b&#39;, 50);
-    map1.get(&#39;b&#39;); // 2
-    map2.get(&#39;b&#39;); // 50</code></pre>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-19">
-    <section class="slide-content"><h3 id="-">Многое другое</h3>
-<ul>
-<li>Stack</li>
-<li>OrderedMap</li>
-<li>Set</li>
-<li>OrderedSet</li>
-<li>Record</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-20">
-    <section class="slide-content"><h3 id="-js-">Принимает и возвращает обычные JS объекты</h3>
-<pre><code>    var map1 = Immutable.Map({a:1, b:2, c:3, d:4});
+    assert(list4.get(0) === 1);
+
+---
+
+### Объекты
+
+    var map1 = Immutable.Map({a:1, b:2, c:3});
+    var map2 = map1.set('b', 50);
+    map1.get('b'); // 2
+    map2.get('b'); // 50
+
+---
+
+### Принимает и возвращает обычные JS объекты
+
+    var map1 = Immutable.Map({a:1, b:2, c:3, d:4});
     var map2 = Immutable.Map({c:10, a:20, t:30});
     var obj = {d:100, o:200, g:300};
     var map3 = map1.merge(map2, obj);
 
-    console.log(map3.toJS()) // { a: 20, b: 2, c: 10, d: 100, g: 300, o: 200, t: 30 }</code></pre>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-21">
-    <section class="slide-content"><h3 id="-">Ленивые последовательности</h3>
-<pre><code>    var oddSquares = Immutable.Seq.of(1,2,3,4,5,6,7,8)
-      .filter(x =&gt; x % 2).map(x =&gt; x * x);
+    console.log(map3.toJS()) 
+    // { a: 20, b: 2, c: 10, d: 100, g: 300, o: 200, t: 30 }
 
-    console.log(oddSquares.get(1)); // 9</code></pre>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-22">
-    <section class="slide-content"><h3 id="-">Групповые операции</h3>
-<pre><code>    var list1 = Immutable.List.of(1,2,3);
+---
+
+### Многое другое
+
+* Stack
+* OrderedMap
+* Set
+* OrderedSet
+* Record
+
+---
+
+### Ленивые последовательности
+
+    var oddSquares = Immutable.Seq.of(1,2,3,4,5,6,7,8)
+      .filter(x => x % 2).map(x => x * x);
+
+    console.log(oddSquares.get(1)); // 9
+
+---
+
+### Групповые операции
+
+    var list1 = Immutable.List.of(1,2,3);
     var list2 = list1.withMutations(function (list) {
       list.push(4).push(5).push(6);
     });
     assert(list1.size === 3);
-    assert(list2.size === 6);</code></pre>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-23">
-    <section class="slide-content"><h2 id="-">Стоит ли бросаться переделывать существующие проекты?</h2>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-24">
-    <section class="slide-content"><h2 id="-">Стоит пощупать в следующем?</h2>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-25">
-    <section class="slide-content"><h1 id="-">Вопросы?</h1>
-<p>Дмитрий Кунин</p>
-<p><a href="http://dkun.in/">http://dkun.in/</a></p>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-26">
-    <section class="slide-content"></section>
-  </div>
+    assert(list2.size === 6);
 
-  <div class="controls">
-    <div class="arrow prev"></div>
-    <div class="arrow next"></div>
-  </div>
+---
+class: center, middle
+name: almost-final
+## Стоит пощупать в следующем проекте? 
 
+---
+template: almost-final
 
-  <script type="text/javascript">
-    /**
- * Returns the current page number of the presentation.
- */
-function currentPosition() {
-  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
-}
+# .red[Да!] 
 
+---
+class: center, middle
+# Вопросы?
 
-/**
- * Navigates forward n pages
- * If n is negative, we will navigate in reverse
- */
-function navigate(n) {
-  var position = currentPosition();
-  var numSlides = document.getElementsByClassName('slide').length;
+Дмитрий Кунин
 
-  /* Positions are 1-indexed, so we need to add and subtract 1 */
-  var nextPosition = (position - 1 + n) % numSlides + 1;
+.no-bullets[
+- http://dkun.in
+- http://bit.ly/imm-js]
 
-  /* Normalize nextPosition in-case of a negative modulo result */
-  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
+    </textarea>
+    <script src="remark-latest.min.js">
+    </script>
+    <script>
+ 
 
-  document.getElementById('slide-' + position).classList.add('hidden');
-  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
+      var slideshow = remark.create({ highlightLanguage: 'javascript'});
 
-  updateProgress();
-  updateURL();
-  updateTabIndex();
-}
-
-
-/**
- * Updates the current URL to include a hashtag of the current page number.
- */
-function updateURL() {
-  window.history.replaceState({} , null, '#' + currentPosition());
-}
-
-
-/**
- * Sets the progress indicator.
- */
-function updateProgress() {
-  var progressBar = document.querySelector('.progress-bar');
-
-  if (progressBar !== null) {
-    var numSlides = document.getElementsByClassName('slide').length;
-    var position = currentPosition() - 1;
-    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
-    progressBar.style.width = percent.toString() + '%';
-  }
-}
-
-
-/**
- * Removes tabindex property from all links on the current slide, sets
- * tabindex = -1 for all links on other slides. Prevents slides from appearing
- * out of control.
- */
-function updateTabIndex() {
-  var allLinks = document.querySelectorAll('.slide a');
-  var position = currentPosition();
-  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
-  var i;
-
-  for (i = 0; i < allLinks.length; i++) {
-    allLinks[i].setAttribute('tabindex', -1);
-  }
-
-  for (i = 0; i < currentPageLinks.length; i++) {
-    currentPageLinks[i].removeAttribute('tabindex');
-  }
-}
-
-/**
- * Determines whether or not we are currently in full screen mode
- */
-function isFullScreen() {
-  return document.fullscreenElement ||
-         document.mozFullScreenElement ||
-         document.webkitFullscreenElement ||
-         document.msFullscreenElement;
-}
-
-/**
- * Toggle fullScreen mode on document element.
- * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
- */
-function toggleFullScreen() {
-  /* Convenient renames */
-  var docElem = document.documentElement;
-  var doc = document;
-
-  docElem.requestFullscreen =
-      docElem.requestFullscreen ||
-      docElem.msRequestFullscreen ||
-      docElem.mozRequestFullScreen ||
-      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
-
-  doc.exitFullscreen =
-      doc.exitFullscreen ||
-      doc.msExitFullscreen ||
-      doc.mozCancelFullScreen ||
-      doc.webkitExitFullscreen;
-
-  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Update the tabindex to prevent weird slide transitioning
-  updateTabIndex();
-
-  // If the location hash specifies a page number, go to it.
-  var page = window.location.hash.slice(1);
-  if (page) {
-    navigate(parseInt(page) - 1);
-  }
-
-  document.onkeydown = function (e) {
-    var kc = e.keyCode;
-
-    // left, down, H, J, backspace, PgUp - BACK
-    // up, right, K, L, space, PgDn - FORWARD
-    // enter - FULLSCREEN
-    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
-      navigate(-1);
-    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
-      navigate(1);
-    } else if (kc === 13) {
-      toggleFullScreen();
-    }
-  };
-
-  if (document.querySelector('.next') && document.querySelector('.prev')) {
-    document.querySelector('.next').onclick = function (e) {
-      e.preventDefault();
-      navigate(1);
-    };
-
-    document.querySelector('.prev').onclick = function (e) {
-      e.preventDefault();
-      navigate(-1);
-    };
-  }
-});
-
-
-  </script>
-</body>
+    </script>
+  </body>
 </html>

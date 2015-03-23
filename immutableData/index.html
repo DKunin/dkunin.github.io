@@ -75,10 +75,12 @@ class: center, middle
 
 ### .red[Что] это такое?
 
-## Persistant 
+
+--
 ## Immutable
 
-.small[Данные которые не меняются]
+--
+## Persistant 
 
 ---
 
@@ -99,12 +101,46 @@ class: center, middle
 
 Создается глубокая копия объекта - клон меняется и возвращается
 
+    List.prototype.push = function(value){
+      // Делаем клон
+      var clone = deepCopy(this);
+      // Меняем значение в клоне
+      clone[clone.length] = value;
+      // Вовзращаем клон
+      return clone;  
+    }
+---
+class: center, middle
+
+### Скорость работы
+
+.side[
+
+vanilla
+
+    var list = [];
+    for(var i=0;i < 1000000;i++) {
+      list.push(i);
+    }
+
+# 83 ms
+]
+.side[
+
+mori
+
+    var list = mori.vector();
+    for (var i=0; i < 1000000; i++) {
+      mori.conj(list, i);
+    }
+
+# 288 ms
+]
 
 ---
 class: center, middle
 
 ### Направленный ациклический граф
-
 
 .image[![](dag-1.jpg)]
 
@@ -132,34 +168,7 @@ class: center, middle
 
 .image[![](dag-6.jpg)]
 
----
-class: center, middle
 
-### Скорость работы
-
-
-.side[
-
-vanilla
-
-    var list = [];
-    for(var i=0;i < 1000000;i++) {
-      list.push(i);
-    }
-
-# 83 ms
-]
-.side[
-
-mori
-
-    var list = mori.vector();
-    for (var i=0; i < 1000000; i++) {
-      mori.conj(list, i);
-    }
-
-# 288 ms
-]
 ---
 
 ### Готовые библиотеки
@@ -184,7 +193,7 @@ name: why
 
 template: why
 
-# Решать проблемы!
+# .red[Решать проблемы!]
 
 ---
 
@@ -266,23 +275,10 @@ class: middle
     renderContactWidget(data); // Есть обновление
     renderTimelineWidget(data); // Оппачки
 
----
-class: middle, center
-
-# Плюшки
-
----
-### Отсутсвие побочных эфектов
-
-    module.exports = function updateAndPrintOut(updateFunc) {
-      var data = {key: 'value'};
-      updateFunc(data);
-      console.log(data); // ?
-    }    
 
 ---
 
-### Сравнение объектов / списков
+### Сравнение Immutable объектов / списков  
 
     var map1 = I.Map({a:1, b:2, c:3});
 
@@ -297,6 +293,20 @@ class: middle, center
     console.log(I.is(map1, map3)); // true
 
 
+---
+class: middle, center
+
+# Плюшки
+
+---
+
+### Отсутсвие побочных эфектов
+
+    module.exports = function updateAndPrintOut(updateFunc) {
+      var data = {key: 'value'};
+      updateFunc(data);
+      console.log(data); // ?
+    }    
 
 ---
 
@@ -307,20 +317,9 @@ class: middle, center
 
 ---
 
+class: middle, center
+
 # Практически бесплатный undo/redo
-  
-    var history = [];
-
-    var updateModel = function(changes){
-            
-
-    }
-
-
-    var renderUI = function(model) {
-        //magic happens
-        ...
-    }
 
 ---
 class: center, middle
@@ -371,14 +370,6 @@ class: center, middle
 * OrderedSet
 * Record
 
----
-
-### Ленивые последовательности
-
-    var oddSquares = Immutable.Seq.of(1,2,3,4,5,6,7,8)
-      .filter(x => x % 2).map(x => x * x);
-
-    console.log(oddSquares.get(1)); // 9
 
 ---
 

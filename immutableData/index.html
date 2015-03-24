@@ -40,7 +40,10 @@
 
       .remark-code {
         font-size: 50px;
-        line-height: 70px;
+        line-height: 60px;
+      }
+      .smaller {
+        font-size: 40px;
       }
       .no-bullets ul{
         list-style: none;
@@ -52,11 +55,19 @@
         color: black;     
       }      
       .side {
-        width: 48%;
+        width: 30%;
         float: left;
         margin-right: 2%;
         font-size: 20px;
         display: inline-block;
+      }
+      .side-one {
+        width: 60%;
+      }
+      .side h1 {
+        font-size: 60px !important; 
+        margin: 0;
+        padding: 0;
       }
       .side .remark-code {
 
@@ -76,6 +87,16 @@
       pre {
         margin-top: 0;
       }
+      .block {
+        display: block;
+      }
+      .narrow {
+        width: 40%;
+        margin: 0 auto;
+      }
+      .hljs-default .hljs {
+        background: transparent;
+      }
     </style>
   </head>
   <body>
@@ -84,14 +105,14 @@
 class: center, middle, nopages
 
 # Immutable Data
-.subtitle[Неизменяемые данные в приложении: .red[что, зачем и как]]
+.subtitle[Неизменяемые данные в приложении: .red.block[что, зачем и как]]
 
 .author[Дмитрий Кунин, AT-Consulting]
 
 ---
 class: center , middle
 
-### .red[Что] это такое?
+## .red[Что] это такое?
 
 ---
 class: center, middle
@@ -102,9 +123,7 @@ class: center, middle
 
 ### Принцип работы
 
-Вместо мутирования существующего значения - каждый раз создается новый объект
-
-    var list = I.List.of(1,2,3);
+    var list = Immutable.List.of(1,2,3);
     var list2 = list.push(4);
 
     console.log(list.toJS()) // 1,2,3
@@ -114,9 +133,6 @@ class: center, middle
 ---
 
 ### Принцип работы
-
-Создается глубокая копия объекта - клон меняется и возвращается
-
     List.prototype.push = function(value){
       // Делаем клон
       var clone = deepCopy(this);
@@ -129,28 +145,26 @@ class: center, middle
 
 ### Скорость работы
 
-.side[
-
-vanilla
-
+.row[ .side.side-one[
+  # 
     var list = [];
     for(var i=0;i < 1000000;i++) {
       list.push(i);
     }
-
-# 83 ms
 ]
 .side[
-
-mori
-
+# vanilla: 83 ms
+] ]
+.row[.side.side-one[
+  # 
     var list = mori.vector();
     for (var i=0; i < 1000000; i++) {
       mori.conj(list, i);
     }
-
-# 288 ms
 ]
+.side[
+# mori: 288 ms
+]]
 
 ---
 
@@ -188,6 +202,7 @@ class: center, middle
 
 ### Готовые библиотеки
 
+.block.narrow[
 * immutable.js
 * mori
 * seamless-immutable
@@ -196,7 +211,7 @@ class: center, middle
 * seti
 * texo
 * ancient-oak
-
+]
 ---
 
 class: center, middle
@@ -213,10 +228,14 @@ template: why
 ---
 
 ### Мутирующие объекты могут мутировать :)))
-
+.narrow[
+  # 
     var identity = 'Someone';
-        identity = 'Someone else';
-        identity = 'Third person';
+    ...
+    identity = 'Someone else';
+    ...
+    identity = 'Third person';
+    ]
 
 ---
 
@@ -265,7 +284,7 @@ class: middle
     }
 
 ---
-class: middle
+
 .invisible[#] 
 
     funtion renderUI(data) {
@@ -284,13 +303,11 @@ class: middle
     funtion renderContactWidget(data) {
         if(!data.dirty) return;
         data.dirty = false;
-        ...
     }
 
     funtion renderTimelineWidget(data) {
         if(!data.dirty) return;
         data.dirty = false;
-        ...
     }    
 
     data.set('key', 'foo');
@@ -303,40 +320,62 @@ class: middle
 
 ### Сравнение Immutable объектов / списков  
 
-    var map1 = I.Map({a:1, b:2, c:3});
+    var map1 = Immutable.Map({a:1, b:2, c:3});
 
 --
     
     var map2 = map1.set('b', 50);
-    console.log(I.is(map1, map2)); // false    
+    console.log(Immutable.is(map1, map2)); // false    
 
 --
     
     var map3 = map2.set('b', 2);
-    console.log(I.is(map1, map3)); // true
+    console.log(Immutable.is(map1, map3)); // true
 
 
 ---
+### Глубокое сравнение
+
+    var first = Immutable.Map({
+      foo: Immutable.Map({val: 10}), 
+      bar: Immutable.Map({val: 20})
+    });
+--
+    var second = first.setIn(['foo', 'val'],500);
+    second === first //false   
+--
+    second.get('foo') === first.get('foo') //false
+--
+    second.get('bar') === first.get('bar') //true
+---
+
 class: middle, center
 
 # Плюшки
 
 ---
 
+
 ### Отсутсвие побочных эфектов
 
-    module.exports = function updateAndPrintOut(updateFunc) {
+
+.middle[
+# 
+    function updateAndPrintOut(updateFunc) {
       var data = {key: 'value'};
       updateFunc(data);
       console.log(data); // ?
     }    
-
+]
 ---
 
 ### Простое клонирование объекта
-
+.middle[
+# 
     var map1 = Immutable.Map({a:1, b:2, c:3});
     var clone = map1;
+]
+
 
 ---
 
@@ -375,13 +414,13 @@ class: center, middle
 
 ### Принимает и возвращает обычные JS объекты
 
-    var map1 = Immutable.Map({a:1, b:2, c:3, d:4});
-    var map2 = Immutable.Map({c:10, a:20, t:30});
-    var obj = {d:100, o:200, g:300};
+    var map1 = Immutable.Map({a:1, b:2});
+    var map2 = Immutable.Map({c:10, a:20, d:4});
+    var obj = {d:100, o:200};
     var map3 = map1.merge(map2, obj);
 
     console.log(map3.toJS()) 
-    // { a: 20, b: 2, c: 10, d: 100, g: 300, o: 200, t: 30 }
+    // { a: 20, b: 2, c: 10, d: 100, o: 200 }
 
 ---
 

@@ -11,10 +11,18 @@
         font-family: 'PT Sans'; 
         font-size: 26px;
       }
-      h1, h2, h3 {
-        font-size: 48px;
+      h1, h2{
+        font-size: 2em !important;
         font-weight: bold;
       }
+      h3 {
+        font-size: 1.2em !important;
+        font-weight: bold;
+        margin: 10px;
+      }    
+      h4 {
+        display: none !important;
+      }  
       .remark-code, .remark-inline-code { 
         font-family: 'Ubuntu Mono', Monospace; 
       }
@@ -22,7 +30,7 @@
         color: red;
       }
       .remark-slide-content {
-        font-size: 45px;
+        font-size: 65px;
         padding: .5em;
       }
       .remark-slide-content h3 {
@@ -31,7 +39,8 @@
       }
 
       .remark-code {
-        font-size: 28px
+        font-size: 50px;
+        line-height: 70px;
       }
       .no-bullets ul{
         list-style: none;
@@ -50,7 +59,7 @@
         display: inline-block;
       }
       .side .remark-code {
-        font-size: 19px;
+
         text-align: left;
       }
       .image img {
@@ -60,6 +69,12 @@
       .nopages .remark-slide-number{
         display: none;
 
+      }
+      .invisible {
+        display: none;
+      }
+      pre {
+        margin-top: 0;
       }
     </style>
   </head>
@@ -74,23 +89,14 @@ class: center, middle, nopages
 .author[Дмитрий Кунин, AT-Consulting]
 
 ---
-
-### План
-
-* Что это такое
-* Зачем это использовать
-* Как это использовать
-
----
+class: center , middle
 
 ### .red[Что] это такое?
 
+---
+class: center, middle
 
---
-## Immutable
-
---
-## Persistant 
+## Immutable + Persistent 
 
 ---
 
@@ -120,7 +126,6 @@ class: center, middle, nopages
       return clone;  
     }
 ---
-class: center, middle
 
 ### Скорость работы
 
@@ -148,12 +153,12 @@ mori
 ]
 
 ---
-class: center, middle
 
 ### Направленный ациклический граф
+.center.middle[
 
 .image[![](dag-1.jpg)]
-
+]
 ---
 
 class: center, middle
@@ -207,7 +212,7 @@ template: why
 
 ---
 
-# Мутирующие объекты могут мутировать :)))
+### Мутирующие объекты могут мутировать :)))
 
     var identity = 'Someone';
         identity = 'Someone else';
@@ -259,15 +264,23 @@ class: middle
         }
     }
 
+---
+class: middle
+.invisible[#] 
+
     funtion renderUI(data) {
         if(!data.dirty) return;
         data.dirty = false;
         ...
     }
 
----
-# 
+    data.set('key', 'foo');
+  
 
+    renderUI(data); // ok
+
+---
+#### 
     funtion renderContactWidget(data) {
         if(!data.dirty) return;
         data.dirty = false;
@@ -282,8 +295,8 @@ class: middle
 
     data.set('key', 'foo');
 
-    renderContactWidget(data); // Есть обновление
-    renderTimelineWidget(data); // Оппачки
+    renderContactWidget(data); // ok
+    renderTimelineWidget(data); // dirty = false; no render
 
 
 ---

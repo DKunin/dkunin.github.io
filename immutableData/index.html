@@ -12,7 +12,7 @@
         font-size: 26px;
       }
       h1, h2, h3 {
-
+        font-size: 48px;
         font-weight: bold;
       }
       .remark-code, .remark-inline-code { 
@@ -22,8 +22,14 @@
         color: red;
       }
       .remark-slide-content {
-        font-size: 32px
+        font-size: 45px;
+        padding: .5em;
       }
+      .remark-slide-content h3 {
+        font-size: 1.2em;
+
+      }
+
       .remark-code {
         font-size: 28px
       }
@@ -51,12 +57,16 @@
         max-width: 80%;
         max-height: 100%;
       }
+      .nopages .remark-slide-number{
+        display: none;
+
+      }
     </style>
   </head>
   <body>
     <textarea id="source">
 
-class: center, middle
+class: center, middle, nopages
 
 # Immutable Data
 .subtitle[Неизменяемые данные в приложении: .red[что, зачем и как]]
@@ -235,7 +245,7 @@ class: middle
 
 ---
 
-### Грязное состояние
+### Грязная проверка
 
     var data = {
         dirty: false,
@@ -393,7 +403,7 @@ template: almost-final
 # .red[Да!] 
 
 ---
-class: center, middle
+class: center, middle, nopages
 # Вопросы?
 
 Дмитрий Кунин

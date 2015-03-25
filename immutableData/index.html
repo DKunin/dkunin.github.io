@@ -20,6 +20,9 @@
         font-weight: bold;
         margin: 10px;
       }    
+      .bigcode .remark-code{
+        font-size: 60px !important;
+      }
       h4 {
         display: none !important;
       }  
@@ -106,6 +109,7 @@ class: center, middle, nopages
 
 # Immutable Data
 .subtitle[Неизменяемые данные в приложении: .red.block[что, зачем и как]]
+логитип moscow js
 
 .author[Дмитрий Кунин, AT-Consulting]
 
@@ -122,13 +126,14 @@ class: center, middle
 ---
 
 ### Принцип работы
-
+.bigcode[
+  # 
     var list = Immutable.List.of(1,2,3);
     var list2 = list.push(4);
 
-    console.log(list.toJS()) // 1,2,3
-    console.log(list === list2) // false
-
+    console.log(list.toJS()) // [1,2,3] 
+    console.log(Immutable.is(list,list2)) // false
+]
 
 ---
 
@@ -170,7 +175,6 @@ class: center, middle
 
 ### Направленный ациклический граф
 .center.middle[
-
 .image[![](slide1.png)]
 ]
 ---
@@ -204,13 +208,14 @@ class: center, middle
 class: center, middle
 
 .image[![](slide8.png)]
+
 ---
 
 ### Готовые библиотеки
 
 .block.narrow[
-* immutable.js
-* mori
+* .red[immutable.js]
+* .red[mori]
 * seamless-immutable
 * immutato
 * pim
@@ -253,15 +258,19 @@ class: center, middle
 
 ### Слушатели событий
     
-    var data = {a: 1,b:2,c:3};
+    var userData = {
+                    name:"Федор",
+                    online:true,
+                    profilePic: "/url/user1.png"
+                  };
 
-    Object.observe(data, function(changes){
-      rerenderUI();
+    Object.observe(userData, function(changes){
+      rerenderProfile();
     });
 
-    data.a = 10;
-    data.b = 20;
-    data.c = 30;
+    userData.name = "Федор Петрович";
+    userData.online = false;
+    userData.profilePic = "/newurl/user2.png";
 
 ---
 
@@ -269,17 +278,19 @@ class: middle
 
 # 
 
-    var data = { ... };
-    Object.observe(data, ... );
-    data.foo.bar.a = 10; // Изменения не замечены
+    var userData = { ... };
+    Object.observe(userData, ... );
+    userData.name.nickname = "Косой"; // Изменения не замечены
 
 ---
 
-### Грязная проверка
+### "Грязная" проверка Грязные танцы
 
-    var data = {
+    var userData = {
         dirty: false,
-        _raw: {key:"value"},
+        _raw: { name: "Федор Петрович",
+                online: true,
+                profilePic: "/url/user1.png"},
         get: function(key){
             return this._raw[key] 
         },
@@ -293,66 +304,69 @@ class: middle
 
 .invisible[#] 
 
-    funtion renderUI(data) {
+    funtion renderProfile(data) {
         if(!data.dirty) return;
         data.dirty = false;
         ...
     }
 
-    data.set('key', 'foo');
-  
+    userData.set('online', true);
 
-    renderUI(data); // ok
+    renderProfile(userData); // ok
 
 ---
 #### 
-    funtion renderContactWidget(data) {
+    funtion renderProfile(data) {
         if(!data.dirty) return;
         data.dirty = false;
     }
 
-    funtion renderTimelineWidget(data) {
+    funtion renderContactItem(data) {
         if(!data.dirty) return;
         data.dirty = false;
     }    
 
-    data.set('key', 'foo');
+    data.set('online', true);
 
-    renderContactWidget(data); // ok
-    renderTimelineWidget(data); // dirty = false; no render
+    renderProfile(userData); // ok
+    renderContactItem(userData); // dirty = false; no render
 
 
 ---
 
 ### Сравнение Immutable объектов / списков  
 
-    var map1 = Immutable.Map({a:1, b:2, c:3});
+    var user1 = Immutable.Map({ 
+                name: "Федор Петрович",
+                online: true,
+                profilePic: "/url/user1.png"}); 
+--
+    
+    var user2 = user1.set("name", "Косой");
+    console.log(Immutable.is(user1, user2)); // false    
 
 --
     
-    var map2 = map1.set('b', 50);
-    console.log(Immutable.is(map1, map2)); // false    
-
---
-    
-    var map3 = map2.set('b', 2);
-    console.log(Immutable.is(map1, map3)); // true
+    var user3 = user2.set("name", "Федор Петрович");
+    console.log(Immutable.is(user1, user3)); // true
 
 
 ---
 ### Глубокое сравнение
 
-    var first = Immutable.Map({
-      foo: Immutable.Map({val: 10}), 
-      bar: Immutable.Map({val: 20})
+    var user1 = Immutable.Map({
+      skills: Immutable.Map({str: 23, int: 18, luck: 99}), 
+      category: Immutable.Map({gentelaman: true})
     });
 --
-    var second = first.setIn(['foo', 'val'],500);
-    second === first //false   
+    var user2 = user1.setIn(['skills', 'int'], 0);
+
+    Immutable.is(user2 , user1)   
 --
-    second.get('foo') === first.get('foo') //false
+    Immutable.is(second.get('skills') , first.get('skills')) //false
 --
-    second.get('bar') === first.get('bar') //true
+    Immutable.is(second.get('category'), first.get('category')) //true 
+
 ---
 
 class: middle, center
@@ -361,25 +375,22 @@ class: middle, center
 
 ---
 
-
-### Отсутсвие побочных эфектов
-
+### Отсутствие побочных эффектов
 
 .middle[
 # 
-    function updateAndPrintOut(updateFunc) {
-      var data = {key: 'value'};
-      updateFunc(data);
+    function updateValueAndLog(updateFunction) {
+      var data = {name: "Федор"};
+      updateFunction(data);
       console.log(data); // ?
-    }    
-]
----
-
-### Простое клонирование объекта
-.middle[
-# 
-    var map1 = Immutable.Map({a:1, b:2, c:3});
-    var clone = map1;
+    }]
+--
+.middle[# 
+    var user = Immutable.Map({ 
+                name: "Федор Петрович",
+                online: true,
+                profilePic: "/url/user1.png"});
+    var userClone = user;
 ]
 
 
@@ -398,35 +409,48 @@ class: center, middle
 ### Массивы
 
     var list1 = Immutable.List.of(1, 2);
-    var list2 = list1.push(3, 4, 5);
-    var list3 = list2.unshift(0);
-    var list4 = list1.concat(list2, list3); 
     assert(list1.size === 2);
+    
+    var list2 = list1.push(3, 4, 5);
     assert(list2.size === 5);
+    
+    var list3 = list2.unshift(0);
     assert(list3.size === 6);
+    
+    var list4 = list1.concat(list2, list3); 
     assert(list4.size === 13);
+  
     assert(list4.get(0) === 1);
 
 ---
 
 ### Объекты
 
-    var map1 = Immutable.Map({a:1, b:2, c:3});
-    var map2 = map1.set('b', 50);
-    map1.get('b'); // 2
-    map2.get('b'); // 50
+    var user1 = Immutable.Map({ 
+                name: "Федор Петрович",
+                online: true,
+                profilePic: "/url/user1.png"});
+    var user2 = user1.set("name", "Косой");
+    user1.get("name"); // "Федор Петрович"
+    user2.get("name"); // "Косой"
 
 ---
 
 ### Принимает и возвращает обычные JS объекты
 
-    var map1 = Immutable.Map({a:1, b:2});
-    var map2 = Immutable.Map({c:10, a:20, d:4});
-    var obj = {d:100, o:200};
-    var map3 = map1.merge(map2, obj);
+    var user1 = Immutable.Map({ 
+                name: "Федор Петрович",
+                online: true,
+                profilePic: "/url/user1.png"});
 
-    console.log(map3.toJS()) 
-    // { a: 20, b: 2, c: 10, d: 100, o: 200 }
+    var stat  = { name:"Косой", age: 37 };
+    var user2 = user1.merge(stat);
+
+    console.log(user2.toJS()) 
+    // { name: "Косой", 
+    //  online: true, 
+    //  profilePic: "/url/user1.png",
+    //  age: 37 }
 
 ---
 
@@ -438,17 +462,16 @@ class: center, middle
 * OrderedSet
 * Record
 
-
 ---
 
 ### Групповые операции
 
-    var list1 = Immutable.List.of(1,2,3);
-    var list2 = list1.withMutations(function (list) {
-      list.push(4).push(5).push(6);
+    var traits1 = Immutable.List.of('communication','luck','skill');
+    var traits2 = traits1.withMutations(function (traits) {
+      traits.push('dexterity').push('power').push('speed');
     });
-    assert(list1.size === 3);
-    assert(list2.size === 6);
+    assert(traits1.size === 3);
+    assert(traits2.size === 6);
 
 ---
 class: center, middle
@@ -467,8 +490,11 @@ class: center, middle, nopages
 Дмитрий Кунин
 
 .no-bullets[
-- http://dkun.in
-- http://bit.ly/imm-js]
+- vcard: dkun.in
+- demo + libs : bit.ly/imm-js
+- twitter : DKunin
+- Skype: dkunin1985
+]
 
     </textarea>
     <script src="remark-latest.min.js">

@@ -51,7 +51,10 @@
       .no-bullets ul{
         list-style: none;
         padding: 0;
-        margin: 0;        
+        margin: 0;      
+        text-align: left;
+        width: 800px; 
+        margin: 0 auto; 
       }
       .no-bullets ul a{
         text-decoration: none;
@@ -138,6 +141,9 @@ class: center, middle
 ---
 
 ### Принцип работы
+
+.bigcode[
+  # 
     List.prototype.push = function(value){
       // Делаем клон
       var clone = deepCopy(this);
@@ -146,6 +152,8 @@ class: center, middle
       // Вовзращаем клон
       return clone;  
     }
+
+]
 ---
 
 ### Скорость работы
@@ -310,7 +318,7 @@ class: middle
         ...
     }
 
-    userData.set('online', true);
+    userData.set("online", true);
 
     renderProfile(userData); // ok
 
@@ -326,7 +334,7 @@ class: middle
         data.dirty = false;
     }    
 
-    data.set('online', true);
+    data.set("online", true);
 
     renderProfile(userData); // ok
     renderContactItem(userData); // dirty = false; no render
@@ -359,13 +367,13 @@ class: middle
       category: Immutable.Map({gentelaman: true})
     });
 --
-    var user2 = user1.setIn(['skills', 'int'], 0);
+    var user2 = user1.setIn(["skills", "int"], 0);
 
     Immutable.is(user2 , user1)   
 --
-    Immutable.is(second.get('skills') , first.get('skills')) //false
+    Immutable.is(second.get("skills") , first.get("skills")) //false
 --
-    Immutable.is(second.get('category'), first.get('category')) //true 
+    Immutable.is(second.get("category"), first.get("category")) //true 
 
 ---
 
@@ -390,6 +398,7 @@ class: middle, center
                 name: "Федор Петрович",
                 online: true,
                 profilePic: "/url/user1.png"});
+
     var userClone = user;
 ]
 
@@ -399,6 +408,13 @@ class: middle, center
 class: middle, center
 
 # Практически бесплатный undo/redo
+
+---
+class: center
+
+# 
+
+<video controls="controls"  name="Video Name" src="demo.mov"></video>
 
 ---
 class: center, middle
@@ -430,7 +446,9 @@ class: center, middle
                 name: "Федор Петрович",
                 online: true,
                 profilePic: "/url/user1.png"});
+
     var user2 = user1.set("name", "Косой");
+    
     user1.get("name"); // "Федор Петрович"
     user2.get("name"); // "Косой"
 
@@ -466,9 +484,9 @@ class: center, middle
 
 ### Групповые операции
 
-    var traits1 = Immutable.List.of('communication','luck','skill');
+    var traits1 = Immutable.List.of("communication","luck","skill");
     var traits2 = traits1.withMutations(function (traits) {
-      traits.push('dexterity').push('power').push('speed');
+      traits.push("dexterity").push("power").push("speed");
     });
     assert(traits1.size === 3);
     assert(traits2.size === 6);
@@ -490,10 +508,10 @@ class: center, middle, nopages
 Дмитрий Кунин
 
 .no-bullets[
-- vcard: dkun.in
-- demo + libs : bit.ly/imm-js
-- twitter : DKunin
-- Skype: dkunin1985
+- vcard       : .red[dkun.in]
+- demo + libs : .red[bit.ly/imm-js]
+- twitter     : .red[DKunin]
+- Skype       : .red[dkunin1985]
 ]
 
     </textarea>

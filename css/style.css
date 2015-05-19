@@ -57,11 +57,14 @@ body {
 #container h3 {
   font-weight: normal;
 }
+#container h2 {
+  font-weight: normal;
+  line-height: 36px;
+}
 #container h4 {
   font-weight: normal;
-  width: 450px;
   margin: 0 auto;
-  *zoom: 1;
+  line-height: 36px;
 }
 #container h4:before,
 #container h4:after {

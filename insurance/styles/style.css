@@ -9576,20 +9576,20 @@ a.th {
   font-family: 'Museo Sans Cyrl 900';
   font-style: normal;
   font-weight: normal;
-  src: local('Museo Sans Cyrl 900'), url("/styles/fonts/MuseoSansCyrl_3.woff") format('woff');
+  src: local('Museo Sans Cyrl 900'), url("fonts/MuseoSansCyrl_3.woff") format('woff');
 }
 @font-face {
   font-family: 'ekibastuzheavy';
-  src: url("/styles/fonts/ekibastuz_heavy-webfont.eot");
-  src: url("/styles/fonts/ekibastuz_heavy-webfont.eot?#iefix") format('embedded-opentype'), url("/styles/fonts/ekibastuz_heavy-webfont.woff2") format('woff2'), url("/styles/fonts/ekibastuz_heavy-webfont.woff") format('woff'), url("/styles/fonts/ekibastuz_heavy-webfont.ttf") format('truetype'), url("/styles/fonts/ekibastuz_heavy-webfont.svg#ekibastuzheavy") format('svg');
+  src: url("fonts/ekibastuz_heavy-webfont.eot");
+  src: url("fonts/ekibastuz_heavy-webfont.eot?#iefix") format('embedded-opentype'), url("fonts/ekibastuz_heavy-webfont.woff2") format('woff2'), url("fonts/ekibastuz_heavy-webfont.woff") format('woff'), url("fonts/ekibastuz_heavy-webfont.ttf") format('truetype'), url("fonts/ekibastuz_heavy-webfont.svg#ekibastuzheavy") format('svg');
   font-weight: normal;
   font-style: normal;
   font-size: 10px;
 }
 @font-face {
   font-family: 'PT Sans';
-  src: url("/styles/fonts/pts55f.eot");
-  src: url("/styles/fonts/pts55f.eot?#iefix") format('embedded-opentype'), url("/styles/fonts/pts55f.woff") format('woff'), url("/styles/fonts/pts55f.ttf") format('truetype');
+  src: url("fonts/pts55f.eot");
+  src: url("fonts/pts55f.eot?#iefix") format('embedded-opentype'), url("fonts/pts55f.woff") format('woff'), url("fonts/pts55f.ttf") format('truetype');
   font-weight: normal;
   font-style: normal;
 }

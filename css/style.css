@@ -136,7 +136,7 @@ body {
   color: white;
   text-align: left;
 }
-.contact{
+.contact, h4.contact {
   font-family: 'magistralcregular';
   color: white !important;
   white-space: nowrap;

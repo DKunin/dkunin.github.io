@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Avito Helpdesk Project</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle, nopages
+
+# InHouse Avito Helpdesk Front-app
+.subtitle[react приложение по работе с тикетами]
+
+.author[Дмитрий Кунин]
+
+---
+
+### План
+- Визуальная структура приложения
+- Жизненный цикл работы с приложением
+- Файловая структура приложения
+- Логическая структура приложения
+- Правовая система на основе компонентов
+
+---
+
+class: middle, no-bullets
+
+- .bold[Визуальная структура приложения]
+- .subtle[Жизненный цикл работы с приложением]
+- .subtle[Файловая структура приложения]
+- .subtle[Логическая структура приложения]
+- .subtle[Правовая система на основе компонентов]
+
+---
+
+#### Главная страница
+
+---
+
+#### Страница деталей тикета
+
+---
+
+#### Страница инициатора
+
+---
+class: middle, no-bullets
+
+- .subtle[Визуальная структура приложения]
+- .bold[Жизненный цикл работы с приложением]
+- .subtle[Файловая структура приложения]
+- .subtle[Логическая структура приложения]
+- .subtle[Правовая система на основе компонентов]
+
+---
+#### Каналы поступления тикета в систему
+
+- Агент (через админку)
+- Почта
+- Форма на сайте
+
+---
+#### Жизненный цикл тикета
+
+<div class="mermaid">
+graph TD;
+  id1(This is the text in the box)
+  A-->|text|B
+
+</div>
+
+---
+class: middle, no-bullets
+
+- .subtle[Визуальная структура приложения]
+- .subtle[Жизненный цикл работы с приложением]
+- .bold[Файловая структура приложения]
+- .subtle[Логическая структура приложения]
+- .subtle[Правовая система на основе компонентов]
+
+---
+
+#### Файловая структура
+
+      .
+      +-- _config.yml
+      +-- _drafts
+      |   +-- begin-with-the-crazy-ideas.textile
+      |   +-- on-simplicity-in-technology.markdown
+      +-- _includes
+      |   +-- footer.html
+      |   +-- header.html
+      +-- _layouts
+      |   +-- default.html
+      |   +-- post.html
+      +-- _posts
+      |   +-- 2007-10-29-why-every-programmer-should-play-nethack.textile
+      |   +-- 2009-04-26-barcamp-boston-4-roundup.textile
+      +-- _data
+      |   +-- members.yml
+      +-- _site
+      +-- index.html
+
+---
+class: middle, no-bullets
+
+- .subtle[Визуальная структура приложения]
+- .subtle[Жизненный цикл работы с приложением]
+- .subtle[Файловая структура приложения]
+- .bold[Логическая структура приложения]
+- .subtle[Правовая система на основе компонентов]
+
+---
+#### Стэк
+
+- React
+- React-router
+- Redux
+- Custom middleware (logging, fetch)
+
+---
+
+#### Логика redux
+
+
+---
+
+#### Пути react-router
+
+---
+class: middle, no-bullets
+
+- .subtle[Визуальная структура приложения]
+- .subtle[Жизненный цикл работы с приложением]
+- .subtle[Файловая структура приложения]
+- .subtle[Логическая структура приложения]
+- .bold[Правовая система на основе компонентов]
+
+---
+
+#### Доступные роли
+
+
+---
+
+#### Вариант №1
+
+---
+
+#### Вариант №2
+
+---
+
+
+class: center, middle, nopages
+# Вопросы?
+
+Дмитрий Кунин
+
+.no-bullets[
+- vcard       : .blue[dkun.in]
+- twitter     : .blue[DKunin]
+- Skype       : .blue[dkunin1985]
+]
+
+    </textarea>
+    <script src="remark-latest.min.js"></script>
+    <script src="https://cdn.rawgit.com/knsv/mermaid/0.5.8/dist/mermaid.min.js"></script>
+    <script>
+      var slideshow = remark.create({ highlightLanguage: 'javascript'});
+      mermaid.initialize({startOnLoad:true});
+    </script>
+  </body>
+</html>

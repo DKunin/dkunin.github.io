@@ -14,7 +14,7 @@ h3 {
   margin: 10px;
 }    
 .bigcode .remark-code{
-  font-size: 40px !important;
+  font-size: 20px !important;
 }
 
 .remark-code, .remark-inline-code { 
@@ -40,8 +40,8 @@ h3 {
 }
 
 .remark-code {
-  font-size: 50px;
-  line-height: 60px;
+  font-size: 25px;
+  /*line-height: 60px;*/
 }
 
 .smaller {
@@ -109,4 +109,13 @@ pre {
 
 foreignobject {
   background: white;
+}
+.small {
+  font-size: 16px;
+}
+
+.half {
+  vertical-align: top;
+  width: 40%;
+  display: inline-block;
 }

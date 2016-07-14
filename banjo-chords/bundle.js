@@ -12696,6 +12696,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	// <template>
+	//   <h3>Banjo chord progression builder</h3>
 	//   <div id="app">
 	//     <router-view></router-view>
 	//   </div>
@@ -14373,7 +14374,7 @@
 /* 44 */
 /***/ function(module, exports) {
 
-	module.exports = "<div id=\"app\">\n    <router-view></router-view>\n  </div>";
+	module.exports = "<h3>Banjo chord progression builder</h3>\n  <div id=\"app\">\n    <router-view></router-view>\n  </div>";
 
 /***/ }
 /******/ ]);

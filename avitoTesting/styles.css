@@ -1,0 +1,121 @@
+@import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+body { 
+  font-family: 'PT Sans'; 
+  font-size: 26px;
+}
+h1, h2{
+  font-size: 2em !important;
+  font-weight: bold;
+}
+h3 {
+  font-size: 1.2em !important;
+  font-weight: bold;
+  margin: 10px;
+}    
+.bigcode .remark-code{
+  font-size: 20px !important;
+}
+
+.remark-code, .remark-inline-code { 
+  font-family: 'Ubuntu Mono', Monospace; 
+}
+.red {
+  color: red;
+}
+.blue {
+  color: blue;
+}
+.bold {
+  font-weight: bold;
+}
+
+.remark-slide-content {
+  font-size: 40px;
+  padding: .5em;
+}
+
+.remark-slide-content h3 {
+  font-size: 1.2em;
+}
+
+.remark-code {
+  font-size: 25px;
+  /*line-height: 60px;*/
+}
+
+.smaller {
+  font-size: 40px;
+}
+
+.no-bullets ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;      
+  text-align: left;
+  width: 800px; 
+  margin: 0 auto; 
+}
+.no-bullets ul a{
+  text-decoration: none;
+  color: black;     
+}      
+.side {
+  width: 30%;
+  float: left;
+  margin-right: 2%;
+  font-size: 20px;
+  display: inline-block;
+}
+.side-one {
+  width: 60%;
+}
+.side h1 {
+  font-size: 60px !important; 
+  margin: 0;
+  padding: 0;
+}
+.side .remark-code {
+
+  text-align: left;
+}
+.image img {
+  max-width: 80%;
+  max-height: 100%;
+}
+.nopages .remark-slide-number{
+  display: none;
+
+}
+.invisible {
+  display: none;
+}
+.subtle {
+  opacity: .3;
+}
+pre {
+  margin-top: 0;
+}
+.block {
+  display: block;
+}
+.narrow {
+  width: 40%;
+  margin: 0 auto;
+}
+.hljs-default .hljs {
+  background: transparent;
+}
+
+foreignobject {
+  background: white;
+}
+.small {
+  font-size: 16px;
+}
+
+.half {
+  vertical-align: top;
+  width: 40%;
+  display: inline-block;
+}

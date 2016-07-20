@@ -104,7 +104,8 @@ pre {
   margin: 0 auto;
 }
 .hljs-default .hljs {
-  background: transparent;
+  background: #e6e6e6;
+  border-radius: 5px;
 }
 
 foreignobject {

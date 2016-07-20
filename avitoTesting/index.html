@@ -5,6 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="./styles.css">
   </head>
+  <style>
+    .screenshot {
+      display: inline-block;
+      max-width: 100%;
+      text-align: center;
+      margin: 0 auto;
+    }
+    .screenshot img {
+      max-width: 60%;
+    }
+  </style>
   <body>
     <textarea id="source">
 
@@ -17,52 +28,69 @@ class: center, middle, nopages
 
 ---
 
-class: middle, no-bullets
+class: middle
 
 - Зачем тестировать
 - Что тестировать
 - Чем тестировать
+- Когда тестировать
 - Будущее
 
 ---
 
-class: middle, no-bullets
+### Тестироваие : user story
 
-- .bold[Зачем тестировать]
-- .subtle[Что тестировать]
-- .subtle[Чем тестировать]
-- .subtle[Будущее]
+- Вася рефакторит модуль
 
 ---
 
-#### Тестироваие : user story
-
-- Вася рефаторит модуль...
-
----
-
-#### Что тестировать
+### Что тестировать
 
 - собственные вспомогательные библиотеки/функции/модули
-- методы сложных классов/модулей
 - redux reducers
 - redux middlewares
 
 ---
 
-#### Чем тестировать
+### Чем тестировать
 
-- mocha.js
-- node assert
-- nyc.js
+- mocha.js 
+        npm test
+- nyc.js (istanbul)
+        npm run coverage
 
 ---
 
-#### Будущее
+class: middle, no-bullets, nopages
 
-- D
-- node assert
-- nyc.js
+.screenshot[![Mocha](./images/mocha-result.png)]
+
+---
+
+class: center, middle, no-bullets, nopages
+
+avito/test/front-report/lcov-report/index.html
+.screenshot[![Nyc](./images/nyc-result.png)]
+      
+---
+
+### Когда тестировать
+
+- Если тест компонента существует и требует обновления
+- Если написание теста не займет времени больше чем написание самого компонента
+- Если есть неиспользованное время на техдолг
+
+---
+
+### Будущее
+
+- Проверка покрытия всего кода
+- Запуск тестов во время разработки
+        npm run test:watch
+- Подключение собственных репортеров (anybar, notifier, etc..)
+- Тестирование компонентов взаимодействующих с DOM
+- Тестирование react компонентов
+- Визуально регрессионное тестирование
 
 ---
 

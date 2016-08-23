@@ -9,17 +9,17 @@ var squeezeParagraphs = require('remark-squeeze-paragraphs');
 var fileList = fs.readdir('./md', function(err, data){
     var promises = data
         .filter(singleName => singleName.includes('.md'))
-        // .map(remarkThis)
-        .map(compileAllFiles);
+        .map(remarkThis);
+        //.map(compileAllFiles);
 
     // Promise
     //     .all(promises)
     //     .then(results => console.log(results))
 
-    Promise
-        .all(promises)
-        .then(results => results.join('\n'))
-        .then(compiledData => pureRemark('all-letters.html', compiledData))
+    // Promise
+    //     .all(promises)
+    //     .then(results => results.join('\n'))
+    //     .then(compiledData => pureRemark('all-letters.html', compiledData))
 });
 
 function wrapInStyles(fileText) {

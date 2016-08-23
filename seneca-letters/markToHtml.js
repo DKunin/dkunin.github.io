@@ -1,17 +1,25 @@
 var remark = require('remark');
 var html = require('remark-html');
+var toc = require('remark-toc');
 var fs = require('fs');
+var remarkUnlink = require('remark-unlink');
+
+var squeezeParagraphs = require('remark-squeeze-paragraphs');
 
 var fileList = fs.readdir('./md', function(err, data){
     var promises = data
         .filter(singleName => singleName.includes('.md'))
-        .map(remarkThis);
+        // .map(remarkThis)
+        .map(compileAllFiles);
+
+    // Promise
+    //     .all(promises)
+    //     .then(results => console.log(results))
 
     Promise
         .all(promises)
-        .then(results => {
-            console.log(results, 'done converting');
-        })
+        .then(results => results.join('\n'))
+        .then(compiledData => pureRemark('all-letters.html', compiledData))
 });
 
 function wrapInStyles(fileText) {
@@ -19,13 +27,33 @@ function wrapInStyles(fileText) {
 }
 
 function remarkThis(fileName) {
-    const data = fs.readFileSync('./md/' + fileName)
+    return pureRemark(fileName, fs.readFileSync('./md/' + fileName).toString())
+
+}
+
+function pureRemark(fileName, data) {
+    const updatedData = '## Table of Contents\n' + data.replace(/\[\<small\>.+\<\/div\>/g, '').replace(/align="center"/g, '');
     return new Promise((resolve, reject) => {
         remark()
-            .use(html).process(data, function (err, file) {
-                fs.writeFile('./html/' + fileName.split('.')[0] + '.html', wrapInStyles(String(file)), function(){
-                    resolve('done')
-                });
-            });
+            .use(squeezeParagraphs)
+            .use(remarkUnlink)
+            .use(html)
+            .use(toc)
+            .process(updatedData, (err, file) => saveToFile(file, fileName));
+
+        resolve('done');
     })
 }
+
+function saveToFile(data, fileName) {
+    return fs.writeFileSync('./html/' + fileName.split('.')[0] + '.html', wrapInStyles(String(data)));
+}
+
+function compileAllFiles(fileName) {
+    return new Promise((resolve, reject) => {
+        fs.readFile('./md/' + fileName, (err, data) => {
+            resolve(data.toString());
+        })
+    })
+}
+

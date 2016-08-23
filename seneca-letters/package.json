@@ -12,6 +12,9 @@
     "iconv": "2.2.1",
     "remark": "6.0.0",
     "remark-html": "5.0.1",
+    "remark-squeeze-paragraphs": "3.0.0",
+    "remark-toc": "3.1.0",
+    "remark-unlink": "2.0.0",
     "to-markdown": "3.0.1",
     "utf8": "2.1.1"
   }

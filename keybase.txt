@@ -1,0 +1,68 @@
+==================================================================
+https://keybase.io/dkunin
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://dkun.in
+  * I am dkunin (https://keybase.io/dkunin) on keybase.
+  * I have a public key with fingerprint 27ED 8B59 E575 22D8 55C0  2F4C A145 4B68 071A DA70
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "eldest_kid": "01013c8eeeefba5c83b02001b3150cc89b90eefb7e5198942e7bcd0b6b6334d24c430a",
+            "fingerprint": "27ed8b59e57522d855c02f4ca1454b68071ada70",
+            "host": "keybase.io",
+            "key_id": "a1454b68071ada70",
+            "kid": "01013c8eeeefba5c83b02001b3150cc89b90eefb7e5198942e7bcd0b6b6334d24c430a",
+            "uid": "0cdf1415752998f1b974f6c096801f19",
+            "username": "dkunin"
+        },
+        "service": {
+            "hostname": "dkun.in",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1473140264,
+    "expire_in": 157680000,
+    "prev": "fb4721e6a0d87faedd59e2872fb253b9c8197c46af1bf8bc45a40e3461f651f3",
+    "seqno": 16,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.56
+Comment: https://keybase.io/crypto
+
+yMIkAnicrVJdSBVBFL7X1NCwDCwSJGKJ6OeqM7uzf5KRGlRqIWhZEV12dmevm7p7
+vT+amWlSGamlYb4UZdFDoRWUUkhlxU1Ky/ShHxUsComgDKQwNKpZK+ihx87LMOd8
+33e+c2ZCMbMc0U7uUqg2MqFlibPvXmPQkd+/dXkFgy2tnEmpYArJzEGKNOIPuAsN
+jUlhAASQUyVCQ8cKr0ocBiwAEHOQB6oqyVgGdkkkPJQlGbFExKoGsIAFjkMai1TE
+AYVxMbpheojP6zPMAJVlRaJJmJcJL/Isq0k8rwJWR6oCEY+wIAERKpoiAkossPw2
+g5rDip8kGRbN0Yt7xt4/8P/Zd/CXnKrpEEHbrSxLOsSyiHRBBTJtDXUo20A/8ZlK
+MaForTBoGiZT6WJortRQib1We46/6kkU4GK8PitgqVYRTRYEAt4UmxMo99qgMoLd
+v+lubJga3R8llBKf37BMJgVSpBowbD2IRA4iwArIxZA9XsNH3IaN4EXqjobdhpRS
+SR0jkYVEUIAmibpCNI2+ACuJrI5ZnsOyKkFZVJGg0AF1CauIVxAgHBKgLvBQ5xh7
+oBLTotoC9al4qKbf8JhKIOgjTOX9uzvDHc5oR2REmP2xHNFRsX++29TY7B9p/ODn
+nDXT89tCj7q2Wd3bQc+KxJU1pxpcqYs/5o6MuYNVW1ef2bSKd87rSlx4sqo35ubX
+6PEjdYNTxyOnrwylPnxe3fs5MYpru9BU0jh6PuxY5qc5l1vyJvY/3BD2uP10X966
+22VPx9n3ublzkq9mx8W/aGbyO4a956oTl68dyIlfuuzUk46RHVWbM+u5vtGLNY6m
+hORDroWLs+eezXI31i7KGPjWqS14Of2kvsu5/sPB0NXha+E6dzo+47t/15Cz5xn/
+pvnGvn0Rvel73xaP3enydOa8ap08qrwOgQOTuXWXGlBBlvagdXf6o/brWzJiB/sP
+p916d6LW0x23fvQLmIjMnL3xJzu3PX0=
+=tdvE
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/dkunin
+
+==================================================================

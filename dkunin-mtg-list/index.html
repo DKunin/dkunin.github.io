@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="List of MTG cards I am selling">
+    <meta name="author" content="Dmitri Kunin">
+    <title>Kunin's MTG list</title>
+    <script type="text/javascript" src="js/tabletop.js"></script>
+    s<script type="text/javascript" src="http://unpkg.com/vue/dist/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+      var request = new XMLHttpRequest();
+      request.open('GET', 'http://192.241.145.243:4444/api/cards', true);
+
+      request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+          // Success!
+          var data = JSON.parse(request.responseText);
+          console.log(data);
+        } else {
+          // We reached our target server, but it returned an error
+
+        }
+      };
+
+      request.onerror = function() {
+        // There was a connection error of some sort
+      };
+
+request.send();
+      // Tabletop.init({
+      //   key: '1saFiBxxSXdTNsb05kIlq2IW_U3NnhihtDZ_13m8Zg7g',
+      //   callback: function(data) {
+      //     console.log(data);
+      //     // var app = new Vue({
+      //     //   el: '#app',
+      //     //   template: '<div>{{ message }} {{cards.length}}</div>',
+      //     //   data: {
+      //     //     message: 'You loaded this page on ' + new Date(),
+      //     //     cards: data
+      //     //   }
+      //     // })
+      //   },
+      //   simpleSheet: true 
+      // })
+    });
+    </script>
+  </body>
+</html>

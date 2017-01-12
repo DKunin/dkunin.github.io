@@ -26,11 +26,9 @@
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function () {
         var request = new XMLHttpRequest();
-        request.open('GET', 'http://192.241.145.243:4444/api/cards', true);
-        //
+        request.open('GET', 'http://192.241.145.243:4444/gettable' + location.search, true);
         request.onload = function() {
           if (request.status >= 200 && request.status < 400) {
-            // Success!
             var cards = JSON.parse(request.responseText);
             var app = new Vue({
               el: '#app',
@@ -62,9 +60,7 @@
             })
           }
         };
-
         request.send();
-
       });
     </script>
   </body>

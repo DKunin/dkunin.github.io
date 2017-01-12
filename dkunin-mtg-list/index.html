@@ -17,7 +17,11 @@
       body {
         padding: 20px;
       }
-      .hidden, input[type='checkbox'] {
+      label {
+        margin: 0 5px;
+        cursor: pointer;
+      }
+      input[type='checkbox']:not(.visible) {
         display: none;
       }
       input[type='checkbox'] + img {
@@ -63,6 +67,10 @@
             <input v-model="blue" type="checkbox">
             <img src="https://hydra-media.cursecdn.com/mtgsalvation.gamepedia.com/9/9f/U.svg"/>
           </label>
+          <label class="float-left">
+            Foil
+            <input v-model="foil" type="checkbox" class="visible">
+          </label>
         </div>
         <table>
           <thead>
@@ -78,7 +86,7 @@
               <td>
                 <a :href="card.image" target="_blank"><img :src="card.image" width="80px"/></a>
               </td>
-              <td>{{ card.name }}</td>
+              <td>{{ card.name }} {{card.foil}}</td>
               <td>{{ card.edition }}</td>
               <td>{{ card.price }}</td>
             </tr>
@@ -104,7 +112,8 @@
                 white: false,
                 red: false,
                 green: false,
-                blue: false
+                blue: false,
+                foil: false
               },
               methods: {
                 filterCards: function(cards){
@@ -115,7 +124,8 @@
 
                       if (
                         this.textFilter && !singleCard.name.toLowerCase().includes(this.textFilter.toLowerCase()) ||
-                        selectedColors.length && !selectedColors.some(singleColor => singleCard.color.includes(singleColor))
+                        selectedColors.length && !selectedColors.some(singleColor => singleCard.color.includes(singleColor)) ||
+                        this.foil && singleCard.foil !== 'foil'
                       ) {
                         return newArray;
                       }

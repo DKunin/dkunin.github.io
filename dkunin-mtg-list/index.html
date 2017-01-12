@@ -14,50 +14,124 @@
       * {
         font-family: Roboto;
       }
-      table {
-        width: 600px;
-        margin: 0 auto;
+      body {
+        padding: 10px;
+      }
+      .hidden, input[type='checkbox'] {
+        display: none;
+      }
+      input[type='checkbox'] + img {
+        width: 30px;
+        cursor: pointer;
+        opacity: .5
+      }
+      input:checked + img {
+        opacity: 1;
+      }
+      input[type='text'] {
+        display: block;
+        padding: 10px;
       }
     </style>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.8/vue.min.js"></script>
   </head>
   <body>
     <div id="app"></div>
+
+    <script type="text/template" class="cardlist">
+      <div>
+        <h3>Card list</h3>
+        <input v-model="textFilter" placeholder="Text filter" type="text">
+        <div>
+          <label class="float-left">
+            <input v-model="black" type="checkbox">
+            <img src="https://hydra-media.cursecdn.com/mtgsalvation.gamepedia.com/2/2f/B.svg"/>
+          </label>
+          <label class="float-left">
+            <input v-model="white" type="checkbox">
+            <img src="https://hydra-media.cursecdn.com/mtgsalvation.gamepedia.com/8/8e/W.svg"/>
+          </label>
+          <label class="float-left">
+            <input v-model="green" type="checkbox">
+            <img src="https://hydra-media.cursecdn.com/mtgsalvation.gamepedia.com/8/88/G.svg"/>
+          </label>
+          <label class="float-left">
+            <input v-model="red" type="checkbox">
+            <img src="https://hydra-media.cursecdn.com/mtgsalvation.gamepedia.com/8/87/R.svg"/>
+          </label>
+          <label class="float-left">
+            <input v-model="blue" type="checkbox">
+            <img src="https://hydra-media.cursecdn.com/mtgsalvation.gamepedia.com/9/9f/U.svg"/>
+          </label>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Edition</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="card in cards">
+              <td>
+                <a :href="card.image" target="_blank"><img :src="card.image" width="80px"/></a>
+              </td>
+              <td>{{ card.name }}</td>
+              <td>{{ card.edition }}</td>
+              <td>{{ card.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </script>
+
     <script type="text/javascript">
       document.addEventListener('DOMContentLoaded', function () {
         var request = new XMLHttpRequest();
         request.open('GET', 'http://192.241.145.243:4444/gettable' + location.search, true);
         request.onload = function() {
           if (request.status >= 200 && request.status < 400) {
-            var cards = JSON.parse(request.responseText);
-            var app = new Vue({
+            const cards = JSON.parse(request.responseText);
+
+            const vueSettings = {
               el: '#app',
-              template: `
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Image</th>
-                      <th>Name</th>
-                      <th>Color</th>
-                      <th>Edition</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr v-for="card in cards">
-                      <td><img :src="card.image" width="80px"/></td>
-                      <td>{{ card.name }}</td>
-                      <td>{{ card.color }}</td>
-                      <td>{{ card.edition }}</td>
-                      <td>{{ card.price }}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              `,
+              template: document.querySelector('.cardlist').innerHTML,
               data: {
-                cards
+                textFilter: '',
+                black: false,
+                white: false,
+                red: false,
+                green: false,
+                blue: false
+              },
+              methods: {
+                filterCards: function(cards){
+                  return cards
+                    .reduce((newArray, singleCard) => {
+                      const selectedColors = ['black', 'white', 'red', 'green', 'blue']
+                        .filter(singleColor => this[singleColor]);
+
+                      if (
+                        this.textFilter && !singleCard.name.toLowerCase().includes(this.textFilter.toLowerCase()) ||
+                        selectedColors.length && !selectedColors.some(singleColor => singleCard.color.includes(singleColor))
+                      ) {
+                        return newArray;
+                      }
+
+                      return newArray.concat(singleCard);
+                    }, []);
+                }
+              },
+              computed: {
+                cards: function() {
+                  return this.filterCards(cards);
+                }
               }
-            })
+            };
+
+            const app = new Vue(vueSettings);
           }
         };
         request.send();

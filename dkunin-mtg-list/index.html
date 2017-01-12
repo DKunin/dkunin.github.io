@@ -39,18 +39,18 @@
                   <thead>
                     <tr>
                       <th>Image</th>
+                      <th>Name</th>
                       <th>Color</th>
                       <th>Edition</th>
-                      <th>Name</th>
                       <th>Price</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="card in cards">
                       <td><img :src="card.image" width="80px"/></td>
+                      <td>{{ card.name }}</td>
                       <td>{{ card.color }}</td>
                       <td>{{ card.edition }}</td>
-                      <td>{{ card.name }}</td>
                       <td>{{ card.price }}</td>
                     </tr>
                   </tbody>

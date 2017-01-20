@@ -65,8 +65,8 @@ function initSelect(surnames, wholeData, keysObject) {
                         '#body',
                         [ 'hard skills', 'hard skills future' ],
                         [
-                            getHardSkills(wholeData, value, true),
-                            getHardSkills(wholeData, value)
+                            getHardSkills(wholeData, value),
+                            getHardSkills(wholeData, value, true)
                         ]
                     );
                     drawSpider(
@@ -74,8 +74,8 @@ function initSelect(surnames, wholeData, keysObject) {
                         '#body2',
                         [ 'soft skills', 'soft skills future' ],
                         [
-                            getSoftSkills(wholeData, value, true),
-                            getSoftSkills(wholeData, value)
+                            getSoftSkills(wholeData, value),
+                            getSoftSkills(wholeData, value, true)
                         ]
                     );
                 }

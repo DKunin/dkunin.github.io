@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div id="stage" class="stage" :class="{'menu-open': menuOpen }" :style="{ color: activeReminder.waveFrontColor, backgroundColor: stageBg }" v-cloak>
+        <div class="menu__button" @click="toggleMenu">
+            <div class="menu__dot"></div>
+        </div>
+        <div class="menu">
+            <ul class="menu__list">
+                <li class="menu__item">
+                    <a href="#" @click.prevent="start('water')">
+                        <span>Water break</span>
+                    </a>
+                </li>
+                <li class="menu__item">
+                    <a href="#" @click.prevent="start('coffee')">
+                        <span>Coffee break</span>
+                    </a>
+                </li>
+                <li class="menu__item">
+                    <a href="#" @click.prevent="start('break')">
+                        <span>Office Break</span>
+                    </a>
+                </li>
+                <li class="menu__item">
+                    <a href="#" @click.prevent="start('pomodoro')">
+                        <span>Pomodoro</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="time">
+            <transition-group name="timer" tag="div">
+                <div v-for="time in timer" class="timer__item" :key="time.id">
+                    {{ time.value }}
+                </div>
+            </transition-group>
+        </div>
+        <div class="waves" :style="waveStyles">
+            <div class="wave wave--back" :style="{ color: activeReminder.waveBackColor }">
+                <div class="water">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 32" preserveAspectRatio="none">
+                        <title>wave2</title>
+                        <path d="M350,17.32V32H0V17.32C116.56,65.94,175-39.51,350,17.32Z" />
+                    </svg>
+                </div>
+                <div class="water">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 32" preserveAspectRatio="none">
+                        <title>wave2</title>
+                        <path d="M350,17.32V32H0V17.32C116.56,65.94,175-39.51,350,17.32Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="wave wave--front" :style="{ color: activeReminder.waveFrontColor }">
+                <div class="water">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 32" preserveAspectRatio="none">
+                        <title>wave2</title>
+                        <path d="M350,17.32V32H0V17.32C116.56,65.94,175-39.51,350,17.32Z" />
+                    </svg>
+                </div>
+                <div class="water">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 32" preserveAspectRatio="none">
+                        <title>wave2</title>
+                        <path d="M350,17.32V32H0V17.32C116.56,65.94,175-39.51,350,17.32Z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="percent">
+                <transition name="percent-left" mode="out-in">
+                    <div :key="percentsLeft">{{ percentsLeft }}</div>
+                </transition>
+                <span>%</span>
+            </div>
+        </div>
+        <button @click="reset">
+            {{ percentsLeft > 0 ? activeReminder.buttonTxt : 'Reset' }}
+        </button>
+    </div>
+
+</body>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/countdown/2.6.0/countdown.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
+<script src='./script.js'></script>
+
+</html>

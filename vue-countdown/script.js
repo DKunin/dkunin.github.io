@@ -1,7 +1,7 @@
 'use strict';
-
 var padDigits = function padDigits(number, digits) {
-    return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
+    return Array(Math.max(digits - String(number).length + 1, 0)).join(0) +
+        number;
 };
 var calculatePercentsLeft = function calculatePercentsLeft(value, from) {
     return Math.floor(Math.ceil(value / 1000) / (from * 60) * 100);
@@ -12,9 +12,14 @@ var calculateScaleFactor = function calculateScaleFactor(percent) {
 
 function guid() {
     function s4() {
-        return Math.floor((1 + Math.random()) * 65536).toString(16).substring(1);
+        return Math
+            .floor((1 + Math.random()) * 65536)
+            .toString(16)
+            .substring(1);
     }
-    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() +
+        s4() +
+        s4();
 }
 var settings = {
     water: {
@@ -51,7 +56,7 @@ new Vue({
     data: function data() {
         return {
             color: '',
-            percents: [100],
+            percents: [ 100 ],
             percentsLeft: 100,
             secondsLeft: 0,
             waveStyles: '',
@@ -73,7 +78,7 @@ new Vue({
         this.resetTimer();
         this.voices = speechSynthesis.getVoices();
         if (this.voices.length === 0) {
-            speechSynthesis.onvoiceschanged = function () {
+            speechSynthesis.onvoiceschanged = function() {
                 _this.voices = speechSynthesis.getVoices();
             };
         }
@@ -115,7 +120,7 @@ new Vue({
         },
         start: function start(reminder) {
             this.setActiveReminder(reminder);
-            this.percents = [100];
+            this.percents = [ 100 ];
             this.timer = [];
             this.menuOpen = false;
             this.resetTimer();
@@ -130,23 +135,34 @@ new Vue({
             if (this.countdown) {
                 window.clearInterval(this.countdown);
             }
-            this.countdown = countdown(function (ts) {
-                _this2.secondsLeft = Math.ceil(ts.value / 1000);
-                _this2.percentsLeft = calculatePercentsLeft(ts.value, _this2.activeReminder.durationInMinutes);
-                _this2.waveStyles = 'transform: scale(1,' + calculateScaleFactor(_this2.percentsLeft) + ')';
-                _this2.updateCountdown(ts);
-                if (_this2.percentsLeft == 10) {
-                    _this2.giveWarning();
-                }
-                if (_this2.percentsLeft <= 0) {
-                    _this2.timeIsUpMessage();
-                    _this2.pauseTimer();
-                    _this2.timer = [];
-                    setTimeout(function () {
-                        _this2.startListenVoiceCommands();
-                    }, 1500);
-                }
-            }, now.getTime() + secondsLeft * 1000);
+            this.countdown = countdown(
+                function(ts) {
+                    _this2.secondsLeft = Math.ceil(ts.value / 1000);
+                    _this2.percentsLeft = calculatePercentsLeft(
+                        ts.value,
+                        _this2.activeReminder.durationInMinutes
+                    );
+                    _this2.waveStyles = 'transform: scale(1,' +
+                        calculateScaleFactor(_this2.percentsLeft) +
+                        ')';
+                    _this2.updateCountdown(ts);
+                    if (_this2.percentsLeft == 10) {
+                        _this2.giveWarning();
+                    }
+                    if (_this2.percentsLeft <= 0) {
+                        _this2.timeIsUpMessage();
+                        _this2.pauseTimer();
+                        _this2.timer = [];
+                        setTimeout(
+                            function() {
+                                _this2.startListenVoiceCommands();
+                            },
+                            1500
+                        );
+                    }
+                },
+                now.getTime() + secondsLeft * 1000
+            );
         },
         updateCountdown: function updateCountdown(ts) {
             if (this.timer.length > 2) {
@@ -166,13 +182,12 @@ new Vue({
                 this.startTimer(this.secondsLeft - 1);
             }
         },
-        giveWarning: function giveWarning() {
-        },
+        giveWarning: function giveWarning() {},
         timeIsUpMessage: function timeIsUpMessage() {
             navigator.vibrate(1000);
         },
         timerResetMessage: function timerResetMessage() {
-            navigator.vibrate([500, 300, 100]);
+            navigator.vibrate([ 500, 300, 100 ]);
         },
         reset: function reset() {
             this.resetTimer();
@@ -184,14 +199,14 @@ new Vue({
                 return;
             this.isListening = true;
             recognition.start();
-            recognition.onresult = function (event) {
+            recognition.onresult = function(event) {
                 var last = event.results.length - 1;
                 if (event.results[last][0].transcript == 'reset') {
                     _this3.resetTimer();
                     _this3.timerResetMessage();
                 }
             };
-            recognition.onend = function () {
+            recognition.onend = function() {
                 _this3.isListening = false;
                 _this3.voiceTooltipClosed = true;
                 recognition.stop();

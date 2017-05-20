@@ -8,9 +8,11 @@ function getHardSkills(allFields, person, showFutureValue) {
             if (type.toLowerCase() === 'hard') {
                 let value = 0;
                 if (person) {
-                    value = levelCode[singleLine[person]
-                        .trim()
-                        .split('/')[showFutureValue ? 1 : 0]] ||
+                    value = levelCode[
+                        singleLine[person].trim().split('/')[
+                            showFutureValue ? 1 : 0
+                        ]
+                    ] ||
                         0;
                 }
                 return newArray.concat({ axis: skill, value });
@@ -46,7 +48,9 @@ function initSelect(surnames, wholeData, keysObject) {
     <select name="user">
       <option value="-">-</option>
       ${surnames.map(singleSurname => {
-        return `<option value="${singleSurname}">${keysObject[singleSurname]}</option>`;
+        return `<option value="${singleSurname}">${keysObject[
+            singleSurname
+        ]}</option>`;
     })}
       <option value="all">All</option>
     </select>
@@ -63,7 +67,7 @@ function initSelect(surnames, wholeData, keysObject) {
                     drawSpider(
                         '#chart',
                         '#body',
-                        [ 'hard skills', 'hard skills future' ],
+                        ['hard skills', 'hard skills future'],
                         [
                             getHardSkills(wholeData, value),
                             getHardSkills(wholeData, value, true)
@@ -72,7 +76,7 @@ function initSelect(surnames, wholeData, keysObject) {
                     drawSpider(
                         '#chart2',
                         '#body2',
-                        [ 'soft skills', 'soft skills future' ],
+                        ['soft skills', 'soft skills future'],
                         [
                             getSoftSkills(wholeData, value),
                             getSoftSkills(wholeData, value, true)

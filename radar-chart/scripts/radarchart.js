@@ -1,7 +1,7 @@
 //Practically all this code comes from https://github.com/alangrafu/radar-chart-d3
-//I only made some additions and aesthetic adjustments to make the chart look better 
+//I only made some additions and aesthetic adjustments to make the chart look better
 //(of course, that is only my point of view)
-//Such as a better placement of the titles at each line end, 
+//Such as a better placement of the titles at each line end,
 //adding numbers that reflect what each circular level stands for
 //Not placing the last level and slight differences in color
 //
@@ -99,7 +99,9 @@ var RadarChart = {
                 .style('stroke-width', '0.3px')
                 .attr(
                     'transform',
-                    'translate(' + (cfg.w / 2 - levelFactor) + ', ' +
+                    'translate(' +
+                        (cfg.w / 2 - levelFactor) +
+                        ', ' +
                         (cfg.h / 2 - levelFactor) +
                         ')'
                 );
@@ -110,7 +112,7 @@ var RadarChart = {
             var levelFactor = cfg.factor * radius * ((j + 1) / cfg.levels);
             g
                 .selectAll('.levels')
-                .data([ 1 ])
+                .data([1])
                 .enter()
                 .append('svg:text')
                 .attr('x', function(d) {
@@ -124,7 +126,8 @@ var RadarChart = {
                 .style('font-size', '10px')
                 .attr(
                     'transform',
-                    'translate(' + (cfg.w / 2 - levelFactor + cfg.ToRight) +
+                    'translate(' +
+                        (cfg.w / 2 - levelFactor + cfg.ToRight) +
                         ', ' +
                         (cfg.h / 2 - levelFactor) +
                         ')'
@@ -147,45 +150,59 @@ var RadarChart = {
             .attr('x1', cfg.w / 2)
             .attr('y1', cfg.h / 2)
             .attr('x2', function(d, i) {
-                return cfg.w / 2 *
+                return cfg.w /
+                    2 *
                     (1 - cfg.factor * Math.sin(i * cfg.radians / total));
             })
             .attr('y2', function(d, i) {
-                return cfg.h / 2 *
+                return cfg.h /
+                    2 *
                     (1 - cfg.factor * Math.cos(i * cfg.radians / total));
             })
             .attr('class', 'line')
             .style('stroke', 'grey')
             .style('stroke-width', '1px');
 
-        axis.append('text').attr('class', 'legend').text(function(d) {
-            return d;
-        }).style(
-            'font-family',
-            'sans-serif'
-        ).style('font-size', '11px').attr('text-anchor', 'middle').attr('dy', '1.5em').attr('transform', function(d, i) {
-            return 'translate(0, -10)';
-        }).attr('x', function(d, i) {
-            return cfg.w / 2 *
-                (1 - cfg.factorLegend * Math.sin(i * cfg.radians / total)) -
-                60 * Math.sin(i * cfg.radians / total);
-        }).attr('y', function(d, i) {
-            return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) -
-                20 * Math.cos(i * cfg.radians / total);
-        });
+        axis
+            .append('text')
+            .attr('class', 'legend')
+            .text(function(d) {
+                return d;
+            })
+            .style('font-family', 'sans-serif')
+            .style('font-size', '11px')
+            .attr('text-anchor', 'middle')
+            .attr('dy', '1.5em')
+            .attr('transform', function(d, i) {
+                return 'translate(0, -10)';
+            })
+            .attr('x', function(d, i) {
+                return cfg.w /
+                    2 *
+                    (1 - cfg.factorLegend * Math.sin(i * cfg.radians / total)) -
+                    60 * Math.sin(i * cfg.radians / total);
+            })
+            .attr('y', function(d, i) {
+                return cfg.h / 2 * (1 - Math.cos(i * cfg.radians / total)) -
+                    20 * Math.cos(i * cfg.radians / total);
+            });
 
         d.forEach(function(y, x) {
             dataValues = [];
             g.selectAll('.nodes').data(y, function(j, i) {
                 dataValues.push([
-                    cfg.w / 2 *
+                    cfg.w /
+                        2 *
                         (1 -
-                            parseFloat(Math.max(j.value, 0)) / cfg.maxValue *
+                            parseFloat(Math.max(j.value, 0)) /
+                                cfg.maxValue *
                                 cfg.factor *
                                 Math.sin(i * cfg.radians / total)),
-                    cfg.h / 2 *
+                    cfg.h /
+                        2 *
                         (1 -
-                            parseFloat(Math.max(j.value, 0)) / cfg.maxValue *
+                            parseFloat(Math.max(j.value, 0)) /
+                                cfg.maxValue *
                                 cfg.factor *
                                 Math.cos(i * cfg.radians / total))
                 ]);
@@ -193,7 +210,7 @@ var RadarChart = {
             dataValues.push(dataValues[0]);
             g
                 .selectAll('.area')
-                .data([ dataValues ])
+                .data([dataValues])
                 .enter()
                 .append('polygon')
                 .attr('class', 'radar-chart-serie' + series)
@@ -242,28 +259,36 @@ var RadarChart = {
                 })
                 .attr('cx', function(j, i) {
                     dataValues.push([
-                        cfg.w / 2 *
+                        cfg.w /
+                            2 *
                             (1 -
                                 parseFloat(Math.max(j.value, 0)) /
                                     cfg.maxValue *
                                     cfg.factor *
                                     Math.sin(i * cfg.radians / total)),
-                        cfg.h / 2 *
+                        cfg.h /
+                            2 *
                             (1 -
                                 parseFloat(Math.max(j.value, 0)) /
                                     cfg.maxValue *
                                     cfg.factor *
                                     Math.cos(i * cfg.radians / total))
                     ]);
-                    return cfg.w / 2 *
+                    return cfg.w /
+                        2 *
                         (1 -
-                            Math.max(j.value, 0) / cfg.maxValue * cfg.factor *
+                            Math.max(j.value, 0) /
+                                cfg.maxValue *
+                                cfg.factor *
                                 Math.sin(i * cfg.radians / total));
                 })
                 .attr('cy', function(j, i) {
-                    return cfg.h / 2 *
+                    return cfg.h /
+                        2 *
                         (1 -
-                            Math.max(j.value, 0) / cfg.maxValue * cfg.factor *
+                            Math.max(j.value, 0) /
+                                cfg.maxValue *
+                                cfg.factor *
                                 Math.cos(i * cfg.radians / total));
                 })
                 .attr('data-id', function(j) {
@@ -343,7 +368,7 @@ function drawSpider(
         .attr('width', w + 300)
         .attr('height', h);
 
-    //Initiate Legend 
+    //Initiate Legend
     var legend = svg
         .append('g')
         .attr('class', 'legend')

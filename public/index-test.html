@@ -10,14 +10,39 @@
 Your browser does not support the HTML5 canvas tag.
 </canvas>
 
+<input type="file" class="file-upload" />
 <script>
 window.onload = function() {
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     var img = document.getElementById("scream");
     ctx.drawImage(img, 10, 10, 240, 297);
+    document.querySelector('.file-upload').addEventListener('change', function(event){
+        var reader = new FileReader();
+
+        reader.onloadend = function() {
+            // const canvasNode = document.createElement('canvas');
+            // const context = canvasNode.getContext('2d');
+            // return canvasNode.toDataURL('image/jpeg');
+            
+            img.onload = function(){
+                ctx.clearRect(0, 0, c.width, c.height);
+                var imageDimensions = img.getBoundingClientRect();
+                var changedX = imageDimensions.width / 2;
+                var changedY = imageDimensions.height / 2;
+                ctx.translate(changedX, changedY);
+                ctx.rotate(90 * Math.PI / 180);
+                ctx.translate(changedX * -1, changedY * -1);
+                
+                ctx.drawImage(img, 0, 0, 240, 297 * img.width / img.height);
+            }
+            img.src = reader.result;
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+    });
 }
 </script>
-input.
+
 </body>
 </html>

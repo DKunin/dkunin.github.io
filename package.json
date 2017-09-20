@@ -6,6 +6,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "csscomb": "4.2.0",
     "gulp": "^3.8.11",
     "gulp-connect": "^2.2.0",
     "gulp-ftp": "^1.0.3",

@@ -43,8 +43,15 @@
       font-size: 60px;
       opacity: .3;
     }
+    blockquote:empty::before {
+      content: '';
+    }
+
     ul {
       max-width: 430px;
+    }
+    .fullsized {
+      color: white;
     }
   </style>
   <body>
@@ -52,13 +59,49 @@
       class: center
 
       # Далеко ли до Таллинна?
-      Refresh Rocks, как это было
+      
       ![tallinn](./images/tallinn.png)
+
+      ## Refresh Rocks, как это было
       ---
+      background-image: url(./images/7.jpg)
+      class: middle, fullsized
 
-      class: middle
-
-      ### Venue
+      # Venue
+      ---
+      background-image: url(./images/2.jpg)
+      ---
+      background-image: url(./images/3.jpg)
+      ---
+      background-image: url(./images/4.jpg)
+      ---
+      background-image: url(./images/5.jpg)
+      ---
+      background-image: url(./images/6.jpg)
+      ---
+      background-image: url(./images/8.jpg)
+      ---
+      background-image: url(./images/9.jpg)
+      ---
+      background-image: url(./images/10.jpg)
+      ---
+      background-image: url(./images/11.jpg)
+      ---
+      background-image: url(./images/12.jpg)
+      ---
+      background-image: url(./images/13.jpg)
+      ---
+      background-image: url(./images/14.jpg)
+      ---
+      background-image: url(./images/15.jpg)
+      ---
+      background-image: url(./images/16.jpg)
+      ---
+      background-image: url(./images/17.jpg)
+      ---
+      background-image: url(./images/18.jpg)
+      ---
+      background-image: url(./images/19.jpg)
       ---
       <div class="sideimage">
         <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/599455fcbe42d668a82d93d7/1502893566754/?format=750w" alt="">
@@ -104,44 +147,127 @@
 
       ---
       <div class="sideimage">
-        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/58d00fb03a04118cb28d967b/1490030514717/una_smaller.jpg" alt="">
-        <blockquote>CSS is Awesome!</blockquote>
+        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/5902efdebf629ab280cade49/1493364729468/?format=750w" alt="">
+        <blockquote></blockquote>
       </div>
       ### Serg Hospodarets
-      #### CSS Houdini - From CSS Custom Properties to JavaScript Worklets and back
+      #### CSS Houdini
 
       ### Key points
-      -
+      - Start using native variable syntax
+      - all: initial; /* reset all other CSS styles */
+      - Easy to change composable parts individually/Emulating non-existent properties
+      - Changes take immediate effect
+      - CSS.registerProperty under Experimental Web Platform features in Chrome
+      - Worklets: Paint/Layout/Animation
 
       ### Links
-      - [Presenttaion](http://slides.com/malyw/houdini-codemotion#/)
+      - [Presentation](http://slides.com/malyw/houdini-codemotion#/)
       - [Video](https://www.youtube.com/watch?v=66E0_QFnmlA)
 
       ---
-      # Sam Bellen
-      - I Didn’t Know the Browser Could Do That!
-      - [Presentation](https://meow.sambego.be/speech-example)
+      <div class="sideimage">
+        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/596d0adee3df28186226a331/1500318437612/?format=750w" alt="">
+        <blockquote>I like cats!</blockquote>
+      </div>
+      ### Sam Bellen / madewithlove
+      #### I Didn’t Know the Browser Could Do That!
+
+      ### Key points
+      - Speech API
+      - Speech Recognition API
+      - Geolocation API
+      - Notification API
+      - Push API
+      - Battery Manager API
+      - Media Recorder API / Web-audio API
+      - Vibration API
+      - Device orientation
+      - Personal Assistance
+
+      ### Links
+      - [Presentation](https://meow.sambego.be)
 
       ---
-      # Jana Beck
-      - Generating Therapy in JavaScript
+      <div class="sideimage">
+        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/593d7ab12994ca0f61e8b361/1497201344057/?format=750w" alt="">
+        <blockquote></blockquote>
+      </div>
+      ### Jana Beck
+      #### Generating Therapy in JavaScript
+      
+      ### Key points
+      - ES2015 points
+      - Way to fight JS fatigue: play with your code
+      - Lack of documentation on Generators
+      - Meet Eliza
+      - Eliza on generators
+      - Jumping Bell
+      - Chat bot to avoid unwanted attention
+
+      ### Links
       - [Presentation](http://janabeck.com/javascript-therapy/)
 
       ---
-      # Umar Hansa
-      - A Modern Front-End Workflow with DevTools
+      <div class="sideimage">
+        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/591346e26a496374558299a6/1494435568315/?format=750w" alt="">
+        <blockquote></blockquote>
+      </div>
+      ### Umar Hansa / Sitepen
+      #### A Modern Front-End Workflow with DevTools
+      
+      ### Key points
+      - CMD-Shift-P Pallette, screenshot
+      - Contrast line, to determine level of contrast
+      - CSS grid highlight
+      - Multicursor in DevTools
+      - Top level await
+      - Console context
+      - Pefrormance Debugging
+      - Request Blocking
+      - 3rd Party Script Labels
+      
+      ### Links
       - [Presentation](https://umaar.github.io/devtools-modern-web-workflow-2017)
       - [Video](https://www.youtube.com/watch?v=v5r_n6Tq0uk)
+      - [Course](https://moderndevtools.com/)
 
       ---
-      # Ruth John
-      - How to be a Web AV Artist
+      <div class="sideimage">
+        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/5925d0fc579fb3dbddd56e8c/1495650565285/?format=750w" alt="">
+        <blockquote></blockquote>
+      </div>
+      ### Ruth John
+      #### How to be a Web AV Artist
+      
+      ### Key points
+      - Live.js
+      - Stream source (voice/music) (a/v) to code, convert frequency
+      - D3 for visuals
+      
+      ### Links
       - [Presentation Repo](https://github.com/Rumyra/Talk-Be-AV-Artist)
       - [Video](https://www.youtube.com/watch?v=Lby6fk5gC4k)
 
       ---
-      # Martin Salo
-      - Emotional experiences that sell: lessons from the advertising world
+      <div class="sideimage">
+        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/599d9544d482e9d332d021e2/1503499598837/martin.jpg?format=750w" alt="">
+        <blockquote></blockquote>
+      </div>
+      ### Martin Salo
+      #### Emotional experiences that sell: lessons from the advertising world
+
+      ### Key points
+      - Connecting on emotional level
+      - Kurt Vonnegut video about story structure
+      - Engaging users
+      - Real Eyes Software
+
+      ---
+      class: center, middle
+
+      # http://bit.ly/refresh-rocks
+
 
     </textarea>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/remark/0.14.0/remark.min.js"></script>

@@ -20,17 +20,31 @@
     .sideimage {
       float: right;
       position: relative;
-      top: -40px;
-    }
-    .screenshot, .sideimage {
-      display: inline-block;
-      max-width: 100%;
-      text-align: center;
-      margin: 0 auto;
+      top: 0;
+      max-height: 220px;
+      width: 300px;
     }
     img, .sideimage img {
-      max-width: 80%;
-      max-height: 90%;
+      max-height: 220px;
+    }
+    blockquote {
+      font-style: italic;
+      margin: 0;
+      padding: 0 10px;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    blockquote::before {
+      content: '“';
+      position: absolute;
+      top: -30px;
+      left: 0;
+      font-size: 60px;
+      opacity: .3;
+    }
+    ul {
+      max-width: 430px;
     }
   </style>
   <body>
@@ -46,38 +60,87 @@
 
       ### Venue
       ---
-      # Keynote
+      <div class="sideimage">
+        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/599455fcbe42d668a82d93d7/1502893566754/?format=750w" alt="">
+        <blockquote>Asking questions we are often answering simplier ones</blockquote>
+      </div>
+
+      ### Keynote
       - Chris Linnett / Typeform
       - Can You See The User in This Experience?
-      - Worked in Nokia, Microsoft
+
+      
+      ### Key points
+      
+      - A/B test often if no one notices - remove, personas testing, customer Journey
+      - Contextual inquiry
+      - Fail fast
+      - App Vision
+      - Lagom
+      - Swarm = designers + product managers + engineers
+      - Regular hackatons/ Info sharing
+      - Human X (eg: conversational data collection)
 
       ---
-      # Una Kravets
-      - The Power of CSS
+      <div class="sideimage">
+        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/58d00fb03a04118cb28d967b/1490030514717/una_smaller.jpg" alt="">
+        <blockquote>CSS is Awesome!</blockquote>
+      </div>
+      ### Una Kravets / Digital Ocean
+      #### The Power of CSS
+      
+      ### Key points
+      - Photoshopping in CSS: filter and blend modes
+      - Examples of css only solutions (tabs/lightbox/accordion/tooltip)
+      - Scroll Indicator
+      - Grid with emojis
+      - Presentation entirely in CSS
+      - CSS Games
+      - will-change property
+
+      ### Links
+      - [Presentation](https://s.codepen.io/una/debug/Wjvdqm)
       - [Video](https://www.youtube.com/watch?v=IRI1H5tyEAo)
 
       ---
-      # Serg Hospodarets 
-      - CSS Houdini - From CSS Custom Properties to JavaScript Worklets and back
+      <div class="sideimage">
+        <img src="https://static1.squarespace.com/static/580e36e9e6f2e127e5d6d855/t/58d00fb03a04118cb28d967b/1490030514717/una_smaller.jpg" alt="">
+        <blockquote>CSS is Awesome!</blockquote>
+      </div>
+      ### Serg Hospodarets
+      #### CSS Houdini - From CSS Custom Properties to JavaScript Worklets and back
+
+      ### Key points
+      -
+
+      ### Links
+      - [Presenttaion](http://slides.com/malyw/houdini-codemotion#/)
+      - [Video](https://www.youtube.com/watch?v=66E0_QFnmlA)
 
       ---
       # Sam Bellen
       - I Didn’t Know the Browser Could Do That!
+      - [Presentation](https://meow.sambego.be/speech-example)
 
       ---
       # Jana Beck
       - Generating Therapy in JavaScript
+      - [Presentation](http://janabeck.com/javascript-therapy/)
 
       ---
       # Umar Hansa
       - A Modern Front-End Workflow with DevTools
+      - [Presentation](https://umaar.github.io/devtools-modern-web-workflow-2017)
+      - [Video](https://www.youtube.com/watch?v=v5r_n6Tq0uk)
 
       ---
       # Ruth John
       - How to be a Web AV Artist
+      - [Presentation Repo](https://github.com/Rumyra/Talk-Be-AV-Artist)
+      - [Video](https://www.youtube.com/watch?v=Lby6fk5gC4k)
 
       ---
-      # Martin Salo / Realeyes
+      # Martin Salo
       - Emotional experiences that sell: lessons from the advertising world
 
     </textarea>

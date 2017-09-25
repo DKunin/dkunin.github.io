@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		    <meta charset="UTF-8">
+			    <title>Document</title>
+	</head>
+	<body>
+		    
+	</body>
+	    <script type="text/javascript" src="https://cdn.jsdelivr.net/dat/6.2.0/dat.min.js"></script>
+
+		    <script>
+        
+        var clone = Dat()
+	        clone.add('5cd26163dfac6815364b3fdf424c411fda56e1e3ad98a035b5a33c106611a1ea', function (repo) {
+				          repo.archive.readFile('data.json', function (err, data) {
+							              console.log(data.toString()) // prints 'world'
+											            })
+						          })
+    </script>
+</html>

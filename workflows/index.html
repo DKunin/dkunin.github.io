@@ -67,7 +67,9 @@ graph TD;
     todo(To Do)==>inporgress(In Progress);
     inporgress(In Progress)== stop progress ==>todo(To Do);
     inporgress(In Progress)==>devtestin(Dev-Testing)
-    devtestin(Dev-Testing)==>implemented(Implemented)
+    devtestin(Dev-Testing)==>designreview(Design Review)
+    designreview(Design Review)==>implemented(Implemented)
+    designreview(Design Review)==needs work ==>devtestin(Dev-Testing)
     implemented(Implemented)==needs work ==> todo(To Do);
     devtestin(Dev-Testing)==needs work==>inporgress(In Progress)
     implemented(Implemented)==>testing(Testing)

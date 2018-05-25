@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Workflows</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://unpkg.com/mermaid@7.0.3/dist/mermaid.dark.min.css">
+    <style>
+      * {
+        font-family: Helvetica, Arial;
+      }
+    </style>
+  </head>
+  <body>
+
+<h1>Improvement, Refactoring, Design, Bug</h1> 
+<div class="mermaid">
+graph TD;
+    dropped(Dropped)==>todo(To Do);
+    createTask(Create Task)==>todo(To Do);
+    todo(To Do)==reprioritize==> dropped(Dropped);
+    todo(To Do)==>inporgress(In Progress);
+    inporgress(In Progress)== stop progress ==>todo(To Do);
+    inporgress(In Progress)==>devtestin(Dev-Testing)
+    devtestin(Dev-Testing)==>designreview(Design Review)
+    designreview(Design Review)==>implemented(Implemented)
+    designreview(Design Review)==needs work ==>devtestin(Dev-Testing)
+    implemented(Implemented)==needs work ==> todo(To Do);
+    devtestin(Dev-Testing)==needs work==>inporgress(In Progress)
+    implemented(Implemented)==>testing(Testing)
+    testing(Testing)==invalidate==>invalid(Invalid)
+    invalid(Invalid)==>inporgress(In Progress)
+    testing(Testing)==Verify==>verified(Verified)
+    verified(Verified)==>readyformerge(Ready for Merge)
+    verified(Verified)==invalidate==>todo(To Do)
+    readyformerge(Ready for Merge)==>inmaster(In Master)
+    readyformerge(Ready for Merge)==>verified(Verified)
+    readyformerge(Ready for Merge)==invalidate==>todo(To Do)
+    inmaster(In Master)==invalidate==>todo(To Do)
+    inmaster(In Master)==>closed(Closed)
+
+</div>
+    <script src="https://unpkg.com/mermaid@7.0.3/dist/mermaid.min.js"></script>
+    <script>
+      const slideshow = remark.create({ highlightLanguage: 'javascript' });
+      let mermaidInited = false;
+      slideshow.on('showSlide', function (slide) {
+        if (slide.getSlideIndex() === 3 && !mermaidInited) {
+          mermaidInited = true;
+          mermaid.initialize({ startOnLoad: true });
+
+        }
+      });
+
+    </script>
+  </body>
+</html>

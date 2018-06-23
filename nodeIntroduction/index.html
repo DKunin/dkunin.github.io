@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NodeJS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <style>
+    .node-logo-inline {
+      height: 60px;
+      display: inline-block;
+      margin-bottom: -20px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .column {
+      text-align: left;
+    }
+  </style>
+  <body>
+    <textarea id="source">
+      class: center, middle
+
+      # Чуточку про NodeJs
+      <img src="./nodelogo.svg" height="300px" alt="">
+      ---
+
+      class: middle
+
+      - Где можно использовать
+      - Как писать программы
+      - Как создать самостоятельную программу
+      - Примеры
+
+      ---
+      class: center, middle 
+
+      <div class="row">
+        <div class="column">
+          <li>Backend</li>
+          <li>Cli приложения</li>
+          <li>Боты</li>
+          <li>Big Data</li>
+          <li>Machine Learning</li>
+          <li>P2P connection</li>
+          <li>GPS трекинг</li>
+          <li>Создание игрушек</li>
+        </div>
+        <div class="column">
+          <li>Изменение мира к лучшему</li>
+          <li>Парсинг данных</li>
+          <li>Генерация данных</li>
+          <li>Автоматизация тестирования</li>
+          <li>Доение коров</li>
+          <li>Метеосводки</li>
+          <li>Онлайн игры</li>
+        </div>
+      </div>
+      ---
+      class: center
+
+      # Как писать программы
+
+      ---
+      class: center
+
+      # Как создать самостоятельную программу
+
+      - Electron
+      - https://github.com/nexe/nexe
+
+      ---
+      class: center
+
+      # Примеры
+
+      - https://github.com/DKunin/menubar-helper
+      - Микросервсы https://webtask.io / https://www.stdlib.com
+      - Response
+      - optimizilla-cli
+      - bookmarks
+      - get-ticket-info
+      - move-ticket
+      - nodeprepci
+      - stash-user
+      
+
+      ---
+      class: center
+
+      # Задумки
+
+      - Slack channel from everywhere
+      - AirDrop on Dat
+      - BuildNotifier
+
+    </textarea>
+    <script src="remark-latest.min.js"></script>
+    <script>
+      const slideshow = remark.create({ highlightLanguage: 'javascript' });
+    </script>
+  </body>
+</html>

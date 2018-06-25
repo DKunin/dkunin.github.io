@@ -20,12 +20,18 @@
     .column {
       text-align: left;
     }
+
+    .central-column {
+      width: 800px;
+      text-align: left;
+      display: inline-block;
+    }
   </style>
   <body>
     <textarea id="source">
       class: center, middle
 
-      # Чуточку про NodeJs
+      ## Чуточку про NodeJs
       <img src="./nodelogo.svg" height="300px" alt="">
       ---
 
@@ -33,6 +39,7 @@
 
       - Где можно использовать
       - Как писать программы
+        - Доступ к аргументам, окружению
       - Как создать самостоятельную программу
       - Примеры
 
@@ -43,61 +50,139 @@
         <div class="column">
           <li>Backend</li>
           <li>Cli приложения</li>
-          <li>Боты</li>
           <li>Big Data</li>
+          <li>Доение коров</li>
+          <li>Метеосводки</li>
           <li>Machine Learning</li>
-          <li>P2P connection</li>
           <li>GPS трекинг</li>
+          <li>Генерация данных</li>
           <li>Создание игрушек</li>
         </div>
         <div class="column">
           <li>Изменение мира к лучшему</li>
+          <li>Боты</li>
+          <li>P2P connection</li>
           <li>Парсинг данных</li>
-          <li>Генерация данных</li>
           <li>Автоматизация тестирования</li>
-          <li>Доение коров</li>
-          <li>Метеосводки</li>
           <li>Онлайн игры</li>
         </div>
       </div>
       ---
       class: center
 
-      # Как писать программы
+      ### Как писать программы
+      <div class="central-column">
+        <pre>
+          <code>
+            touch helloworld
+
+            chmod +x helloworld
+
+            // ...
+
+            #!/usr/bin/env node
+
+            console.log('Hello world!');
+
+            // ...
+
+            ./helloworld
+
+            // Hello world!
+          </code>
+        </pre>
+      </div>
 
       ---
       class: center
+      ### Доступ к аргументам
 
-      # Как создать самостоятельную программу
+      <div class="central-column">
+        <pre>
+          <code>
+            #!/usr/bin/env node
 
-      - Electron
+            console.log(process.argv);
+          </code>
+        </pre>
+      </div>
+
+      ---
+      class: center
+      ### Доступ к окружению
+
+      <div class="central-column">
+        <pre>
+          <code>
+            #!/usr/bin/env node
+
+            console.log(process.env);
+          </code>
+        </pre>
+      </div>
+
+      ---
+      class: center
+      ### Объект global ~= window
+
+      <div class="central-column">
+        <pre>
+          <code>
+            #!/usr/bin/env node
+
+            // global.process === process;
+
+            console.log(global);
+          </code>
+        </pre>
+      </div>
+
+      ---
+
+      ### Как создать самостоятельную программу
+
+      - Electron (http://electronjs.org/)
       - https://github.com/nexe/nexe
 
       ---
-      class: center
 
-      # Примеры
+      ### NodeJS в облаке
 
-      - Микросервсы https://webtask.io / https://www.stdlib.com
-      - Response
-      - optimizilla-cli
-      - bookmarks
-      - xkcd-pass
-      - menubar-helper
-      - get-ticket-info
-      - move-ticket
-      - nodeprepci
-      - stash-user
-
+      - https://webtask.io 
+      - https://www.stdlib.com
 
       ---
       class: center
 
-      # Задумки
+      ### Примеры
+
+      <div class="row">
+        <div class="column">
+          <li>Response</li>
+          <li>optimizilla-cli</li>
+          <li>bookmarks</li>
+          <li>xkcd-pass</li>
+
+        </div>
+        <div class="column">
+          <li>menubar-helper</li>
+          <li>get-ticket-info</li>
+          <li>move-ticket</li>
+          <li>nodeprepci</li>
+          <li>stash-user</li>
+        </div>
+      </div>
+
+
+
+      ---
+
+      ### Задумки
 
       - Slack channel from everywhere
       - AirDrop on Dat
       - BuildNotifier
+      - Package Update Controller
 
     </textarea>
     <script src="remark-latest.min.js"></script>

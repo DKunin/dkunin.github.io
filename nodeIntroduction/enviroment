@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+const { ANDROID_HOME } = process.env;
+
+console.log(ANDROID_HOME);

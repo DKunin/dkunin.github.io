@@ -1,4 +1,4 @@
 dkunin.github.io
 ================
 
-Presentations for various events by Dmitri Kunin
+Presentations and stuff for various events by Dmitri Kunin

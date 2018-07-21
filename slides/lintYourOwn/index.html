@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lint Yourself</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta property="og:title" content="Lint Yourself" />
+    <meta property="og:site_name" content="DKunin:presentation" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:description" content="Когда вы работаете в большой и/или распределенной команде - следить за качеством кода становится только сложнее. Тогда на помощь и приходят они - Линтеры. В докладе мы рассмотрим, что же это за зверь такой, линтер, какие они бывают, как и когда они должны работать и разберем как расширить существующий или написать свой собственный линтер." />
+    <meta property="og:type" content="article" />
+    <link rel="stylesheet" href="../css/styles.css">
+  </head>
+  <style>
+    .row {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .column {
+      text-align: left;
+    }
+
+    .central-column {
+      width: 800px;
+      text-align: left;
+      display: inline-block;
+    }
+  </style>
+  <body>
+    <textarea id="source">
+      class: center, middle
+
+      ## Lint Yourself
+
+      ---
+
+      ## Что делает линтер
+
+      - Что-то что запускается перед тестами
+      - Разговор в основном про JS линтеры
+
+      ---
+
+      ## Процесс Линтинга
+
+      - Исходный код
+      - Парсер
+      - Анализатор
+      - Список ошибок
+
+      ---
+
+      ## Разница юнит тестов и линтеров
+
+      - Т: Проверяют параметры на входе/выходе
+      - Л: Проверяют исходный код
+
+      ---
+
+      ## Когда должны запускаться линтеры
+
+      ---
+      ## В чем преимущества линтинга
+      - Общие стили для распределенных команд (код пишет "один" человек)
+      - Меньше ошибок
+      - Возможность кастомизации
+
+      ---
+      ## Популярные линтеры
+      - Eslint (Standart)
+      
+
+      ---
+      ## Кастомные правила
+      ---
+      ## Кастомные линтеры
+      ---
+      class: center, middle, nopages
+      # Вопросы?
+
+      .blue[dkun.in]
+
+      .blue[@DKunin]
+
+
+    </textarea>
+    <script src="../js/remark-latest.min.js"></script>
+    <script>
+      const slideshow = remark.create({ highlightLanguage: 'javascript' });
+    </script>
+  </body>
+</html>

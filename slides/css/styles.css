@@ -3,7 +3,7 @@
 a:active,
 a:visited,
 a {
-    color: black;
+    color: white;
     text-decoration: none;
 }
 
@@ -42,6 +42,8 @@ h3 {
 .remark-slide-content {
     font-size: 40px;
     padding: .5em;
+    background-color: black;
+    color: white;
 }
 
 .remark-slide-content h3 {
@@ -69,7 +71,7 @@ h3 {
 }
 .no-bullets ul a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 .side {
     font-size: 20px;
@@ -113,11 +115,6 @@ pre {
     margin: 0 auto;
 }
 
-.hljs-default .hljs {
-    border-radius: 5px;
-    background: #e6e6e6;
-}
-
 .small {
     font-size: 16px;
 }
@@ -126,4 +123,9 @@ pre {
     display: inline-block;
     width: 40%;
     vertical-align: top;
+}
+
+.hljs-default .hljs {
+    color: white;
+    background-color: black;
 }

@@ -3,7 +3,7 @@
 a:active,
 a:visited,
 a {
-    color: white;
+    color: #F6F7F8;
     text-decoration: none;
 }
 
@@ -42,8 +42,8 @@ h3 {
 .remark-slide-content {
     font-size: 40px;
     padding: .5em;
-    background-color: black;
-    color: white;
+    background-color: #293648;
+    color: #F6F7F8;
 }
 
 .remark-slide-content h3 {
@@ -71,7 +71,7 @@ h3 {
 }
 .no-bullets ul a {
     text-decoration: none;
-    color: white;
+    color: #F6F7F8;
 }
 .side {
     font-size: 20px;
@@ -126,6 +126,6 @@ pre {
 }
 
 .hljs-default .hljs {
-    color: white;
+    color: #F6F7F8;
     background-color: black;
 }

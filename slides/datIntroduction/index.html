@@ -20,6 +20,14 @@
       text-align: left;
       display: inline-block;
     }
+
+    li {
+      list-style: none;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+    }
   </style>
   <body>
     <textarea id="source">
@@ -29,17 +37,18 @@ class: center, middle
 ## Dat Protocol
 
 ---
+class: center, middle
 
 ### Кто я?
 
 - Дмитрий Кунин
-- Avito.ru
+- avito.ru
 - github.com/dkunin
 - @dkunin
 
 ---
 
-class: middle
+class: center, middle
 
 ### Server-Client
 
@@ -49,14 +58,14 @@ class: middle
 Недостатки - чтобы передать файл с одного компа на другой в локальной сети - надо идти через интернет.
 ---
 
-class: middle
+class: center, middle
 
 ### Преимущества децентрализации, Одноранговая сеть
 
 ???
 
 ---
-class: middle
+class: center, middle
 
 ### 2001 Год появляется Bittorrent
 
@@ -69,13 +78,14 @@ class: middle
 
 ---
 
-class: middle, center
+class: center, middle
 
 I have a git, I have bittorrent
+
 ![](images/pen-apple.webp)
 
 ---
-class: middle, center
+class: center, middle, center
 
 Uh, ~~bittorrentgit~~ Dat!
 
@@ -83,7 +93,7 @@ Uh, ~~bittorrentgit~~ Dat!
 
 ---
 
-class: middle
+class: center, middle
 
 ### Dat-protocol
 - Decentralized Archive Transport Protocol (Dat)
@@ -93,7 +103,7 @@ NodeJs экосистемная технология, которая постр�
 
 ---
 
-class: middle
+class: center, middle
 
 ### Какую проблему решает
 
@@ -104,7 +114,7 @@ class: middle
 Изначально разработана для работы с научными данными, они работают за счет грантов, non-profit, но задумывалась изначально на совесть поэтому заранее содержала в себе шифрование данных
 
 ---
-class: middle
+class: center, middle
 
 ### Простое быстрое демо
 
@@ -114,7 +124,7 @@ class: middle
 Ссылка - это фактически публичный ключ, которым подписаны данные
 
 ---
-class: middle
+class: center, middle
 
 ### Главный концепт
 
@@ -125,7 +135,7 @@ class: middle
 
 ---
 
-class: middle
+class: center, middle
 
 ### Dat archive internals
 
@@ -136,7 +146,7 @@ class: middle
 Демо с live reload логом
 
 ---
-class: middle
+class: center, middle
 
 ### Discovery Swarm
 
@@ -146,7 +156,7 @@ class: middle
 
 ---
 
-class: middle
+class: center, middle
 
 ### Как работает
 
@@ -157,7 +167,7 @@ class: middle
 
 ---
 
-class: middle
+class: center, middle
 
 ### Как работает
 
@@ -172,7 +182,7 @@ Each root hash is signed. Consumers of the feed will already have the public key
 This provides authentication and integrity. 
 
 ---
-class: middle
+class: center, middle
 
 ### За счет этого
 Можно взять любой revision из API
@@ -181,7 +191,7 @@ class: middle
 Demo blog improvements
 
 ---
-class: middle
+class: center, middle
 
 ### Tradeoff - SingleWrite
 
@@ -191,7 +201,7 @@ class: middle
 
 ---
 
-class: middle
+class: center, middle
 ### Инструменты на основании которых все построено
 
 - hyperdrive
@@ -202,7 +212,7 @@ class: middle
 
 ---
 
-class: middle
+class: center, middle
 ### Не cli инструменты:
 
 - Dat App
@@ -210,7 +220,7 @@ class: middle
 
 ---
 
-class: middle
+class: center, middle
 
 ### Дополнительная экосистема
 
@@ -224,7 +234,7 @@ class: middle
 
 ---
 
-class: middle
+class: center, middle
 
 ### Demo App
 
@@ -237,11 +247,9 @@ class: center, middle, nopages
 
 Дмитрий Кунин
 
-.no-bullets[
-- vcard       : .blue[dkun.in]
-- twitter     : .blue[DKunin]
-- Skype       : .blue[dkunin1985]
-]
+- dkun.in
+- @DKunin
+
 
 
     </textarea>

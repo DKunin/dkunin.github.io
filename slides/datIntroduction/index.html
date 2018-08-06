@@ -41,7 +41,7 @@ class: center, middle
 
 class: middle
 
-### Server-Client vs. client-client
+### Server-Client
 
 ???
 С самого начала зарождения веба была структура Сервер => Клиент.
@@ -61,10 +61,14 @@ class: middle
 ### 2001 Год появляется Bittorrent
 
 ???
-Технология не без недостатков, плохая известность, чтобы обновить файлы нужно обновлять сам торрент
-Нет диффов, надо грузить файлы заново, начинаются проблемы при больших объемах данных
+
+Кто знает битторрент, кто качает с торрентов, нелицензионный контент?
+Технология не без недостатков, плохая известность.
+Чтобы обновить файлы нужно обновлять сам торрент. Замечательная технология, до тех пор, пока не надо добавлять файл.
+Нет диффов, надо грузить файлы заново, начинаются проблемы при больших объемах данных.
 
 ---
+
 class: middle, center
 
 I have a git, I have bittorrent
@@ -82,7 +86,7 @@ Uh, ~~bittorrentgit~~ Dat!
 class: middle
 
 ### Dat-protocol
-
+- Decentralized Archive Transport Protocol (Dat)
 ???
 
 NodeJs экосистемная технология, которая построена на основании bittorrent и лучшим от git
@@ -104,8 +108,9 @@ class: middle
 
 ### Простое быстрое демо
 
-??? 
-Заранее припинить Dat на сервере или на втором компе и показат как это будет выглядеть
+???
+На моем домашнем raspberry pie сейчас есть нода, попробую сейчас ее склонировать
+Заранее припинить Dat на сервере или на втором компе и показать как это будет выглядеть
 Ссылка - это фактически публичный ключ, которым подписаны данные
 
 ---
@@ -115,6 +120,30 @@ class: middle
 
 Данные = Файлы
 
+???
+Облака не существует
+
+---
+
+class: middle
+
+### Dat archive internals
+
+- папка .dat
+- файл dat.json
+
+??? 
+Демо с live reload логом
+
+---
+class: middle
+
+### Discovery Swarm
+
+???
+Обнаруждение пира
+
+
 ---
 
 class: middle
@@ -123,6 +152,9 @@ class: middle
 
 - Append only log
 
+???
+Каждый раз при любом изменении - добавляется запись с этим изменением, нужен простой пример
+
 ---
 
 class: middle
@@ -130,23 +162,52 @@ class: middle
 ### Как работает
 
 - Merkel Tree
+- dat://blog.dkun.in+20/
+
+???
+
+Internally, Dat represents the append-only feed with a signed merkle tree.
+The hashes of the entries in the feed act as the leaves of the tree. Each time an entry is added, a matching leaf is added, and the tree produces a new root.
+Each root hash is signed. Consumers of the feed will already have the public key, because the file archive is addressed by its public key, so they can easily check the signature.
+This provides authentication and integrity. 
+
+---
+class: middle
+
+### За счет этого
+Можно взять любой revision из API
+
+???
+Demo blog improvements
+
+---
+class: middle
+
+### Tradeoff - SingleWrite
+
+???
+На данный момент является Single Writer, однако Multiwriter в процессе работы
+Но есть обходной момент - достаточно просто взять и передать ключи
 
 ---
 
 class: middle
-
-### Как работает
-
-- Rabin Fingerprinting
-
----
-
-class: middle
-
 ### Инструменты на основании которых все построено
 
-- NodeJs, HyperDb, etc
+- hyperdrive
+  - Hyperdrive is a secure, real time distributed file system, streams filesystem into different computer
+- discovery-swarm
+  - A network swarm that uses discovery-channel to find and connect to peers.
+
+
+---
+
+class: middle
+### Не cli инструменты:
+
+- Dat App
 - Gateways: https://dat.bovid.space
+
 ---
 
 class: middle
@@ -159,6 +220,7 @@ class: middle
 - HomeBase
 - Dat Plugin для Firefox/chrome
 - Поддержка в BraveBrowser
+- Bunsen App
 
 ---
 
@@ -167,6 +229,7 @@ class: middle
 ### Demo App
 
 - Decentralized Classified
+
 ---
 
 class: center, middle, nopages

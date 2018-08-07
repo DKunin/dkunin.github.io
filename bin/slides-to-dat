@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp -rfv ./slides/* ~/Projects/dat-slides;
+cd ~/Projects/dat-slides && dat sync;

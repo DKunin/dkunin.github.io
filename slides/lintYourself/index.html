@@ -47,17 +47,18 @@
       
       - Что делает линтер
       - Какую он приносит пользу
-      - Как встроить его во флоу
       - Как работает линтер
-      - Как написать собственное правило для esLint
+      - Как написать собственные правила для esLint
       - Как написать собственный кастомный линтер
+      - Как встроить его во флоу
 
       ---
 
       ## Что делает линтер
 
-      - Что-то что запускается перед тестами
-      - Разговор в основном про JS линтеры
+      ???
+
+      Линтер запускается перед тестами, приводит к единому своду правил
 
       ---
 
@@ -66,17 +67,19 @@
       - Т: Проверяют параметры на входе/выходе
       - Л: Проверяют исходный код
 
+      ???
+
+      Линтеры и тесты не исключают, а дополняют друг-друга
       ---
+
       ## В чем преимущества линтинга
+
       - Общие стили для распределенных команд (код пишет "один" человек)
       - Меньше ошибок
-      - Возможность кастомизации
+      - Возможность кастомизации линтеров
 
       ---
 
-      ## Когда должны запускаться линтеры
-
-      ---
       ## Популярные линтеры
       - Eslint (Standart)
       - TsLint
@@ -91,6 +94,7 @@
       - Парсер AST (https://github.com/acornjs/acorn, https://github.com/jquery/esprima)
       - Анализатор
       - Список ошибок
+      - (Опционально) Fix
 
       ---
       <pre>
@@ -122,6 +126,30 @@
       ---
 
       ## Кастомный плагин для tslint
+<pre><code>
+  import * as ts from "typescript";
+import * as Lint from "tslint";
+
+export class Rule extends Lint.Rules.AbstractRule {
+    public static FAILURE_STRING = "import statement forbidden";
+
+    public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
+        return this.applyWithWalker(new NoImportsWalker(sourceFile, this.getOptions()));
+    }
+}
+
+// The walker takes care of all the work.
+class NoImportsWalker extends Lint.RuleWalker {
+    public visitImportDeclaration(node: ts.ImportDeclaration) {
+        // create a failure at the current position
+        this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
+
+        // call the base version of this visitor to actually parse this node
+        super.visitImportDeclaration(node);
+    }
+}
+</code></pre>
+
 
       ---
 
@@ -130,6 +158,30 @@
       ---
 
       ## Кастомный плагин для webhint
+
+<pre><code>
+import * as ts from "typescript";
+import * as Lint from "tslint";
+
+export class Rule extends Lint.Rules.AbstractRule {
+  public static FAILURE_STRING = "import statement forbidden";
+
+  public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
+      return this.applyWithWalker(new NoImportsWalker(sourceFile, this.getOptions()));
+  }
+}
+
+// The walker takes care of all the work.
+class NoImportsWalker extends Lint.RuleWalker {
+  public visitImportDeclaration(node: ts.ImportDeclaration) {
+      // create a failure at the current position
+      this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
+
+      // call the base version of this visitor to actually parse this node
+      super.visitImportDeclaration(node);
+  }
+}
+</code></pre>
 
       ---
 
@@ -144,6 +196,13 @@
 
       ## Демо
       - Пример собственного линтера для системы слайдов Remark
+
+      ---
+
+      ## Как встроить его во флоу
+      - при сохранении
+      - при коммите/пуше
+      - CI-step
 
       ---
       class: center, middle, nopages

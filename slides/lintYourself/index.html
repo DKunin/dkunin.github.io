@@ -161,7 +161,33 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 </pre>
 
 ---
+## Настройки линтеров
+### Конфиг файлы
 
+- .eslintrc
+- .stylelintrc
+- tslint.json / tslint.yaml
+- web.config
+
+---
+## Пример правил eslint
+
+```
+{
+    "plugins": [
+        "plugin1"
+    ],
+    "rules": {
+        "eqeqeq": "off",
+        "curly": "error",
+        "quotes": ["error", "double"],
+        "plugin1/rule1": "error"
+    }
+}
+```
+
+
+---
 #### Разработка кастомного правила для eslint
 <pre><code>
 /**

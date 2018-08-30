@@ -99,8 +99,7 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 - (Опционально) Fix
 
 ---
-<pre>
-<code>
+```
   > var esprima = require('esprima');
   > var program = 'const answer = 42';
 
@@ -117,8 +116,7 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
          declarations: [Object],
          kind: 'const' } ],
     sourceType: 'script' }
-</code>
-</pre>
+```
 
 ---
 ## Настройки линтеров
@@ -129,6 +127,31 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 - tslint.json / tslint.yaml
 - web.config
 
+---
+## Настройки линтеров
+### Тип запуска
+
+- CLI
+- code
+```
+const CLIEngine = require('eslint').CLIEngine;
+const cli = new CLIEngine({
+  parserOptions: {
+    ecmaVersion: 6,
+  },
+  rules: {
+    'no-unused-vars': 'off',
+  }
+});
+
+const report = cli.executeOnText("let foo = 'bar';;").results[0];
+
+if (report.errorCount) {
+  console.log(report.messages);
+} else {
+  console.log('No errors');
+}
+```
 ---
 ## Пример правил eslint
 
@@ -148,7 +171,8 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 
 ---
 #### Разработка кастомного правила для eslint
-<pre><code>
+
+```
 /**
  * Получить вложенное свойство
  * @param {Object} object
@@ -185,12 +209,13 @@ module.exports = {
         };
     }
 };
-</code></pre>
+```
 
 ---
 
 ## Кастомный плагин для tslint
-  <pre><code>
+
+```
   import * as ts from "typescript";
   import * as Lint from "tslint";
 
@@ -212,14 +237,14 @@ module.exports = {
           super.visitImportDeclaration(node);
       }
   }
-  </code></pre>
+```
 
 
 ---
 
 ## Кастомный плагин для stylelint
 
-<pre><code>
+```
 // Abbreviated example
 var stylelint = require("stylelint")
 
@@ -239,14 +264,14 @@ module.exports = stylelint.createPlugin(ruleName, function(primaryOption, second
 
 module.exports.ruleName = ruleName
 module.exports.messages = messages
-</code></pre>
+```
 
 
 ---
 
 ## Кастомный плагин для webhint
 
-<pre><code>
+```
 import { Category } from 'hint/dist/src/lib/enums/category';
 import { FetchEnd, IHint, HintMetadata } from 'hint/dist/src/lib/types';
 import { HintContext } from 'hint/dist/src/lib/hint-context';
@@ -271,7 +296,7 @@ export default class MyNewHint implements IHint {
         // list of events [here](../../connectors/events/).
     }
 }
-</code></pre>
+```
 
 ---
 

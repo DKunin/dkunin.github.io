@@ -38,6 +38,9 @@
     p {
       margin: 0;
     }
+    .remark-code-line.remark-code-line-highlighted {
+      background-color: #007FFF;
+    }
 
   </style>
   <body>
@@ -55,7 +58,10 @@
         rootNode.innerHTML = result;
         setTimeout(() => {
           loaderNode.classList.add('fade-out');
-          remark.create({ highlightLanguage: 'javascript' });
+          remark.create({ 
+            highlightLanguage: 'javascript',
+            highlightSpans: /«([^»]+?)»/g
+          });
         },400);
       })
     </script>

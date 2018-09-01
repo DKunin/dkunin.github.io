@@ -206,6 +206,9 @@ h3 {
     font-size: 25px;
 }
 
+.hljs-default .hljs-string {
+    color: #a9a9a9;
+}
 .no-bullets ul {
     width: 800px;
     margin: 0;
@@ -272,7 +275,7 @@ pre {
 
 .hljs-default .hljs {
     color: #f6f7f8;
-    background-color: black;
+    background-color: #222933;
 }
 
 

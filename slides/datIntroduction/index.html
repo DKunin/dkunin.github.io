@@ -72,18 +72,26 @@
       flex-direction: column;
       align-items: center;
       justify-content: start;
-      padding: 4em 0;
+      padding: 4.5em 0;
     }
+
+    .list-center p {
+        display: inline-block;
+    }
+
     .list-center ul {
-      width: 800px;
+      width: 960px;
     }
     .list-center li {
       line-height: 1em;
       margin: 15px 0;
+      list-style: inside;
     }
     .list-center-emoji li {
       margin: 2em 0;
+      list-style: none;
     }
+
   </style>
   <body>
     <div class="loader">
@@ -100,7 +108,9 @@
         rootNode.innerHTML = result;
         setTimeout(() => {
           loaderNode.classList.add('fade-out');
-          remark.create({ highlightLanguage: 'javascript' });
+          remark.create(
+            { highlightLanguage: 'javascript' }
+          );
         },400);
       })
     </script>

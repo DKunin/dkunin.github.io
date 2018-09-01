@@ -4,39 +4,40 @@ class: center, middle
 ##### expand one, build one
 ---
 class: center, middle
-## Кто я такой
 
-- Дима Кунин
-- Tech Unit Lead Trust&Safety Avito
+### Кто я?
+
+- Дмитрий Кунин
+- avito.ru, tech unit lead, trust and safety
 - @dkunin
-- dkun.in
+- dat://fritter.dkun.in
 
 ---
 
-## О чем я расскажу
+### О чем я расскажу
 
 - Что делает линтер
-- Какую он приносит пользу
-- Как работает линтер
-- Как написать собственные правила для esLint
-- Как написать собственный кастомный линтер
-- Как встроить его во флоу
+- Как он это делает
+- С чем его приготовить
+- Куда его положить
+- Собственные правила для esLint
+- Кастомный линтер
 
 ---
 
-## Lint
+### Lint
 
 Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 
 ---
 
-#### В чем преимущества линтинга
+### В чем преимущества линтинга
 
-- Возможность сосредоточится на самых сложных аспектах програмирования
+- ~~Головная боль~~
 
 --
 
-- Общие стили для распределенных команд (код пишет "один" человек)
+- Общие стили
 
 --
 
@@ -44,7 +45,7 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 
 --
 
-- Возможность кастомизации линтеров
+- Кастомизация
 
 ???
 
@@ -53,24 +54,13 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 
 ---
 
-## Разница юнит тестов и линтеров
-
-- Т: Проверяют параметры на входе/выходе
-- Л: Проверяют исходный код
-
-???
-
-Линтеры и тесты не исключают, а дополняют друг-друга
-
----
-
-## Популярные линтеры
+### Популярные линтеры
 
 - JSLint/JSHint
 
 --
 
-- Eslint (Standart)
+- Eslint
 
 --
 
@@ -82,45 +72,55 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 
 --
 
+- textlint
+
+--
+
 - webhint.io
 
 --
 
-- Prettier
+- Prettier (+-)
 
 ---
 
-## Процесс Линтинга
+### Процесс Линтинга
 
 - Исходный код
-- Парсер AST (https://github.com/acornjs/acorn, https://github.com/jquery/esprima)
-- Анализатор
+- Парсер AST
+- Анализатор (+ плагины)
 - Список ошибок
 - (Опционально) Fix
 
----
-```
-  > var esprima = require('esprima');
-  > var program = 'const answer = 42';
+???
 
-  > esprima.tokenize(program);
-  [ { type: 'Keyword', value: 'const' },
-    { type: 'Identifier', value: 'answer' },
-    { type: 'Punctuator', value: '=' },
-    { type: 'Numeric', value: '42' } ]
-    
-  > esprima.parseScript(program);
-  { type: 'Program',
-    body:
-     [ { type: 'VariableDeclaration',
-         declarations: [Object],
-         kind: 'const' } ],
-    sourceType: 'script' }
-```
+(https://github.com/acornjs/acorn, https://github.com/jquery/esprima)
 
 ---
-## Настройки линтеров
-### Конфиг файлы
+
+class: middle
+
+```
+var esprima = require('esprima');
+var program = 'const answer = 42';
+
+esprima.tokenize(program);
+[ { type: 'Keyword', value: 'const' },
+  { type: 'Identifier', value: 'answer' },
+  { type: 'Punctuator', value: '=' },
+  { type: 'Numeric', value: '42' } ]
+  
+esprima.parseScript(program);
+{ type: 'Program',
+  body:
+   [ { type: 'VariableDeclaration',
+       declarations: [Object],
+       kind: 'const' } ],
+  sourceType: 'script' }
+```
+
+---
+### Настройки линтеров
 
 - .eslintrc
 - .stylelintrc
@@ -128,11 +128,18 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 - web.config
 
 ---
-## Настройки линтеров
-### Тип запуска
 
-- CLI
-- code
+### Тип запуска CLI
+
+```
+
+eslit ... --output...
+
+```
+---
+
+### Тип запуска CLI
+
 ```
 const CLIEngine = require('eslint').CLIEngine;
 const cli = new CLIEngine({
@@ -152,10 +159,19 @@ if (report.errorCount) {
   console.log('No errors');
 }
 ```
----
-## Пример правил eslint
 
-```
+---
+
+### Как встроить его во флоу
+- при сохранении
+- при коммите/пуше/перед приемкой
+- CI-step
+
+---
+
+### Пример правил eslint
+
+```json
 {
     "plugins": [
         "plugin1"
@@ -170,27 +186,12 @@ if (report.errorCount) {
 ```
 
 ---
-#### Разработка кастомного правила для eslint
+
+### Кастомное правило eslint
 
 ```
-/**
- * Получить вложенное свойство
- * @param {Object} object
- * @param {string} path
- * @return {?}
- */
-function getNestedProperty(object = {}, path = '') {
-    return path.split('.').reduce((prop, step) => {
-        if (prop && prop[step]) {
-            return prop[step];
-        }
-
-        return '';
-    }, object);
-}
-
 module.exports = {
-    create: function(context) {
+*     create: function(context) {
         return {
             CallExpression: function(node) {
                 if (
@@ -212,8 +213,33 @@ module.exports = {
 ```
 
 ---
+### Кастомное правило eslint
 
-## Кастомный плагин для tslint
+```
+module.exports = {
+     create: function(context) {
+        return {
+*            CallExpression: function(node) {
+                if (
+                    getNestedProperty(node, 'callee.property.name') ===
+                        'querySelector' &&
+                    !getNestedProperty(node, 'arguments.0.value').startsWith(
+                        '.js-'
+                    )
+                ) {
+                    context.report(
+                        node,
+                        'Use js-* prefix for accessing DOM nodes'
+                    );
+                }
+            }
+        };
+    }
+};
+```
+---
+
+### Кастомное правило tslint
 
 ```
   import * as ts from "typescript";
@@ -242,7 +268,7 @@ module.exports = {
 
 ---
 
-## Кастомный плагин для stylelint
+### Кастомное правило stylelint
 
 ```
 // Abbreviated example
@@ -269,7 +295,7 @@ module.exports.messages = messages
 
 ---
 
-## Кастомный плагин для webhint
+### Кастомное правило webhint
 
 ```
 import { Category } from 'hint/dist/src/lib/enums/category';
@@ -300,27 +326,23 @@ export default class MyNewHint implements IHint {
 
 ---
 
-## Как разработать кастомный линтер
+### Как разработать кастомный линтер
 - https://github.com/SAP/chevrotain
 
 ---
-## AST = :power:
+
+### AST = :power:
 - Имея Абстрактное синтаксическое дерево - вы можете все что угодно
 
 ---
 
-## Демо
+### Демо
 - Пример собственного линтера для системы слайдов Remark
 
 ---
 
-## Как встроить его во флоу
-- при сохранении
-- при коммите/пуше
-- CI-step
-
----
 class: center, middle, nopages
+
 # Вопросы?
 
 .blue[dkun.in]

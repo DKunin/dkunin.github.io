@@ -189,6 +189,7 @@ h3 {
     padding: .5em;
     background-color: #293648;
     color: #f6f7f8;
+    background-image: radial-gradient(#394B5B, #293648);
 }
 
 .remark-slide-content h3 {
@@ -286,6 +287,7 @@ pre {
     right: 0;
     bottom: 0;
     background-color: #293648;
+    background-image: radial-gradient(#394B5B, #293648);
     display: flex;
     align-items: center;
     justify-content: center;

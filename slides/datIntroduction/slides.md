@@ -70,7 +70,7 @@ class: center, middle
 ![](./images/server_client.png)
 
 ---
-class: list-center, center
+class: list-center
 
 ### Минусы
 
@@ -113,19 +113,15 @@ class: center, middle
 </div>
 
 ---
-class: list-center, center
+class: list-center
 
 ### Минусы
 
-- Необходимость перепубликации
+- Перепубликация
 
 --
 
 - Нет диффов
-
---
-
-- Оповещение при обновлении
 
 --
 
@@ -234,7 +230,7 @@ class: center, middle
 ![](./images/p2p-step6-2x.png)
 ---
 
-class: list-center, center
+class: list-center
 
 ### Что происходит под капотом
 
@@ -246,11 +242,15 @@ class: list-center, center
 
 --
 
-- Установка прямого соединения, репликация
+- Прямое соединение
+
+--
+
+- Репликация
 
 ---
 
-class: list-center
+class: list-center, wide
 
 ### Append only log
 
@@ -318,7 +318,7 @@ class: center, middle
 
 ---
 
-class: list-center, center
+class: list-center
 
 ### За счет этого
 
@@ -390,7 +390,7 @@ class: smaller, center, middle
 - 👩 > 📦 > 👨 > 📦 > 👩 без 🖨
 
 ---
-class: list-center
+class: list-center, wide
 
 ### Что если?
 
@@ -410,7 +410,7 @@ class: list-center
 
 ---
 
-class: center, middle, list-center
+class: middle, list-center
 
 ### Инструменты
 

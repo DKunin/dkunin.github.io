@@ -565,14 +565,14 @@ class: center, middle
 
 ### Open Source Wizards that make magic happen
 
-- @mafintosh
-- @maxogden
-- @karissa
-- @taravancil
-- @pfrazee
-- @joehand
-- @daniellecrobinson
-- @louiscenter
+- [@mafintosh](https://github.com/mafintosh)
+- [@maxogden](https://github.com/maxogden)
+- [@karissa](https://github.com/karissa)
+- [@taravancil](https://github.com/taravancil)
+- [@pfrazee](https://github.com/pfrazee)
+- [@joehand](https://github.com/joehand)
+- [@daniellecrobinson](https://github.com/daniellecrobinson)
+- [@louiscenter](https://github.com/louiscenter)
 
 ---
 
@@ -592,3 +592,12 @@ class: center, middle, nopages
 
 - @DKunin
 - dat://fritter.dkun.in
+
+---
+
+#### Ссылки
+
+- [Dat project](https://datproject.org/)
+- [Beaker browser](https://beakerbrowser.com/)
+- [Explore the peer-to-peer Web with Beaker](https://github.com/beakerbrowser/explore)
+- [Awesome Dat](https://github.com/dat-land/awesome-dat)

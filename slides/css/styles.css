@@ -294,6 +294,8 @@ pre {
     z-index: 100;
     transition: opacity 1s linear;
     opacity: 1;
+    user-select: none;
+    pointer-events: none;
 }
 .loader img {
     width: 150px;

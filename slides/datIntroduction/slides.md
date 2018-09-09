@@ -514,6 +514,11 @@ class: center, middle
 class: center, middle
 
 ![](./images/fritter.png)
+---
+
+class: center, middle
+
+![](./images/pushpin.png)
 
 ---
 
@@ -531,34 +536,67 @@ class: center, middle
 ---
 class: center, middle
 
-Начнем с обычного PWA
-
-???
-- Полноценный PWA для конференции
-- Есть расписание
-- При открытии темы доклада есть описание и может быть видео, там же можно ставить лайки и оставлять комментарии
-- Не важно грузится ли это из DB или статически
+![](./images/krd.png)
 
 ---
 class: center, middle
 
-Добавляем Dat магии
+![](./images/krd1.png)
+---
 
-???
-- Теперь нам надо, чтобы пользователь добавил свой dat архив с избранными и комментариями
-- Сделать это можно рядом путей (Beaker, Вручную создать и добавить)
-- Ссылка на этот архив кладется в localStorage и теперь приложение может читать из него и добавлять инфу прямо в интерфейс
+class: center, middle
 
+![](./images/krd2.png)
+---
 
-- Если хочется публичности есть два способа:
-- Или вручную добавлять всех тех, кто уже добавился - но для этого надо знать их адреса
-- Или сделать механизм "публичности", то бишь научить сервер хранить набор адресов Dat архивов, в таком случае центральный узел уже будет транслировать и Ваш архив и архивы всех участников
-- Именно так уже работает Fritter!
-- Нужно разработать сервер, который будет добавлять участников
+class: center, middle
 
-- Сердца
-- Комментарии
+![](./images/krd3.png)
+---
 
+class: center, middle
+
+![](./images/krd4.png)
+---
+
+class: center, middle
+
+![](./images/krd5.png)
+---
+
+class: center, middle
+
+![](./images/krd6.png)
+---
+
+class: center, middle
+
+![](./images/krd7.png)
+---
+
+class: center, middle
+
+![](./images/krd8.png)
+---
+
+class: center, middle
+
+![](./images/krd9.png)
+---
+
+class: center, middle
+
+![](./images/krd7.png)
+---
+
+class: center, middle
+
+![](./images/krd10.png)
+---
+
+class: center, middle
+
+![](./images/krd11.png)
 ---
 
 class: center, middle
@@ -599,5 +637,12 @@ class: center, middle, nopages
 
 - [Dat project](https://datproject.org/)
 - [Beaker browser](https://beakerbrowser.com/)
-- [Explore the peer-to-peer Web with Beaker](https://github.com/beakerbrowser/explore)
+- [Cabal](https://github.com/cabal-club)
+- [Dat Desktop](https://github.com/dat-land/dat-desktop)
+- [Homebase](https://github.com/beakerbrowser/homebase)
+- [Bunsen Browser](https://github.com/bunsenbrowser/bunsen)
+- [Firefox Dat Protocol addon](https://addons.mozilla.org/en-US/firefox/addon/dat-p2p-protocol/)
+- [Dat Gateway](https://github.com/pfrazee/dat-gateway)
+- [Fritter](dat://fritter.hashbase.io)
+- [Fritter](https://github.com/inkandswitch/pushpin)
 - [Awesome Dat](https://github.com/dat-land/awesome-dat)

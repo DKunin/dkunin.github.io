@@ -482,9 +482,18 @@ class: center, middle
 
 ???
 Super Peer, преимущество серверной архитектуры в том, что сервер всегда онлайн - в отличии от вашего компа
+---
+class: center, middle
 
+![](https://github.com/jimpick/subscribed-hypercored/raw/master/subscribed-hypercored.gif)
 ---
 
+class: center, middle
+
+
+![](./images/hashbase.png)
+
+---
 class: center, middle
 
 ![](./images/bunsen_browser_home.png)

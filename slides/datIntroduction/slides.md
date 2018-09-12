@@ -485,6 +485,7 @@ Super Peer, преимущество серверной архитектуры �
 ---
 class: center, middle
 
+hypercored/subscribed-hypercored
 ![](https://github.com/jimpick/subscribed-hypercored/raw/master/subscribed-hypercored.gif)
 ---
 
@@ -642,16 +643,20 @@ class: center, middle, nopages
 
 ---
 
+class: smaller, list-styled
+
 #### Ссылки
 
-- [Dat project](https://datproject.org/)
-- [Beaker browser](https://beakerbrowser.com/)
-- [Cabal](https://github.com/cabal-club)
-- [Dat Desktop](https://github.com/dat-land/dat-desktop)
-- [Homebase](https://github.com/beakerbrowser/homebase)
-- [Bunsen Browser](https://github.com/bunsenbrowser/bunsen)
-- [Firefox Dat Protocol addon](https://addons.mozilla.org/en-US/firefox/addon/dat-p2p-protocol/)
-- [Dat Gateway](https://github.com/pfrazee/dat-gateway)
-- [Fritter](dat://fritter.hashbase.io)
-- [Fritter](https://github.com/inkandswitch/pushpin)
-- [Awesome Dat](https://github.com/dat-land/awesome-dat)
+
+- [https://datproject.org/](https://datproject.org/) (Dat project)
+- [https://beakerbrowser.com/](https://beakerbrowser.com/) (Beaker browser)
+- [https://github.com/cabal-club](https://github.com/cabal-club) (Cabal)
+- [https://github.com/dat-land/dat-desktop](https://github.com/dat-land/dat-desktop) (Dat Desktop)
+- [https://github.com/beakerbrowser/homebase](https://github.com/beakerbrowser/homebase) (Homebase)
+- [https://github.com/bunsenbrowser/bunsen](https://github.com/bunsenbrowser/bunsen) (Bunsen Browser)
+- [https://addons.mozilla.org/en-US/firefox/addon/dat-p2p-protocol/](https://addons.mozilla.org/en-US/firefox/addon/dat-p2p-protocol/) (Firefox Da Protocol addon)
+- [https://github.com/pfrazee/dat-gateway](https://github.com/pfrazee/dat-gateway) (Dat Gateway)
+- [dat://fritter.hashbase.io](dat://fritter.hashbase.io) (Fritter)
+- [https://github.com/inkandswitch/pushpin](https://github.com/inkandswitch/pushpin) (Pushpin)
+- [https://github.com/dat-land/awesome-dat](https://github.com/dat-land/awesome-dat) (Awesome Dat)
+- [dat://f2155f451ffb1bec6da477810995474ea7129490cf032f558c4e71483324bd65/](dat://f2155f451ffb1bec6da477810995474ea7129490cf032f558c4e71483324bd65/) (dat://krddevdays.dkun.in/)

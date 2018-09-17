@@ -10,9 +10,10 @@ class: center, middle
 - Дмитрий Кунин
 - avito.ru, tech unit lead, trust and safety
 - @dkunin
-- dat://fritter.dkun.in
 
 ---
+
+class: list-center
 
 ### О чем я расскажу
 
@@ -24,16 +25,18 @@ class: center, middle
 - Кастомный линтер
 
 ---
+class: center, middle
 
 ### Lint
 
-Wiki: Undesirable bits of fiber and fluff found in sheep's wool
+Undesirable bits of fiber and fluff found in sheep's wool
 
 ???
 - Лишние скобки, недостающие скобки
 - Недообъявленная переменная, переобъявленная переменная
 
 ---
+class: list-center
 
 ### В чем преимущества линтинга
 
@@ -57,6 +60,7 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 Линтер запускается перед тестами, приводит к единому своду правил
 
 ---
+class: list-center
 
 ### Популярные линтеры
 
@@ -91,6 +95,8 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 
 ---
 
+class: list-center
+
 ### Процесс Линтинга
 
 - Исходный код
@@ -111,16 +117,14 @@ Wiki: Undesirable bits of fiber and fluff found in sheep's wool
 
 - (Опционально) Fix
 
-???
-
-(https://github.com/acornjs/acorn, https://github.com/jquery/esprima)
 
 ---
 
 class: middle
+codehighlight: [1, 2, 4, 10]
 
 ```
-*var esprima = require('esprima');
+var esprima = require('esprima');
 var program = 'const answer = 42';
 
 esprima.tokenize(program);
@@ -139,81 +143,12 @@ esprima.parseScript(program);
 ```
 
 ---
-
-class: middle
-
-```
-var esprima = require('esprima');
-*var program = 'const answer = 42';
-
-esprima.tokenize(program);
-[ { type: 'Keyword', value: 'const' },
-  { type: 'Identifier', value: 'answer' },
-  { type: 'Punctuator', value: '=' },
-  { type: 'Numeric', value: '42' } ]
-  
-esprima.parseScript(program);
-{ type: 'Program',
-  body:
-   [ { type: 'VariableDeclaration',
-       declarations: [Object],
-       kind: 'const' } ],
-  sourceType: 'script' }
-```
-
----
-
-class: middle
-
-```
-var esprima = require('esprima');
-var program = 'const answer = 42';
-
-*esprima.tokenize(program);
-[ { type: 'Keyword', value: 'const' },
-  { type: 'Identifier', value: 'answer' },
-  { type: 'Punctuator', value: '=' },
-  { type: 'Numeric', value: '42' } ]
-  
-esprima.parseScript(program);
-{ type: 'Program',
-  body:
-   [ { type: 'VariableDeclaration',
-       declarations: [Object],
-       kind: 'const' } ],
-  sourceType: 'script' }
-```
-
----
-
-class: middle
-
-```
-var esprima = require('esprima');
-var program = 'const answer = 42';
-
-esprima.tokenize(program);
-[ { type: 'Keyword', value: 'const' },
-  { type: 'Identifier', value: 'answer' },
-  { type: 'Punctuator', value: '=' },
-  { type: 'Numeric', value: '42' } ]
-  
-*esprima.parseScript(program);
-{ type: 'Program',
-  body:
-   [ { type: 'VariableDeclaration',
-       declarations: [Object],
-       kind: 'const' } ],
-  sourceType: 'script' }
-```
-
----
-class: middle, center
+class: middle, center, no-padding, nopages
 
 ![](./images/ast-explorer.png)
 
 ---
-class: middle
+class: list-center
 
 ### Настройки линтеров
 
@@ -221,6 +156,7 @@ class: middle
 - .stylelintrc
 - tslint.json / tslint.yaml
 - .textlintrc
+- package.json (!)
 
 ---
 
@@ -235,7 +171,9 @@ eslint index.js
 
 ### Тип запуска Node
 
-```javascript
+codehighlight: [1, 2, 11, 13]
+
+```
 const CLIEngine = require('eslint').CLIEngine;
 const cli = new CLIEngine({
   parserOptions: {
@@ -257,12 +195,16 @@ if (report.errorCount) {
 
 ---
 
+class: list-center
+
 ### Как встроить его во флоу
 - при сохранении
 - git precommit/prepush/prerecieve
 - CI-step
 
 ---
+
+class: list-center
 
 ### Ингридиенты для кастомного планига eslint
 
@@ -273,6 +215,7 @@ if (report.errorCount) {
 - Тесты
 
 ---
+
 ### Пример правил eslint
 
 ```json
@@ -452,6 +395,7 @@ export default class TextProcessor {
 ```
 
 ---
+class: list-center
 
 ### Как разработать кастомный линтер
 
@@ -463,10 +407,12 @@ export default class TextProcessor {
 
 ---
 
+class: list-center
+
 ### Инструменты
 
 - NodeJS
-- Существующий парсер / https://github.com/SAP/chevrotain
+- Существующий парсер (chevrotain)
 
 ---
 
@@ -509,12 +455,21 @@ class: center, middle, nopages
 
 .blue[@DKunin]
 
+---
+
+# Полезные материалы
+- https://eslint.org/docs/developer-guide/working-with-plugins
+- https://stylelint.io/developer-guide/plugins/
+- https://palantir.github.io/tslint/develop/custom-rules/
+- https://github.com/dustinspecker/awesome-eslint
+- https://github.com/caramelomartins/awesome-linters
+- https://github.com/SAP/chevrotain
+- https://github.com/acornjs/acorn
+- https://github.com/jquery/esprima
 
 ???
 - Полезность
 - Визуальщина
-- не в файлах конфиги
 - Ограничение по параметрам
 - Browserify
 - Прыжки-попрыжки с tslint
-- Только поверхностно про ключевые плагины, остальное - только отличия

@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="../css/styles.css">
   </head>
   <style>
-    body, html {
+body, html {
       font-family: 'Source Sans Pro', 'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
     }
-
     .row {
       display: flex;
       justify-content: space-around;
@@ -26,27 +25,71 @@
     }
 
     .central-column {
-      width: 800px;
+      width: 900px;
       text-align: left;
       display: inline-block;
     }
 
-    .center ul {
-      list-style: none;
+    ul {
+      margin: 0;
       padding: 0;
+    }
+
+    pre, code {
+      text-align: left;
     }
 
     p {
       margin: 0;
     }
-
-    .remark-code-line.remark-code-line-highlighted {
-      background-color: #007FFF;
-    }
-
     p img {
       max-width: 100%;
-      max-height: 700px;
+      max-height: 90%;
+    }
+    .remark-slide-content.smaller {
+      font-size: 25px;
+    }
+    .text-left {
+      text-align: left;
+    }
+
+    .list-center {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding: 0;
+      font-size: 1.8em;
+    }
+
+    .list-center p {
+        display: inline-block;
+    }
+
+    .list-center ul {
+      width: 700px;
+    }
+
+    .list-center.wide ul {
+      width: 960px;
+    }
+    .list-center li {
+      line-height: 1em;
+      margin: 15px 0;
+      list-style: inside;
+      white-space: nowrap;
+    }
+    .list-center.center li {
+      white-space: inherit;
+    }
+
+    .list-styled ul li{
+      list-style: inside;
+    }
+
+    .center.middle.no-padding {
+      padding: 0;
     }
 
   </style>
@@ -62,7 +105,27 @@
       const rootNode = document.getElementById('source');
       const loaderNode = document.querySelector('.loader');
       fetch('./slides.md').then(res => res.text()).then(result => {
-        rootNode.innerHTML = result;
+        const newResult = result.split('---').reduce((newLine, singleLine) => {
+
+          if (singleLine.includes('codehighlight')) {
+            let codehighlightline = singleLine.match(/codehighlight.+/)[0]
+            let numbers = codehighlightline.match(/\d{1,2}/g);
+            let theCode = singleLine.match(/\`{3}.+?\`{3}/gsm)[0];
+            let onlyCode = theCode.replace(/\`{3}/g, '');
+
+            let newSlides = numbers.reduce((newSlide, singleNumber) => {
+              let number = parseInt(singleNumber);
+              let codeArray = onlyCode.split('\n');
+              codeArray[number] = `*${codeArray[number]}`;
+              return newSlide.concat(`\`\`\`\n${codeArray.join('\n')}\n\`\`\`\n\n`);
+            }, []);
+            return newLine += '\n\n\n' + newSlides.join('\n\n\n---\n\n\n') + '---\n\n';
+          }
+
+          return newLine += singleLine + '---';
+        } , '');
+
+        rootNode.innerHTML = newResult;
         setTimeout(() => {
           loaderNode.classList.add('fade-out');
           remark.create({ 

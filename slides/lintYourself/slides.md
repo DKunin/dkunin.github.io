@@ -2,6 +2,7 @@ class: center, middle
 
 ## Lint Yourself
 ##### expand one, build one
+
 ---
 class: center, middle
 
@@ -10,6 +11,15 @@ class: center, middle
 - Дмитрий Кунин
 - avito.ru, tech unit lead, trust and safety
 - @dkunin
+
+---
+class: center, middle
+
+### В конце
+
+- ссылки на материалы
+- примеры кода
+- ссылка на презентацию
 
 ---
 
@@ -23,6 +33,10 @@ class: list-center
 - Куда его положить
 - Собственные правила для esLint
 - Кастомный линтер
+
+???
+
+Профит - понимая как рабоатет любой линтер - его легче расширить или писать свой или дебажить
 
 ---
 class: center, middle
@@ -160,6 +174,21 @@ class: list-center
 
 ---
 
+class: list-center
+
+### eslint-plugin-compat
+
+package.json:
+```
+{
+  // ...
+  "browserslist": ["last 1 versions", "not ie <= 8"],
+}
+```
+
+---
+
+
 ### Тип запуска CLI
 
 ```bash
@@ -171,7 +200,7 @@ eslint index.js
 
 ### Тип запуска Node
 
-codehighlight: [1, 2, 11, 13]
+codehighlight: [1, 2, 11, 14]
 
 ```
 const CLIEngine = require('eslint').CLIEngine;
@@ -218,7 +247,9 @@ class: list-center
 
 ### Пример правил eslint
 
-```json
+codehighlight: [2, 5]
+
+```
 {
     "plugins": [
         "@avito/custom-rules"
@@ -236,6 +267,8 @@ class: list-center
 ---
 
 ### Кастомное правило eslint
+
+codehighlight: [3, 6, 7, 14]
 
 ```
 module.exports = {
@@ -264,7 +297,10 @@ module.exports = {
     }
 };
 ```
+
 ---
+
+codehighlight: [8, 9, 14]
 
 ```
 const rule = require('./prefer-node-suffix');
@@ -295,7 +331,10 @@ ruleTester.run('prefer-node-suffix', rule, {
 ```
 ---
 
+class: center, middle
+
 ### Пре/постпроцессинг
+
 
 ```
 processors: {
@@ -311,8 +350,9 @@ processors: {
 }
 ```
 
-
 ---
+
+codehighlight: [4, 12, 13]
 
 ### Кастомное правило tslint
 
@@ -468,8 +508,7 @@ class: center, middle, nopages
 - https://github.com/jquery/esprima
 
 ???
-- Полезность
-- Визуальщина
+
 - Ограничение по параметрам
-- Browserify
 - Прыжки-попрыжки с tslint
+- Доработать плагин

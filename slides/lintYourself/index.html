@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/styles.css">
   </head>
   <style>
-body, html {
+    body, html {
       font-family: 'Source Sans Pro', 'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
     }
     .row {
@@ -119,7 +119,7 @@ body, html {
               codeArray[number] = `*${codeArray[number]}`;
               return newSlide.concat(`\`\`\`\n${codeArray.join('\n')}\n\`\`\`\n\n`);
             }, []);
-            return newLine += '\n\n\n' + newSlides.join('\n\n\n---\n\n\n') + '---\n\n';
+            return newLine += '\nclass: center, middle\n' + newSlides.join('\n---\nclass: center, middle\n') + '---\n';
           }
 
           return newLine += singleLine + '---';

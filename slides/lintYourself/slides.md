@@ -506,9 +506,10 @@ class: center, middle, nopages
 - https://github.com/SAP/chevrotain
 - https://github.com/acornjs/acorn
 - https://github.com/jquery/esprima
+- https://github.com/sindresorhus/awesome-lint
+- https://github.com/sindresorhus/awesome-lint
 
 ???
 
 - Ограничение по параметрам
-- Прыжки-попрыжки с tslint
 - Доработать плагин

@@ -437,53 +437,48 @@ export default class TextProcessor {
 ---
 class: list-center
 
-### Как разработать кастомный линтер
+### Что нужно уметь линтеру
 
-- Разобрать на AST
-- Научить программу "граматике"
-- Написать правила/функции
-- Вывести список ошибок
-- (Опционально) Fix
+- Разбирать на AST
+- Бегать по AST
+- Выводить ошибки
+- (Опционально) Исправлять ошибки
 
 ---
 
 class: list-center
 
-### Инструменты
+### Подходы
 
-- NodeJS
-- Существующий парсер (chevrotain)
-
----
-
-### Демо/Описание процессов
-
-```markdown
----
-class: middle
-
-### Настройки линтеров
-
-- .eslintrc
---
-- .stylelintrc
+- Обучаемый парсер (напр. Ohmlang) + walker + reporter
+- Универсальный парсер с плагинами
 
 ---
-```
 
----
+class: list-center
+
+### Обучаемый парсер
 
 ```
-const chevrotain = require('chevrotain');
-const Parser = require('chevrotain').Parser;
-
-const slideShowString = fs.readFileSync('./simpler.md').toString();
-const createToken = chevrotain.createToken;
-const Lexer = chevrotain.Lexer;
-const Identifier = createToken({ name: "Identifier", pattern: /[a-zA-Z]\w*/ })
-const ClassHeader = createToken({ name: 'ClassHeader', pattern: /class:/ , longer_alt: Identifier});
-
+NLDatalog.grammar = ohm.grammar(`
+  NLDatalog {
+    Rules
+      = ListOf<Rule, "\\n">
+    Rule
+      = Clause          -- fact
+    Clause
+      = ( classRow | word )+
+    word = wordChar+
+    classDecl = "class: "
+    classRow = classDecl (className ("," className)*)*
+    className = classChar+
+    classChar = ~(eol | "," | "\\n") any
+    wordChar = any
+    eol = "\\r"? "\\n"
+  }
+`);
 ```
+
 
 ---
 
@@ -494,6 +489,7 @@ class: center, middle, nopages
 .blue[dkun.in]
 
 .blue[@DKunin]
+
 
 ---
 
@@ -507,9 +503,5 @@ class: center, middle, nopages
 - https://github.com/acornjs/acorn
 - https://github.com/jquery/esprima
 - https://github.com/sindresorhus/awesome-lint
-- https://github.com/sindresorhus/awesome-lint
-
-???
-
-- Ограничение по параметрам
-- Доработать плагин
+- https://github.com/syntax-tree/unists
+- https://github.com/unifiedjs/unified

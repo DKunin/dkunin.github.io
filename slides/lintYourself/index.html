@@ -102,38 +102,51 @@
     </textarea>
     <script src="../js/remark-latest.min.js"></script>
     <script>
-      const rootNode = document.getElementById('source');
-      const loaderNode = document.querySelector('.loader');
-      fetch('./slides.md').then(res => res.text()).then(result => {
-        const newResult = result.split('---').reduce((newLine, singleLine) => {
+const rootNode = document.getElementById('source');
+const loaderNode = document.querySelector('.loader');
 
-          if (singleLine.includes('codehighlight')) {
-            let codehighlightline = singleLine.match(/codehighlight.+/)[0]
-            let numbers = codehighlightline.match(/\d{1,2}/g);
-            let theCode = singleLine.match(/\`{3}.+?\`{3}/gsm)[0];
-            let onlyCode = theCode.replace(/\`{3}/g, '');
+function codeHiglightExtender(string) {
+  return string.split('---').reduce((newLine, singleLine) => {
+    if (singleLine.includes('codehighlight')) {
+      let codehighlightline = singleLine.match(/codehighlight.+/)[0];
+      let numbers = codehighlightline.match(/\d{1,2}/g);
+      let theCode = singleLine.match(/\`{3}.+?\`{3}/gms)[0];
+      let onlyCode = theCode.replace(/\`{3}/g, '');
 
-            let newSlides = numbers.reduce((newSlide, singleNumber) => {
-              let number = parseInt(singleNumber);
-              let codeArray = onlyCode.split('\n');
-              codeArray[number] = `*${codeArray[number]}`;
-              return newSlide.concat(`\`\`\`\n${codeArray.join('\n')}\n\`\`\`\n\n`);
-            }, []);
-            return newLine += '\nclass: center, middle\n' + newSlides.join('\n---\nclass: center, middle\n') + '---\n';
-          }
+      let newSlides = numbers.reduce((newSlide, singleNumber) => {
+        let number = parseInt(singleNumber);
+        let codeArray = onlyCode.split('\n');
+        codeArray[number] = `*${codeArray[number]}`;
+        return newSlide.concat(`\`\`\`\n${codeArray.join('\n')}\n\`\`\`\n\n`);
+      }, []);
+      return (newLine +=
+        '\nclass: center, middle\n' +
+        newSlides.join('\n---\nclass: center, middle\n') +
+        '---\n');
+    }
 
-          return newLine += singleLine + '---';
-        } , '');
+    return (newLine += singleLine + '---');
+  }, '');
+}
 
-        rootNode.innerHTML = newResult;
-        setTimeout(() => {
-          loaderNode.classList.add('fade-out');
-          remark.create({ 
-            highlightLanguage: 'javascript',
-            highlightSpans: /«([^»]+?)»/g
-          });
-        },400);
-      })
+function linker(string) {
+  return string.replace(/(https:\/\/[\w\.\/-]+)/g, '<a href="$1" target="_blank">$1</a>');
+}
+
+fetch('./slides.md')
+  .then(res => res.text())
+  .then(codeHiglightExtender)
+  // .then(linker)
+  .then(result => {
+    rootNode.innerHTML = result;
+    setTimeout(() => {
+      loaderNode.classList.add('fade-out');
+      remark.create({
+        highlightLanguage: 'javascript',
+        highlightSpans: /«([^»]+?)»/g
+      });
+    }, 400);
+  });
     </script>
   </body>
 </html>

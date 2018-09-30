@@ -157,14 +157,14 @@ pre {
 }
 .loader img {
     width: 150px;
-    animation: pulse 2s linear infinite;
+    animation: loaderPulse 2s linear infinite;
 }
 
 .loader.fade-out {
     opacity: 0;
 }
 
-@keyframes pulse {
+@keyframes loaderPulse {
     0% {
         opacity: 0;
     }

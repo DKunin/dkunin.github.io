@@ -22,6 +22,33 @@ class: center, middle
 - ссылка на презентацию
 
 ---
+class: list-center
+### Небольшой опрос
+
+- Человеческая ошибка
+
+--
+
+- Невнимательность
+
+--
+
+- Гремлины
+
+---
+
+class: center, middle, no-padding, nopages
+
+<img src="./images/enter-gremlin.jpg" />
+
+---
+
+
+class: center, middle, no-padding, nopages
+
+<img src="./images/spn_gremlins__gizmo_winchester_by_nargynargy.jpg" />
+
+---
 
 class: list-center
 
@@ -41,18 +68,19 @@ class: list-center
 ---
 class: center, middle
 
-### Lint
+### Что пакостят гремлины
 
-Undesirable bits of fiber and fluff found in sheep's wool
-
-???
 - Лишние скобки, недостающие скобки
-- Недообъявленная переменная, переобъявленная переменная
+- Недообъявленная переменная
+- Переобъявленная переменная
+- Переопределенная константа
+- == вместо ===
+- ...
 
 ---
 class: list-center
 
-### В чем преимущества линтинга
+### Чем поможет линтер
 
 - ~~Головная боль~~
 
@@ -68,10 +96,6 @@ class: list-center
 
 - Кастомизация
 
-???
-
-Нацелен на ускорение кода, защиту от мелких нежелательных кусков fiber and fluff
-Линтер запускается перед тестами, приводит к единому своду правил
 
 ---
 class: list-center
@@ -450,8 +474,44 @@ class: list-center
 
 ### Подходы
 
+- Новый синтаксис
+- Расширенный синтаксис
+
+???
+
 - Обучаемый парсер (напр. Ohmlang) + walker + reporter
 - Универсальный парсер с плагинами
+
+---
+
+```
+---
+
+class: list-center
+
+### Подходы
+
+- Новый синтаксис
+- Расширенный синтаксис
+
+???
+
+- Обучаемый парсер (напр. Ohmlang) + walker + reporter
+- Универсальный парсер с плагинами
+
+---
+```
+
+---
+
+class: list-center
+
+### Обучаемый парсер
+
+- Текст в AST
+- Грамматика
+- Функция хождения
+- Вывод ошибок
 
 ---
 
@@ -479,15 +539,95 @@ NLDatalog.grammar = ohm.grammar(`
 `);
 ```
 
+---
+```
+RemarkJSSlider.semantics = RemarkJSSlider.grammar
+  .createSemantics()
+  .addOperation('toAST', {
+    Rules(rules) {
+      return new Program(rules.toAST());
+    },
+
+    Rule_fact(head) {
+      return new Rule(head.toAST(), []);
+    },
+    ...
+```
+---
+
+codehighlight: [1, 4, 6, 11]
+
+```javascript
+const walker = new ASTWalker();
+
+const linter = {
+  ClassRow(node, parent) {
+    if (node.classNames.length === 0) {
+      throw new Error('No ClassRows should be empty');
+    }
+  }
+}
+
+walker.traverse(ast,
+{
+   enterNode: (node, parent) =>
+   {  
+      if (node.type && linter[node.type]) {
+        linter[node.type](node, parent)
+      }
+   }
+});
+```
 
 ---
+
+class: list-center
+
+### Кастомизация существующего (unified)
+
+- Markdown => доп. токены => AST
+- Правило на доп. токены
+- ~Функция хождения~
+- ~Вывод ошибок~
+
+---
+
+class: center, middle
+
+```
+function tokenSlideSeparator(eat, value, silent) {
+  var match = /^={1,3}/g.exec(value);
+
+  if (match) {
+    if (silent) {
+      return true;
+    }
+
+    return eat(match[0])({
+      type: 'slideBreak',
+      children: [{type: 'text', value: match[0]}]
+    });
+  }
+}
+```
+---
+
+### [WIP] Добавление правила к набору правил
+
+---
+class: center, middle, nopages
+
+![gremlin](./images/gremlin-gizrambo.jpg)
+
+---
+
+
 
 class: center, middle, nopages
 
 # Вопросы?
 
 .blue[dkun.in]
-
 .blue[@DKunin]
 
 
@@ -505,3 +645,5 @@ class: center, middle, nopages
 - https://github.com/sindresorhus/awesome-lint
 - https://github.com/syntax-tree/unists
 - https://github.com/unifiedjs/unified
+- https://github.com/DKunin/ohm-example
+- https://github.com/DKunin/unified-test

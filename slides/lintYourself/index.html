@@ -136,7 +136,6 @@ function linker(string) {
 fetch('./slides.md')
   .then(res => res.text())
   .then(codeHiglightExtender)
-  // .then(linker)
   .then(result => {
     rootNode.innerHTML = result;
     setTimeout(() => {

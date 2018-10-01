@@ -52,7 +52,7 @@ class: center, middle, no-padding, nopages
 
 class: list-center
 
-### О чем я расскажу
+### План
 
 - Что делает линтер
 - Как он это делает
@@ -61,12 +61,15 @@ class: list-center
 - Собственные правила для esLint
 - Кастомный линтер
 
+<div class="gizmo-walk-se"></div>
+
 ???
 
 Профит - понимая как рабоатет любой линтер - его легче расширить или писать свой или дебажить
 
 ---
-class: center, middle
+
+class: list-center
 
 ### Что пакостят гремлины
 
@@ -76,6 +79,21 @@ class: center, middle
 - Переопределенная константа
 - == вместо ===
 - ...
+
+---
+
+class: list-center
+
+### План
+
+<ul>
+  <li class="current-plan-step">Что делает линтер</li>
+  <li class="secondary">Как он это делает</li>
+  <li class="secondary">С чем его приготовить</li>
+  <li class="secondary">Куда его положить</li>
+  <li class="secondary">Собственные правила для esLint</li>
+  <li class="secondary">Кастомный линтер</li>
+</ul>
 
 ---
 class: list-center
@@ -131,11 +149,25 @@ class: list-center
 - ShellCheck (+-)
 - WebHint (+-)
 
+
 ---
 
 class: list-center
 
-### Процесс Линтинга
+### План
+
+<ul>
+  <li class="secondary">Что делает линтер</li>
+  <li class="current-plan-step">Как он это делает</li>
+  <li class="secondary">С чем его приготовить</li>
+  <li class="secondary">Куда его положить</li>
+  <li class="secondary">Собственные правила для esLint</li>
+  <li class="secondary">Кастомный линтер</li>
+</ul>
+
+---
+
+class: list-center
 
 - Исходный код
 
@@ -188,6 +220,20 @@ class: middle, center, no-padding, nopages
 ---
 class: list-center
 
+### План
+
+<ul>
+  <li class="secondary">Что делает линтер</li>
+  <li class="secondary">Как он это делает</li>
+  <li class="current-plan-step">С чем его приготовить</li>
+  <li class="secondary">Куда его положить</li>
+  <li class="secondary">Собственные правила для esLint</li>
+  <li class="secondary">Кастомный линтер</li>
+</ul>
+
+---
+class: list-center
+
 ### Настройки линтеров
 
 - .eslintrc
@@ -215,7 +261,7 @@ package.json:
 
 ### Тип запуска CLI
 
-```bash
+```
 eslint index.js
 ```
 ![](./images/eslint-cli.png)
@@ -245,6 +291,20 @@ if (report.errorCount) {
   console.log('No errors');
 }
 ```
+---
+
+class: list-center
+
+### План
+
+<ul>
+  <li class="secondary">Что делает линтер</li>
+  <li class="secondary">Как он это делает</li>
+  <li class="secondary">С чем его приготовить</li>
+  <li class="current-plan-step">Куда его положить</li>
+  <li class="secondary">Собственные правила для esLint</li>
+  <li class="secondary">Кастомный линтер</li>
+</ul>
 
 ---
 
@@ -259,7 +319,22 @@ class: list-center
 
 class: list-center
 
-### Ингридиенты для кастомного планига eslint
+### План
+
+<ul>
+  <li class="secondary">Что делает линтер</li>
+  <li class="secondary">Как он это делает</li>
+  <li class="secondary">С чем его приготовить</li>
+  <li class="secondary">Куда его положить</li>
+  <li class="current-plan-step">Собственные правила для esLint</li>
+  <li class="secondary">Кастомный линтер</li>
+</ul>
+
+---
+
+class: list-center
+
+### Ингридиенты для кастомного плагина eslint
 
 - Конфиг
 - Функция
@@ -429,34 +504,19 @@ module.exports.messages = messages
 
 ---
 
-### Кастомное правило textlint
+class: list-center
 
-```
-import { parse } from "txt-to-ast";
-export default class TextProcessor {
-    constructor(options = {}) {
-        this.options = options;
-        this.extensions = this.config.extensions ? this.config.extensions : [];
-    }
-    availableExtensions() {
-        return [".txt", ".text"].concat(this.extensions);
-    }
-    processor(ext) {
-        return {
-            preProcess(text, filePath) {
-                return parse(text);
-            },
-            postProcess(messages, filePath) {
-                // Lint logic
-                return {
-                    messages,
-                    filePath: filePath ? filePath : "<text>"
-                };
-            }
-        };
-    }
-}
-```
+### План
+
+<ul>
+  <li class="secondary">Что делает линтер</li>
+  <li class="secondary">Как он это делает</li>
+  <li class="secondary">С чем его приготовить</li>
+  <li class="secondary">Куда его положить</li>
+  <li class="secondary">Собственные правила для esLint</li>
+  <li class="current-plan-step">Кастомный линтер</li>
+</ul>
+
 
 ---
 class: list-center
@@ -483,6 +543,8 @@ class: list-center
 - Универсальный парсер с плагинами
 
 ---
+
+class: middle
 
 ```
 ---
@@ -515,7 +577,7 @@ class: list-center
 
 ---
 
-class: list-center
+class: middle
 
 ### Обучаемый парсер
 
@@ -540,6 +602,9 @@ NLDatalog.grammar = ohm.grammar(`
 ```
 
 ---
+
+class: middle
+
 ```
 RemarkJSSlider.semantics = RemarkJSSlider.grammar
   .createSemantics()
@@ -555,9 +620,10 @@ RemarkJSSlider.semantics = RemarkJSSlider.grammar
 ```
 ---
 
+class: middle
 codehighlight: [1, 4, 6, 11]
 
-```javascript
+```
 const walker = new ASTWalker();
 
 const linter = {
@@ -587,41 +653,89 @@ class: list-center
 
 - Markdown => доп. токены => AST
 - Правило на доп. токены
-- ~Функция хождения~
-- ~Вывод ошибок~
+- ~~Функция хождения~~
+- ~~Вывод ошибок~~
 
 ---
 
 class: center, middle
 
 ```
-function tokenSlideSeparator(eat, value, silent) {
-  var match = /^={1,3}/g.exec(value);
-
-  if (match) {
-    if (silent) {
-      return true;
+function tokenClassListSeparator(process, value) {
+    const match = /^class:(.+)/g.exec(value);
+    if (match) {
+        return process(match[0])({
+            type: 'classRow',
+            children: [{ type: 'classList', value: match[0] }]
+        });
     }
-
-    return eat(match[0])({
-      type: 'slideBreak',
-      children: [{type: 'text', value: match[0]}]
-    });
-  }
 }
 ```
 ---
 
-### [WIP] Добавление правила к набору правил
+### Добавление правила к набору правил
+
+```
+  const visit = require('unist-util-visit');
+  const reason = 'ClassName cannot be empty';
+
+  function visitor(file) {
+      return (node) => {
+          ...// checking classList
+          if (classList.length === 0) {
+              file.message(reason);
+          }
+      };
+  }
+
+  function noEmptyClassList(tree, file) {
+      visit(tree, 'classList', visitor(file));
+  }
+
+  module.exports = noEmptyClassList;
+
+```
 
 ---
+class: middle
+codehighlight: [2, 3, 5, 6, 10,11]
+```
+//...
+const noEmptyClassListToken = require('./no-empty-class-list-token');
+const noEmptyClassListRule = require('./no-empty-class-list-rule');
+//...
+const extraRule = rule('remark-lint:no-empty-class-list-rule', noEmptyClassListRule);
+guide.plugins = guide.plugins.concat(extraRule);
+
+remark()
+    .use(markdown)
+    .use(noEmptyClassListToken)
+    .use(guide)
+    .use(html)
+    .process(slides, function(err, file) {
+        console.error(report(err || file));
+    });
+
+```
+
+---
+
+### Итого
+
+- Что делает линтер
+- Как он это делает
+- С чем его приготовить
+- Куда его положить
+- Собственные правила для esLint
+- Кастомный линтер
+
+---
+
 class: center, middle, nopages
 
 ![gremlin](./images/gremlin-gizrambo.jpg)
 
 ---
-
-
 
 class: center, middle, nopages
 
@@ -629,7 +743,6 @@ class: center, middle, nopages
 
 .blue[dkun.in]
 .blue[@DKunin]
-
 
 ---
 

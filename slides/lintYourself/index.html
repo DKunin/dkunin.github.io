@@ -13,7 +13,7 @@
   </head>
   <style>
     body, html {
-      font-family: 'Source Sans Pro', 'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
+      font-family: 'PT Sans','Source Sans Pro', 'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
     }
     .row {
       display: flex;
@@ -74,7 +74,7 @@
     .list-center.wide ul {
       width: 960px;
     }
-    .list-center li {
+    .remark-slide-content.center li, .list-center li {
       line-height: 1em;
       margin: 15px 0;
       list-style: inside;
@@ -90,6 +90,52 @@
 
     .center.middle.no-padding {
       padding: 0;
+    }
+
+    .secondary {
+      opacity: 0.2;
+    }
+    .current-plan-step {
+      font-weight: bold;
+    }
+  
+    .gizmo-walk {
+      width: 32px;
+      height: 26px;
+      margin: 2% auto;
+      background: url('./images/gizmo-sprite.png') no-repeat -42px -50px;
+      animation: walk-play .5s steps(3) infinite;
+      zoom: 3;
+    }
+
+    @keyframes walk-play {
+      100% { background-position: -162px -50px; }
+    }
+  
+    .gizmo-walk-se {
+      width: 32px;
+      height: 26px;
+      margin: 2% auto;
+      background: url('./images/gizmo-sprite.png') no-repeat -426px -88px;
+      animation: walk-se-play .5s steps(3) infinite;
+      zoom: 3;
+    }
+
+    @keyframes walk-se-play {
+      100% { background-position: -522px -88px }
+    }
+
+    .gizmo-circle {
+      width: 28px;
+      height: 26px;
+      margin: 2% auto;
+      background: url('./images/gizmo-sprite.png') no-repeat -60px -326px;
+      animation: circle-play .9s steps(8) infinite;
+      zoom: 3;
+    }
+
+    @keyframes circle-play {
+      100% { background-position: -315px -326px; }
     }
 
   </style>

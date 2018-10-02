@@ -1,7 +1,10 @@
-class: center, middle
+class: center, middle, nopages
+background-image: url(./images/title-slide.png)
 
-## Lint Yourself
-##### expand one, build one
+<div class="main-title">
+  <h2>Lint Yourself</h2>
+  <h4>Дмитрий Кунин</h4>
+</div>
 
 ---
 class: center, middle
@@ -759,8 +762,8 @@ dkun.in
 @DKunin
 
 ---
-
-# Полезные материалы
+class: smaller
+#### Полезные материалы
 - https://eslint.org/docs/developer-guide/working-with-plugins
 - https://stylelint.io/developer-guide/plugins/
 - https://palantir.github.io/tslint/develop/custom-rules/

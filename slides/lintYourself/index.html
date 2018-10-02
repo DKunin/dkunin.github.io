@@ -121,12 +121,16 @@
     }
     .current-plan-step {
       font-weight: bold;
+      position: relative;
     }
   
     .gizmo-walk {
       width: 32px;
       height: 26px;
       margin: 2% auto;
+      position: absolute;
+      left: -30px;
+      margin-top: -28px;
       background: url('./images/gizmo-sprite.png') no-repeat -42px -50px;
       animation: walk-play .5s steps(3) infinite;
       zoom: 3;
@@ -140,6 +144,10 @@
       width: 32px;
       height: 26px;
       margin: 2% auto;
+      display: inline-block;
+      position: absolute;
+      left: -28px;
+      margin-top: 0px;
       background: url('./images/gizmo-sprite.png') no-repeat -426px -88px;
       animation: walk-se-play .5s steps(3) infinite;
       zoom: 3;
@@ -147,6 +155,57 @@
 
     @keyframes walk-se-play {
       100% { background-position: -522px -88px }
+    }
+
+    .gizmo-jump {
+      width: 32px;
+      height: 26px;
+      margin: 2% auto;
+      display: inline-block;
+      position: absolute;
+      left: -32px;
+      margin-top: 4px;
+      background: url('./images/gizmo-sprite.png') no-repeat -42px -131px;
+      animation: gizmo-jump-play .5s steps(3) infinite;
+      zoom: 3;
+    }
+
+    @keyframes gizmo-jump-play {
+      100% { background-position: -162px -131px; }
+    }
+
+    .gizmo-walk-ee {
+      width: 14px;
+      height: 26px;
+      margin: 2% auto;
+      display: inline-block;
+      position: absolute;
+      left: -21px;
+      margin-top: 4px;
+      background: url('./images/gizmo-sprite.png') no-repeat -330px -89px;
+      animation: gizmo-walk-ee-play .5s steps(3) infinite;
+      zoom: 3;
+    }
+
+    @keyframes gizmo-walk-ee-play {
+      100% { background-position: -402px -87px; }
+    }
+
+    .gizmo-jackhammer {
+      width: 32px;
+      height: 26px;
+      margin: 2% auto;
+      display: inline-block;
+      position: absolute;
+      left: -30px;
+      margin-top: 0px;
+      background: url('./images/gizmo-sprite.png') no-repeat -150px -394px;
+      animation: gizmo-jackhammer-play .5s steps(3) infinite;
+      zoom: 3;
+    }
+
+    @keyframes gizmo-jackhammer-play {
+      100% { background-position: -270px -394px; }
     }
 
     .gizmo-circle {
@@ -163,8 +222,14 @@
     }
 
     .remark-code {
-      max-width: 80%;
+      max-width: 90%;
       margin: 0 auto;
+      overflow: hidden;
+    }
+    .gizmo-holder {
+      position: relative;
+      left: 0;
+      right: 0;
     }
 
   </style>

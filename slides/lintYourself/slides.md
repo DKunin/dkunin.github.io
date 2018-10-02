@@ -9,7 +9,7 @@ class: center, middle
 ### Кто я?
 
 - Дмитрий Кунин
-- avito.ru, tech unit lead, trust and safety
+- avito, tech lead, trust & safety
 - @dkunin
 
 ---
@@ -20,6 +20,12 @@ class: center, middle
 - ссылки на материалы
 - примеры кода
 - ссылка на презентацию
+
+---
+class: center, middle
+### Небольшой опрос
+
+# ?
 
 ---
 class: center, middle
@@ -43,6 +49,17 @@ class: center, middle, no-padding, nopages
 
 ---
 
+class: center, middle
+
+### Что пакостят гремлины
+
+- ((), {,
+- foo is undefined
+- var foo = 1;var foo = 3;
+- == / ===
+- ...
+
+---
 
 class: center, middle, no-padding, nopages
 
@@ -61,7 +78,7 @@ class: center, middle
 - Правила для esLint
 - Кастомный линтер
 
-<div class="gizmo-walk-se"></div>
+<div class="gizmo-walk"></div>
 
 ???
 
@@ -71,22 +88,10 @@ class: center, middle
 
 class: center, middle
 
-### Что пакостят гремлины
-
-- ((), {,
-- foo is undefined
-- var foo = 1;var foo = 3;
-- == / ===
-- ...
-
----
-
-class: center, middle
-
 ### План
 
 <ul>
-  <li class="current-plan-step">Что делает линтер</li>
+  <li class="current-plan-step">Что делает линтер<div class="gizmo-walk-se"></div></li>
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
@@ -103,11 +108,11 @@ class: center, middle
 
 --
 
-- Общие стили
+- Меньше ошибок
 
 --
 
-- Меньше ошибок
+- Общие стили
 
 --
 
@@ -148,7 +153,6 @@ class: center, middle
 - ShellCheck (+-)
 - WebHint (+-)
 
-
 ---
 
 class: center, middle
@@ -157,7 +161,7 @@ class: center, middle
 
 <ul>
   <li class="secondary">Что делает линтер</li>
-  <li class="current-plan-step">Как он это делает</li>
+  <li class="current-plan-step">Как он это делает<div class="gizmo-jump"></div></li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
   <li class="secondary">Правила для esLint</li>
@@ -224,7 +228,7 @@ class: center, middle
 <ul>
   <li class="secondary">Что делает линтер</li>
   <li class="secondary">Как он это делает</li>
-  <li class="current-plan-step">С чем его приготовить</li>
+  <li class="current-plan-step">С чем его приготовить<div class="gizmo-walk-ee"></div></li>
   <li class="secondary">Куда его положить</li>
   <li class="secondary">Правила для esLint</li>
   <li class="secondary">Кастомный линтер</li>
@@ -267,6 +271,14 @@ eslint index.js
 
 ---
 
+class: center, middle
+
+### Тип запуска Editor Plugin
+
+![](./images/eslint-sublime-plugin.png)
+
+---
+
 ### Тип запуска Node
 
 codehighlight: [1, 2, 11, 14]
@@ -300,7 +312,7 @@ class: center, middle
   <li class="secondary">Что делает линтер</li>
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
-  <li class="current-plan-step">Куда его положить</li>
+  <li class="current-plan-step">Куда его положить<div class="gizmo-jackhammer"></div></li>
   <li class="secondary">Правила для esLint</li>
   <li class="secondary">Кастомный линтер</li>
 </ul>
@@ -325,7 +337,7 @@ class: center, middle
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
-  <li class="current-plan-step">Правила для esLint</li>
+  <li class="current-plan-step">Правила для esLint<div class="gizmo-walk"></div></li>
   <li class="secondary">Кастомный линтер</li>
 </ul>
 
@@ -513,7 +525,7 @@ class: center, middle
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
   <li class="secondary">Правила для esLint</li>
-  <li class="current-plan-step">Кастомный линтер</li>
+  <li class="current-plan-step">Кастомный линтер<div class="gizmo-walk-se"></div></li>
 </ul>
 
 

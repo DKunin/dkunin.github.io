@@ -22,7 +22,7 @@ class: center, middle
 - ссылка на презентацию
 
 ---
-class: list-center
+class: center, middle
 ### Небольшой опрос
 
 - Человеческая ошибка
@@ -50,7 +50,7 @@ class: center, middle, no-padding, nopages
 
 ---
 
-class: list-center
+class: center, middle
 
 ### План
 
@@ -58,7 +58,7 @@ class: list-center
 - Как он это делает
 - С чем его приготовить
 - Куда его положить
-- Собственные правила для esLint
+- Правила для esLint
 - Кастомный линтер
 
 <div class="gizmo-walk-se"></div>
@@ -69,20 +69,19 @@ class: list-center
 
 ---
 
-class: list-center
+class: center, middle
 
 ### Что пакостят гремлины
 
-- Лишние скобки, недостающие скобки
-- Недообъявленная переменная
-- Переобъявленная переменная
-- Переопределенная константа
-- == вместо ===
+- ((), {,
+- foo is undefined
+- var foo = 1;var foo = 3;
+- == / ===
 - ...
 
 ---
 
-class: list-center
+class: center, middle
 
 ### План
 
@@ -91,12 +90,12 @@ class: list-center
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
-  <li class="secondary">Собственные правила для esLint</li>
+  <li class="secondary">Правила для esLint</li>
   <li class="secondary">Кастомный линтер</li>
 </ul>
 
 ---
-class: list-center
+class: center, middle
 
 ### Чем поможет линтер
 
@@ -116,7 +115,7 @@ class: list-center
 
 
 ---
-class: list-center
+class: center, middle
 
 ### Популярные линтеры
 
@@ -152,7 +151,7 @@ class: list-center
 
 ---
 
-class: list-center
+class: center, middle
 
 ### План
 
@@ -161,13 +160,13 @@ class: list-center
   <li class="current-plan-step">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
-  <li class="secondary">Собственные правила для esLint</li>
+  <li class="secondary">Правила для esLint</li>
   <li class="secondary">Кастомный линтер</li>
 </ul>
 
 ---
 
-class: list-center
+class: center, middle
 
 - Исходный код
 
@@ -218,7 +217,7 @@ class: middle, center, no-padding, nopages
 ![](./images/ast-explorer.png)
 
 ---
-class: list-center
+class: center, middle
 
 ### План
 
@@ -227,12 +226,12 @@ class: list-center
   <li class="secondary">Как он это делает</li>
   <li class="current-plan-step">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
-  <li class="secondary">Собственные правила для esLint</li>
+  <li class="secondary">Правила для esLint</li>
   <li class="secondary">Кастомный линтер</li>
 </ul>
 
 ---
-class: list-center
+class: center, middle
 
 ### Настройки линтеров
 
@@ -244,7 +243,7 @@ class: list-center
 
 ---
 
-class: list-center
+class: center, middle
 
 ### eslint-plugin-compat
 
@@ -257,7 +256,7 @@ package.json:
 ```
 
 ---
-
+class: center, middle
 
 ### Тип запуска CLI
 
@@ -293,7 +292,7 @@ if (report.errorCount) {
 ```
 ---
 
-class: list-center
+class: center, middle
 
 ### План
 
@@ -302,13 +301,13 @@ class: list-center
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="current-plan-step">Куда его положить</li>
-  <li class="secondary">Собственные правила для esLint</li>
+  <li class="secondary">Правила для esLint</li>
   <li class="secondary">Кастомный линтер</li>
 </ul>
 
 ---
 
-class: list-center
+class: center, middle
 
 ### Как встроить его во флоу
 - при сохранении
@@ -317,7 +316,7 @@ class: list-center
 
 ---
 
-class: list-center
+class: center, middle
 
 ### План
 
@@ -326,13 +325,13 @@ class: list-center
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
-  <li class="current-plan-step">Собственные правила для esLint</li>
+  <li class="current-plan-step">Правила для esLint</li>
   <li class="secondary">Кастомный линтер</li>
 </ul>
 
 ---
 
-class: list-center
+class: center, middle
 
 ### Ингридиенты для кастомного плагина eslint
 
@@ -504,7 +503,7 @@ module.exports.messages = messages
 
 ---
 
-class: list-center
+class: center, middle
 
 ### План
 
@@ -513,13 +512,13 @@ class: list-center
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
-  <li class="secondary">Собственные правила для esLint</li>
+  <li class="secondary">Правила для esLint</li>
   <li class="current-plan-step">Кастомный линтер</li>
 </ul>
 
 
 ---
-class: list-center
+class: center, middle
 
 ### Что нужно уметь линтеру
 
@@ -530,7 +529,7 @@ class: list-center
 
 ---
 
-class: list-center
+class: center, middle
 
 ### Подходы
 
@@ -549,7 +548,7 @@ class: middle
 ```
 ---
 
-class: list-center
+class: center, middle
 
 ### Подходы
 
@@ -566,7 +565,7 @@ class: list-center
 
 ---
 
-class: list-center
+class: center, middle
 
 ### Обучаемый парсер
 
@@ -577,7 +576,7 @@ class: list-center
 
 ---
 
-class: middle
+class: center, middle
 
 ### Обучаемый парсер
 
@@ -603,7 +602,7 @@ NLDatalog.grammar = ohm.grammar(`
 
 ---
 
-class: middle
+class: center, middle
 
 ```
 RemarkJSSlider.semantics = RemarkJSSlider.grammar
@@ -620,7 +619,7 @@ RemarkJSSlider.semantics = RemarkJSSlider.grammar
 ```
 ---
 
-class: middle
+class: center, middle
 codehighlight: [1, 4, 6, 11]
 
 ```
@@ -647,11 +646,11 @@ walker.traverse(ast,
 
 ---
 
-class: list-center
+class: center, middle
 
 ### Кастомизация существующего (unified)
 
-- Markdown => доп. токены => AST
+- MD => доп. токены => AST
 - Правило на доп. токены
 - ~~Функция хождения~~
 - ~~Вывод ошибок~~
@@ -672,6 +671,7 @@ function tokenClassListSeparator(process, value) {
 }
 ```
 ---
+class: center, middle
 
 ### Добавление правила к набору правил
 
@@ -697,7 +697,7 @@ function tokenClassListSeparator(process, value) {
 ```
 
 ---
-class: middle
+class: center, middle
 codehighlight: [2, 3, 5, 6, 10,11]
 ```
 //...
@@ -720,13 +720,15 @@ remark()
 
 ---
 
+class: center, middle
+
 ### Итого
 
 - Что делает линтер
 - Как он это делает
 - С чем его приготовить
 - Куда его положить
-- Собственные правила для esLint
+- Правила для esLint
 - Кастомный линтер
 
 ---
@@ -741,8 +743,8 @@ class: center, middle, nopages
 
 # Вопросы?
 
-.blue[dkun.in]
-.blue[@DKunin]
+dkun.in
+@DKunin
 
 ---
 

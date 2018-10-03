@@ -154,6 +154,7 @@ pre {
     opacity: 1;
     user-select: none;
     pointer-events: none;
+    z-index: 2;
 }
 .loader img {
     width: 150px;

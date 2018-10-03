@@ -10,303 +10,11 @@
     <meta property="og:description" content="Когда вы работаете в большой и/или распределенной команде - следить за качеством кода становится только сложнее. Тогда на помощь и приходят они - Линтеры. В докладе мы рассмотрим, что же это за зверь такой, линтер, какие они бывают, как и когда они должны работать и разберем как расширить существующий или написать свой собственный линтер." />
     <meta property="og:type" content="article" />
     <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="./lint-styles.css">
   </head>
-  <style>
-  :root {
-    --main-bg-color: white;
-    --main-bg-gradient: white;
-  }
-
-    body, html {
-      font-family: 'PT Sans','Source Sans Pro', 'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
-    }
-    .row {
-      display: flex;
-      justify-content: space-around;
-    }
-
-    .column {
-      text-align: left;
-    }
-
-    .central-column {
-      width: 900px;
-      text-align: left;
-      display: inline-block;
-    }
-
-    ul {
-      margin: 0;
-      padding: 0;
-    }
-
-    pre, code {
-      text-align: left;
-    }
-
-    p {
-      margin: 0;
-    }
-    p img {
-      max-width: 100%;
-      max-height: 90%;
-    }
-    .remark-slide-content.smaller {
-      font-size: 25px;
-    }
-    .text-left {
-      text-align: left;
-    }
-
-    .list-center {
-      display: flex;
-      height: 100%;
-      flex-direction: column;
-      align-items: center;
-      justify-content: middle;
-      padding: 0;
-      padding-top: 30%;
-    }
-    .list-center ul {
-      width: 960px;
-    }
-    .list-center li {
-      font-size: 1.8em;
-    }
-
-    .list-center p {
-        display: inline-block;
-    }
-
-    .list-center ul {
-      width: 700px;
-    }
-
-    .list-center.wide ul {
-      width: 960px;
-    }
-    .remark-slide-content.center > h3 {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      text-align: center;
-      opacity: .5;
-    }
-    .remark-slide-content.center li {
-      font-size: 1.8em;
-    }
-    .remark-slide-content.center ul {
-      text-align: left;
-      width: 960px;
-      min-height: 600px;
-      margin: 0 auto;
-    }
-    .remark-slide-content {
-        color: black;
-        position: relative;
-    }
-    .remark-slide-content:after {
-      content: '';
-      background: url('./images/feconf-logo.png');
-      background-size: contain;
-      width: 140px;
-      height: 65px;
-      position: fixed;
-      right: 0;
-      bottom: 0;
-    }
-    .remark-slides-area .remark-slide-container:first-child .remark-slide-content:after {
-      display: none;
-    }
-    .list-center li {
-      line-height: 1em;
-      margin: 15px 0;
-      list-style: inside;
-      white-space: nowrap;
-    }
-    .list-center.center li {
-      white-space: inherit;
-    }
-
-    .list-styled ul li{
-      list-style: inside;
-    }
-
-    .center.middle.no-padding {
-      padding: 0;
-    }
-
-    .secondary {
-      opacity: 0.2;
-    }
-    .current-plan-step {
-      font-weight: bold;
-      position: relative;
-    }
-  
-    .gizmo-walk {
-      width: 32px;
-      height: 26px;
-      margin: 2% auto;
-      position: absolute;
-      left: -30px;
-      margin-top: -28px;
-      background: url('./images/gizmo-sprite.png') no-repeat -42px -50px;
-      animation: walk-play .5s steps(3) infinite;
-      zoom: 3;
-    }
-
-    @keyframes walk-play {
-      100% { background-position: -162px -50px; }
-    }
-  
-    .gizmo-walk-se {
-      width: 32px;
-      height: 26px;
-      margin: 2% auto;
-      display: inline-block;
-      position: absolute;
-      left: -28px;
-      margin-top: 0px;
-      background: url('./images/gizmo-sprite.png') no-repeat -426px -88px;
-      animation: walk-se-play .5s steps(3) infinite;
-      zoom: 3;
-    }
-
-    @keyframes walk-se-play {
-      100% { background-position: -522px -88px }
-    }
-
-    .gizmo-jump {
-      width: 32px;
-      height: 26px;
-      margin: 2% auto;
-      display: inline-block;
-      position: absolute;
-      left: -32px;
-      margin-top: 4px;
-      background: url('./images/gizmo-sprite.png') no-repeat -42px -131px;
-      animation: gizmo-jump-play .5s steps(3) infinite;
-      zoom: 3;
-    }
-
-    @keyframes gizmo-jump-play {
-      100% { background-position: -162px -131px; }
-    }
-
-    .gizmo-walk-ee {
-      width: 14px;
-      height: 26px;
-      margin: 2% auto;
-      display: inline-block;
-      position: absolute;
-      left: -21px;
-      margin-top: 4px;
-      background: url('./images/gizmo-sprite.png') no-repeat -330px -89px;
-      animation: gizmo-walk-ee-play .5s steps(3) infinite;
-      zoom: 3;
-    }
-
-    @keyframes gizmo-walk-ee-play {
-      100% { background-position: -402px -87px; }
-    }
-
-    .gizmo-jackhammer {
-      width: 32px;
-      height: 26px;
-      margin: 2% auto;
-      display: inline-block;
-      position: absolute;
-      left: -30px;
-      margin-top: 0px;
-      background: url('./images/gizmo-sprite.png') no-repeat -150px -394px;
-      animation: gizmo-jackhammer-play .5s steps(3) infinite;
-      zoom: 3;
-    }
-
-    @keyframes gizmo-jackhammer-play {
-      100% { background-position: -270px -394px; }
-    }
-
-    .gizmo-circle {
-      width: 28px;
-      height: 26px;
-      margin: 2% auto;
-      background: url('./images/gizmo-sprite.png') no-repeat -60px -326px;
-      animation: circle-play .9s steps(8) infinite;
-      zoom: 3;
-    }
-
-    @keyframes circle-play {
-      100% { background-position: -315px -326px; }
-    }
-
-    .remark-code {
-      max-width: 90%;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-    .gizmo-holder {
-      position: relative;
-      left: 0;
-      right: 0;
-    }
-
-    .title-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: url('./images/title-slide.png');
-      background-size: 100% 100%;
-      background-repeat: no-repeat;
-      z-index: 1;
-    }
-
-    .main-title {
-      position: absolute;
-      top: 40px;
-      left: 140px;
-    }
-
-    a {
-      color: gray;
-    }
-
-    .remark-code-line-highlighted {
-      background-color: #f5d60e;
-    }
-
-    .hljs-default .hljs {
-      color: black;
-      background-color: transparent;
-    }
-
-    @page {
-      size: 1210px 681px;
-      margin: 0;
-    }
-
-    @media print {
-      .remark-slide-content.center li {
-        font-size: 1.4em;
-      }
-    .remark-slide-content.center ul {
-      min-height: 300px;
-    }
-      .remark-slide-scaler {
-        width: 100% !important;
-        height: 100% !important;
-        transform: scale(1) !important;
-        top: 0 !important;
-        left: 0 !important;
-      }
-    }
-
-  </style>
-  <body>
+  <body class="black-bg">
+    <div class="colorpicker">
+    </div>
     <div class="loader">
       <img src="../images/logo.svg" alt="">
     </div>
@@ -317,6 +25,7 @@
     <script>
 const rootNode = document.getElementById('source');
 const loaderNode = document.querySelector('.loader');
+
 
 function codeHiglightExtender(string) {
   return string.split('---').reduce((newLine, singleLine) => {
@@ -353,6 +62,7 @@ fetch('./slides.md')
     rootNode.innerHTML = result;
     setTimeout(() => {
       loaderNode.classList.add('fade-out');
+      document.body.removeChild(loaderNode);
       const slideShow = remark.create({
         highlightLanguage: 'javascript',
         highlightSpans: /«([^»]+?)»/g
@@ -360,10 +70,16 @@ fetch('./slides.md')
       const titleSlide = document.querySelector('.remark-slide-content');
       setTimeout(() => {
         titleSlide.setAttribute('style', "background-image: url(\"./images/title-slide.png\");background-size: cover;background-position: 0 0;");
-      }, 0)
+      }, 500)
+      const bgRadio = document.querySelector('.colorpicker');
+      bgRadio.addEventListener('click', function(event) {
+        document.body.classList.toggle('black-bg')
+      })
 
     }, 400);
   });
+
+
     </script>
   </body>
 </html>

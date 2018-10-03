@@ -74,7 +74,7 @@ class: center, middle
 
 ### План
 
-- Что делает линтер
+- Чем помогает линтер
 - Как он это делает
 - С чем его приготовить
 - Куда его положить
@@ -94,7 +94,7 @@ class: center, middle
 ### План
 
 <ul>
-  <li class="current-plan-step">Что делает линтер<div class="gizmo-walk-se"></div></li>
+  <li class="current-plan-step">Чем помогает линтер<div class="gizmo-walk-se"></div></li>
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
@@ -115,7 +115,7 @@ class: center, middle
 
 --
 
-- Общие стили
+- Единый контракт
 
 --
 
@@ -141,20 +141,18 @@ class: center, middle
 --
 
 - TsLint
-
---
-
 - styleLint
-
---
-
 - textLint
 
---
+---
+class: center, middle
 
-- Prettier (+-)
-- ShellCheck (+-)
-- WebHint (+-)
+### Окололинтерье
+
+- Prettier
+- ShellCheck
+- WebHint
+- SonarTS
 
 ---
 
@@ -163,7 +161,7 @@ class: center, middle
 ### План
 
 <ul>
-  <li class="secondary">Что делает линтер</li>
+  <li class="secondary">Чем помогает линтер</li>
   <li class="current-plan-step">Как он это делает<div class="gizmo-jump"></div></li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
@@ -229,7 +227,7 @@ class: center, middle
 ### План
 
 <ul>
-  <li class="secondary">Что делает линтер</li>
+  <li class="secondary">Чем помогает линтер</li>
   <li class="secondary">Как он это делает</li>
   <li class="current-plan-step">С чем его приготовить<div class="gizmo-walk-ee"></div></li>
   <li class="secondary">Куда его положить</li>
@@ -312,7 +310,7 @@ class: center, middle
 ### План
 
 <ul>
-  <li class="secondary">Что делает линтер</li>
+  <li class="secondary">Чем помогает линтер</li>
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="current-plan-step">Куда его положить<div class="gizmo-jackhammer"></div></li>
@@ -336,7 +334,7 @@ class: center, middle
 ### План
 
 <ul>
-  <li class="secondary">Что делает линтер</li>
+  <li class="secondary">Чем помогает линтер</li>
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
@@ -357,10 +355,24 @@ class: center, middle
 - Тесты
 
 ---
+class: center, middle
+
+### Какую проблему решаем
+
+```
+// 👎 
+document.querySelector('.items');
+
+// 👍
+document.querySelector('.js-items');
+
+```
+
+---
 
 ### Пример правил eslint
 
-codehighlight: [2, 5]
+codehighlight: [3, 9]
 
 ```
 {
@@ -381,63 +393,48 @@ codehighlight: [2, 5]
 
 ### Кастомное правило eslint
 
-codehighlight: [3, 6, 7, 14]
+codehighlight: [2, 5, 6, 13]
 
 ```
 module.exports = {
-    meta: { ... },
-    create: function(context) {
-        // context => parserOptions/ruleId/options/settings etc.
-        return {
-            CallExpression: function(node) {
-                if (
-                    getNestedProperty(node, 'callee.property.name') ===
-                        'querySelector' &&
-                    !getNestedProperty(node, 'arguments.0.value').startsWith(
-                        '.js-'
-                    )
-                ) {
-                    context.report(
-                        node,
-                        'Use js-* prefix for accessing DOM nodes',
-                        function(fixer) {
-                          return ...;
-                        }
-                    );
-                }
-            }
-        };
-    }
+  create: function(context) {
+    // context => parserOptions/ruleId/options/settings etc.
+    return {
+      CallExpression: function(node) {
+        if (
+            getNestedProperty(node, 'callee.property.name') ===
+                'querySelector' &&
+            !getNestedProperty(node, 'arguments.0.value').startsWith(
+                '.js-'
+            )
+        ) {
+            context.report(
+              node, 
+              'Use js-* prefix for accessing DOM nodes');
+        }
+      }
+    };
+  }
 };
 ```
 
 ---
 
-codehighlight: [8, 9, 14]
+codehighlight: [5, 8]
 
 ```
 const rule = require('./prefer-node-suffix');
 const RuleTester = require('eslint').RuleTester;
-
-RuleTester.setDefaultConfig(...);
-
 const ruleTester = new RuleTester();
-
 ruleTester.run('prefer-node-suffix', rule, {
     valid: [
         'const itemsNode = document.querySelector(".js-items");',
         'const obj = {}; obj.tabsNode = itemsNode.querySelector(".js-tabs");'
     ],
-
     invalid: [
         {
-            code: 'const items = document.querySelector(".js-items");',
-            errors: [
-                {
-                    message: 'Use postfix Node, when accessing DOM nodes, items => itemsNode',
-                    type: ''
-                }
-            ]
+            code: 'const items = document.querySelector(".items");',
+            errors: [...]
         }
     ]
 });
@@ -465,7 +462,25 @@ processors: {
 
 ---
 
-codehighlight: [4, 12, 13]
+class: center, middle
+
+### Пример правила tslint
+```
+// 👎 
+class Barman {
+    ...
+}
+// 👍
+class Barista {
+    ...
+}
+
+```
+
+
+---
+
+codehighlight: [4, 5, 6, 7]
 
 ### Кастомное правило tslint
 
@@ -473,47 +488,19 @@ codehighlight: [4, 12, 13]
   import * as ts from "typescript";
   import * as Lint from "tslint";
 
-  export class Rule extends Lint.Rules.AbstractRule {
-      public static FAILURE_STRING = "import statement forbidden";
-
-      public apply(sourceFile: ts.SourceFile): Lint.RuleFailure[] {
-          return this.applyWithWalker(new NoImportsWalker(sourceFile, this.getOptions()));
+  class NoBarmenWalker extends Lint.RuleWalker {
+      public visitClassDeclaration(node: ts.ImportDeclaration) {
+          if (node.name.text === 'Barman') {
+              this.addFailure(this.createFailure(
+                node.name.getStart(),
+                node.name.getWidth(),
+                Rule.FAILURE_STRING)
+              );
+          };
+          //...
       }
   }
 
-  class NoImportsWalker extends Lint.RuleWalker {
-      public visitImportDeclaration(node: ts.ImportDeclaration) {
-          // ... some logic ...
-          this.addFailure(this.createFailure(node.getStart(), node.getWidth(), Rule.FAILURE_STRING));
-          super.visitImportDeclaration(node);
-      }
-  }
-```
-
-
----
-
-### Кастомное правило stylelint
-
-```
-var stylelint = require("stylelint")
-
-var ruleName = "plugin/foo-bar"
-var messages =  stylelint.utils.ruleMessages(ruleName, {
-  expected: "Expected ...",
-})
-
-module.exports = stylelint.createPlugin(ruleName, function(primaryOption, secondaryOptionObject) {
-  return function(postcssRoot, postcssResult) {
-    var validOptions = stylelint.utils.validateOptions(postcssResult, ruleName, { .. })
-    if (!validOptions) { return }
-    // ... some logic ...
-    stylelint.utils.report({ .. })
-  }
-})
-
-module.exports.ruleName = ruleName
-module.exports.messages = messages
 ```
 
 ---
@@ -523,7 +510,7 @@ class: center, middle
 ### План
 
 <ul>
-  <li class="secondary">Что делает линтер</li>
+  <li class="secondary">Чем помогает линтер</li>
   <li class="secondary">Как он это делает</li>
   <li class="secondary">С чем его приготовить</li>
   <li class="secondary">Куда его положить</li>
@@ -553,7 +540,7 @@ class: center, middle
 
 ???
 
-- Обучаемый парсер (напр. Ohmlang) + walker + reporter
+- Кастомный токенизатор (напр. Ohmlang) + walker + reporter
 - Универсальный парсер с плагинами
 
 ---
@@ -572,7 +559,7 @@ class: center, middle
 
 ???
 
-- Обучаемый парсер (напр. Ohmlang) + walker + reporter
+- Кастомный токенизатор (напр. Ohmlang) + walker + reporter
 - Универсальный парсер с плагинами
 
 ---
@@ -582,7 +569,7 @@ class: center, middle
 
 class: center, middle
 
-### Обучаемый парсер
+### Кастомный токенизатор
 
 - Текст в AST
 - Грамматика
@@ -592,11 +579,11 @@ class: center, middle
 ---
 
 class: center, middle
+codehighlight: [3, 9, 10]
 
-### Обучаемый парсер
+### Кастомный токенизатор
 
 ```
-NLDatalog.grammar = ohm.grammar(`
   NLDatalog {
     Rules
       = ListOf<Rule, "\\n">
@@ -612,12 +599,12 @@ NLDatalog.grammar = ohm.grammar(`
     wordChar = any
     eol = "\\r"? "\\n"
   }
-`);
 ```
 
 ---
 
 class: center, middle
+codehighlight: [1, 3]
 
 ```
 RemarkJSSlider.semantics = RemarkJSSlider.grammar
@@ -635,18 +622,10 @@ RemarkJSSlider.semantics = RemarkJSSlider.grammar
 ---
 
 class: center, middle
-codehighlight: [1, 4, 6, 11]
+codehighlight: [1, 5, 7, 8, 14]
 
 ```
 const walker = new ASTWalker();
-
-const linter = {
-  ClassRow(node, parent) {
-    if (node.classNames.length === 0) {
-      throw new Error('No ClassRows should be empty');
-    }
-  }
-}
 
 walker.traverse(ast,
 {
@@ -657,6 +636,14 @@ walker.traverse(ast,
       }
    }
 });
+
+const linter = {
+  ClassRow(node, parent) {
+    if (node.classNames.length === 0) {
+      throw new Error('No ClassRows should be empty');
+    }
+  }
+}
 ```
 
 ---
@@ -673,10 +660,11 @@ class: center, middle
 ---
 
 class: center, middle
+codehighlight: [2, 5]
 
 ```
 function tokenClassListSeparator(process, value) {
-    const match = /^class:(.+)/g.exec(value);
+    const match = /^class:(.+)/.exec(value);
     if (match) {
         return process(match[0])({
             type: 'classRow',
@@ -687,6 +675,7 @@ function tokenClassListSeparator(process, value) {
 ```
 ---
 class: center, middle
+codehighlight: [4, 7, 13]
 
 ### Добавление правила к набору правил
 
@@ -694,17 +683,20 @@ class: center, middle
   const visit = require('unist-util-visit');
   const reason = 'ClassName cannot be empty';
 
-  function visitor(file) {
-      return (node) => {
-          ...// checking classList
-          if (classList.length === 0) {
-              file.message(reason);
-          }
-      };
-  }
-
   function noEmptyClassList(tree, file) {
-      visit(tree, 'classList', visitor(file));
+      visit(tree, 'classList', (file) => {
+        return (node) => {
+            const classList = node.value
+              .replace('class:', '')
+              .split(',')
+              .map(singleClassName => singleClassName.trim())
+              .filter(Boolean);
+
+            if (classList.length === 0) {
+                file.message(reason);
+            }
+        };
+      });
   }
 
   module.exports = noEmptyClassList;
@@ -739,7 +731,7 @@ class: center, middle
 
 ### Итого
 
-- Что делает линтер
+- Чем помогает линтер
 - Как он это делает
 - С чем его приготовить
 - Куда его положить
@@ -758,12 +750,17 @@ class: center, middle, nopages
 
 # Вопросы?
 
-dkun.in
-@DKunin
+- dkun.in
+- @DKunin
+- https://bit.ly/fec-lint
+
+<img src="./images/qrcode.png" alt="" width="400px" class="qr-code">
 
 ---
 class: smaller
+
 #### Полезные материалы
+
 - https://eslint.org/docs/developer-guide/working-with-plugins
 - https://stylelint.io/developer-guide/plugins/
 - https://palantir.github.io/tslint/develop/custom-rules/
@@ -777,3 +774,4 @@ class: smaller
 - https://github.com/unifiedjs/unified
 - https://github.com/DKunin/ohm-example
 - https://github.com/DKunin/unified-test
+- https://github.com/SonarSource/SonarTS

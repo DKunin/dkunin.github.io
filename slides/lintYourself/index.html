@@ -323,7 +323,7 @@ function codeHiglightExtender(string) {
     if (singleLine.includes('codehighlight')) {
       let codehighlightline = singleLine.match(/codehighlight.+/)[0];
       let numbers = codehighlightline.match(/\d{1,2}/g);
-      let theCode = singleLine.match(/\`{3}.+?\`{3}/gms)[0];
+      let theCode = singleLine.match(/\`{3}(\s|.)+\`{3}/gm)[0];
       let onlyCode = theCode.replace(/\`{3}/g, '');
 
       let newSlides = numbers.reduce((newSlide, singleNumber) => {

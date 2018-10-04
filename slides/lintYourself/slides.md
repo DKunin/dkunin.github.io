@@ -774,4 +774,5 @@ class: smaller
 - https://github.com/unifiedjs/unified
 - https://github.com/DKunin/ohm-example
 - https://github.com/DKunin/unified-test
+- https://github.com/DKunin/tslint-example
 - https://github.com/SonarSource/SonarTS

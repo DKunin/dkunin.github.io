@@ -9,4 +9,4 @@ Presentations and stuff for various events by Dmitri Kunin
 - [WIP: datIntroduction](http://dkunin.github.io/slides/datIntroduction)
 - [gruntvsgulp](http://dkunin.github.io/slides/gruntvsgulp)
 - [immutableData](http://dkunin.github.io/slides/immutableData)
-- [WIP: lintYourself](http://dkunin.github.io/slides/lintYourself)
+- [lintYourself](http://dkunin.github.io/slides/lintYourself)

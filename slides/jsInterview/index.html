@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lint Yourself</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta property="og:title" content="Lint Yourself" />
+    <meta property="og:site_name" content="DKunin:presentation" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
+    <meta property="og:description" content="Когда вы работаете в большой и/или распределенной команде - следить за качеством кода становится только сложнее. Тогда на помощь и приходят они - Линтеры. В докладе мы рассмотрим, что же это за зверь такой, линтер, какие они бывают, как и когда они должны работать и разберем как расширить существующий или написать свой собственный линтер." />
+    <meta property="og:type" content="article" />
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="./lint-styles.css">
+  </head>
+  <body class="">
+    <div class="colorpicker">
+    </div>
+    <div class="loader">
+      <img src="../images/logo.svg" alt="">
+    </div>
+    <textarea id="source">
+      
+    </textarea>
+    <script src="../js/remark-latest.min.js"></script>
+    <script>
+const rootNode = document.getElementById('source');
+const loaderNode = document.querySelector('.loader');
+
+
+function codeHiglightExtender(string) {
+  return string.split('---').reduce((newLine, singleLine) => {
+    if (singleLine.includes('codehighlight')) {
+      let codehighlightline = singleLine.match(/codehighlight.+/)[0];
+      let numbers = codehighlightline.match(/\d{1,2}/g);
+      let theCode = singleLine.match(/\`{3}(\s|.)+\`{3}/gm)[0];
+      let onlyCode = theCode.replace(/\`{3}/g, '');
+
+      let newSlides = numbers.reduce((newSlide, singleNumber) => {
+        let number = parseInt(singleNumber);
+        let codeArray = onlyCode.split('\n');
+        codeArray[number] = `*${codeArray[number]}`;
+        return newSlide.concat(`\`\`\`\n${codeArray.join('\n')}\n\`\`\`\n\n`);
+      }, []);
+      return (newLine +=
+        '\nclass: center, middle\n' +
+        newSlides.join('\n---\nclass: center, middle\n') +
+        '---\n');
+    }
+
+    return (newLine += singleLine + '---');
+  }, '');
+}
+
+function linker(string) {
+  return string.replace(/(https:\/\/[\w\.\/-]+)/g, '<a href="$1" target="_blank">$1</a>');
+}
+
+fetch('./slides.md')
+  .then(res => res.text())
+  .then(codeHiglightExtender)
+  .then(result => {
+    rootNode.innerHTML = result;
+    setTimeout(() => {
+      loaderNode.classList.add('fade-out');
+      document.body.removeChild(loaderNode);
+      const slideShow = remark.create({
+        highlightLanguage: 'javascript',
+        highlightSpans: /«([^»]+?)»/g
+      });
+      const titleSlide = document.querySelector('.remark-slide-content');
+      setTimeout(() => {
+        titleSlide.setAttribute('style', "background-image: url(\"./images/title-slide.png\");background-size: cover;background-position: 0 0;");
+      }, 500)
+      const bgRadio = document.querySelector('.colorpicker');
+      bgRadio.addEventListener('click', function(event) {
+        document.body.classList.toggle('black-bg')
+      })
+
+    }, 400);
+  });
+
+
+    </script>
+  </body>
+</html>

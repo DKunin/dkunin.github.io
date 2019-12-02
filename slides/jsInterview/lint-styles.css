@@ -70,9 +70,7 @@ p img
     width: 140px;
     height: 65px;
 
-    content: '';
-
-    background: url('./images/feconf-logo.png');
+    content: ''
     background-size: contain;
 }
 .remark-slides-area .remark-slide-container:first-child .remark-slide-content:after
@@ -129,7 +127,6 @@ p img
 
     animation: walk-play .5s steps(3) infinite;
 
-    background: url('./images/gizmo-sprite.png') no-repeat -42px -50px;
 }
 
 @keyframes walk-play
@@ -155,7 +152,6 @@ p img
 
     animation: walk-se-play .5s steps(3) infinite;
 
-    background: url('./images/gizmo-sprite.png') no-repeat -426px -88px;
 }
 
 @keyframes walk-se-play
@@ -181,7 +177,6 @@ p img
 
     animation: gizmo-jump-play .5s steps(3) infinite;
 
-    background: url('./images/gizmo-sprite.png') no-repeat -42px -131px;
 }
 
 @keyframes gizmo-jump-play
@@ -207,7 +202,6 @@ p img
 
     animation: gizmo-walk-ee-play .5s steps(3) infinite;
 
-    background: url('./images/gizmo-sprite.png') no-repeat -330px -89px;
 }
 
 @keyframes gizmo-walk-ee-play
@@ -233,7 +227,6 @@ p img
 
     animation: gizmo-jackhammer-play .5s steps(3) infinite;
 
-    background: url('./images/gizmo-sprite.png') no-repeat -150px -394px;
 }
 
 @keyframes gizmo-jackhammer-play
@@ -254,7 +247,6 @@ p img
 
     animation: circle-play .9s steps(8) infinite;
 
-    background: url('./images/gizmo-sprite.png') no-repeat -60px -326px;
 }
 
 @keyframes circle-play
@@ -287,8 +279,6 @@ p img
     right: 0;
     bottom: 0;
     left: 0;
-
-    background-image: url('./images/title-slide.png');
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }

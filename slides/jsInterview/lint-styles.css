@@ -123,7 +123,7 @@ p img
     overflow: hidden;
     max-width: 90%;
     margin: 0 auto;
-    font-size: 1em;
+    font-size: 1.6em;
 }
 .gizmo-holder
 {
@@ -175,27 +175,6 @@ a:visited
     size: 1210px 681px;
 }
 
-@media print
-{
-    .remark-slide-content.center li
-    {
-        font-size: 1.4em;
-    }
-    .remark-slide-content.center ul
-    {
-        min-height: 300px;
-    }
-    .remark-slide-scaler
-    {
-        top: 0 !important;
-        left: 0 !important;
-
-        width: 100% !important;
-        height: 100% !important;
-
-        transform: scale(1) !important;
-    }
-}
 
 .colorpicker {
   position: absolute;

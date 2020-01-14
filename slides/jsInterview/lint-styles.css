@@ -54,7 +54,6 @@ p img
 .remark-slide-content.center ul
 {
     width: 960px;
-    min-height: 600px;
     margin: 0 auto;
 
     text-align: left;
@@ -99,6 +98,10 @@ p img
 .list-styled ul li
 {
     list-style: inside;
+}
+
+.center p img {
+    margin: 0 auto;
 }
 
 .center.middle.no-padding

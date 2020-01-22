@@ -18,6 +18,16 @@ class: center, middle
 ---
 class: center, middle
 
+## Обо мне
+
+- Руководитель группы разработки T&S Авито
+- Начинал свой путь с frontend
+- Продолжаю проводить интервью на разных этапах, на регулярной основе
+
+
+---
+class: center, middle
+
 ## Теоретическая часть
 
 ---
@@ -36,12 +46,15 @@ class: center, middle
 
 ![Лого NodeJS на сервере](./images/02-node-js.png)
 
+- NodeJS - движок, позволяющий выполнять JS на серверной стороне4
+
 ---
 
 class: center, middle
 
 ## Мобильные устройства
 ![Логотип телефона](./images/03-phones.jpeg)
+
 - C помощью адаптеров напр. Cordova
 
 ---
@@ -50,7 +63,9 @@ class: center, middle
 
 ## HTML
 
-<img height="400px" src="./images/04-html.png" alt="html код" />
+<img height="300px" src="./images/04-html.png" alt="html код" />
+
+- Пример HTML кода
 
 ---
 
@@ -69,6 +84,8 @@ const loaderNode = document.querySelector('.loader');
 </script>
 
 ```
+
+- Способы загрузки JS на страницу
 
 ---
 class: center, middle
@@ -89,6 +106,8 @@ class: center, middle
 
 ![примеры примитивов в консоли](./images/06-console.png)
 
+- Примитивы - самые базовые блоки строительства для интерпретатора
+
 ---
 
 class: center, middle
@@ -106,7 +125,7 @@ class: center, middle
  }
 ```
 
-- Объект - это сущность у которой может быть набор свойств и методов, состоящих из примитивов
+- Объект состоит из примитивов. У объекта может быть набор свойств и методов. 
 
 ---
 

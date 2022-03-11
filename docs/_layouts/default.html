@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    <style type="text/css">
+      html, body {
+        font-family: Helvetica;
+        font-size: 22px;
+        background: #e7e7e7;
+        height: 100%;
+        overflow: hidden;
+      }
+      img {
+        max-width: 200px;
+      }
+      section {
+        height: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+      article {
+        border:  1px solid #c5c5c5;
+        padding:  20px;
+        background: white;
+        width: 250px;
+        height: 450px;
+        box-shadow: 0px 0px 19px 11px rgba(0,0,0,0.1);
+      }
+      header {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .link-logo {
+        opacity: .4;
+        width: 30px;
+      }
+    </style>
+    <meta name="yandex-verification" content="508e67d232ef1693" />
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(87299924, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/87299924" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+  </head>
+  <body>
+    {{ content }}
+  </body>
+</html>

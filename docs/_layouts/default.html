@@ -13,9 +13,7 @@
         height: 100%;
         overflow: hidden;
       }
-      img {
-        max-width: 200px;
-      }
+      
       section {
         height: 100%;
         display: flex;
@@ -37,6 +35,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      header > img {
+        max-width: 200px;
       }
 
       .link-logo {
@@ -62,10 +63,33 @@
         width: 120%;
       }
       .slider img {
+        max-width: 235px;
         min-width: 235px;
         flex: auto;
         opacity: .6;
 
+      }
+
+    @media (orientation: portrait) {
+        body, html, body > div {
+          overflow: hidden;
+          padding: 0;
+          margin: 0;
+        }
+        .slider {
+          width: auto;
+        }
+        .slider img {
+          flex: auto;
+          opacity: .5;
+          max-width: 33.3%;
+          min-width: 33.3%;
+        }
+        article {
+          width: 60%;
+          height: 29%;
+          font-size: 2.3em;
+        }
       }
     </style>
     <meta name="yandex-verification" content="508e67d232ef1693" />

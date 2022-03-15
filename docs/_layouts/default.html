@@ -48,6 +48,10 @@
         list-style: none;
         padding: 0;
         text-align: center;
+        display: inline-flex;
+      }
+      ul li {
+        padding: 20px;
       }
       .slider {
         position:  absolute;
@@ -66,10 +70,12 @@
         max-width: 235px;
         min-width: 235px;
         flex: auto;
-        opacity: .6;
+        opacity: .8;
 
       }
-
+      .icon {
+        width: 50px;
+      }
     @media (orientation: portrait) {
         body, html, body > div {
           overflow: hidden;
@@ -81,13 +87,12 @@
         }
         .slider img {
           flex: auto;
-          opacity: .5;
           max-width: 33.3%;
           min-width: 33.3%;
         }
         article {
-          width: 60%;
-          height: 29%;
+          width: auto;
+          height: auto;
           font-size: 2.3em;
         }
       }

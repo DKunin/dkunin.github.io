@@ -54,9 +54,8 @@ layout: default
 			<h3>Dungeon Keeper's Dice</h3>
 			<div>Dice posts are coming</div>
 			<ul>
-				<li><a href="https://t.me/dkdice">Telegram Dice Channel</a></li>
-				<li><a href="https://t.me/dkunin">DM</a></li>
-				<li><a href="mailto:info@dkdice.com">info@dkdice.com</a></li>
+				<li><a href="https://t.me/dkdice"><img class="icon" src="./assets/telegram.png"/></a></li>
+				<li><a href="mailto:info@dkdice.com"><img  class="icon" src="./assets/email.png"/></a></li>
 			</ul>
 		</article>
 	</section>
